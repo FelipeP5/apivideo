@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VForm</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<!-- TODO:
+ -> Javascript;
+ -> Colorir botões dos file inputs usando SCSS;
+ -> Colorir focus dos inputs usando SCSS;
+ -> Modal de escolha playlist;
+ -> Coisas estão transbordando, por quê?;
+ -> Hover e Focus do submit precisam ser definidos;
+ -> Arquivo, imagem e ${link} devem possuir texto de ajuda sobre os tipos aceitados.
+-->
+<body>
+    <header class="bg-cprimary"></header>
+    <div class="main">
+        <h1 class="text-center">Alterar informações</h1>
+        <div class="container d-flex justify-content-center align-items-center">
+            <form action="@" method="POST">
+                <div class="mb-2">
+                    <label for="nome" class="form-label">Nome:</label>
+                    <input type="text" class="form-control" id="nome">
+                </div>
+                <div class="mb-2">
+                    <label for="descricao" class="form-label">Descrição</label>
+                    <textarea class="form-control" id="descricao" cols="60" rows="5" placeholder="Escreva sua descrição aqui"></textarea>
+                </div>
+                <div class="mb-2">
+                    <label for="playlist" class="form-label">Playlists</label>
+                    <input type="checkbox" class="form-control">
+                </div>
+                <div class="mb-2">
+                    <label for="thumbnail" class="form-label">Thumbnail</label>
+                    <input type="file" class="form-control" id="thumbnail" accept="image/*">
+                </div>
+                <div class="mb-2">
+                    <label for="arquivo" class="form-label">Arquivo de vídeo</label>
+                    <input type="file" class="form-control form-file-button-bg-bg-cprimary" id="arquivo" accept="video/*">
+                </div>
+                <!--ou-->
+                <!-- <div class="mb-2">
+                    <label for="hiperlink" class="form-label"></label>
+                    <input type="url" id="hiperlink" class="form-control" placeholder="https://exemplo.com">
+                </div> -->
+                <div class="text-center mt-3 mb-1">
+                    <label for="enviar" class="form-label"></label>
+                    <input class="btn p-2 bg-cprimary clr-csecondary" type="submit" id="enviar" value="Confirmar">
+                </div>
+            </form>
+        </div>
+    </div>
+    <footer class="bg-cprimary"></footer>
+    <script src="form.js"></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+:root{
+    --custom-primary: red;
+    --custom-secondary: white;
+}
+
+*{
+    border: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/*=======================  
+   Classes de Utilidade
+========================*/
+
+.bg-cprimary{
+    background-color: var(--custom-primary);
+}
+.clr-cprimary{
+    color: var(--custom-primary);
+}
+.bg-csecondary{
+    background-color: var(--custom-secondary);
+}
+.clr-csecondary{
+    color: var(--custom-secondary);
+}
+.add-sign{
+    font-size: 5rem;
+}
+
+/*=======================  
+    Blocos principais 
+========================*/
+
+header, footer{
+    width: 100vw;
+    height: 10vh;
+}
+.main{
+    background-color: rgb(217, 217, 217);
+    width: 100vw;
+    min-height: 80vh;
+    padding: 0.50rem 0 0.50rem 0;;
+}
+
+/*=======================  
+    Remoção de estilo
+========================*/
+
+a{
+    text-decoration: none;
+}
+
+/*=======================  
+        Card-items
+========================*/
+
+.ver, .editar, .apagar{
+    padding: 5px;
+    border-radius: 0.25rem;
+}
+
+.custom-img{
+    height: 10rem;
+    object-fit: cover;
+}
+
+/*=======================  
+      Página detalhe
+========================*/
+
+.player{
+    height: 20rem;
+    width: 50rem;
+}

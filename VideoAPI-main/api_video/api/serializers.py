@@ -24,7 +24,7 @@ class PlaylistSerializer(serializers.ModelSerializer):
             'descricao':{'help_text': 'descrição da playlist'},
             'data':{'help_text':'data definida por vontade do usuário'},
             'thumbnail':{'help_text': 'a imagem representativa da playlist'},
-            'videos':{'help_text': 'os vídeos que nela estão'},
+            # 'videos':{'help_text': 'os vídeos que nela estão'},
         }
 
 class PlaylistVideoSerializer(serializers.ModelSerializer):

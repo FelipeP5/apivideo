@@ -14,17 +14,13 @@ class RenameImage(object):
         new_name = f"{uuid.uuid4()}.{extension}" 
         return os.path.join(self.subdir,new_name)
 
-ALLOWED_EXTENSIONS = ['jpg', 'jpeg', 'jpg', 'gif']
+ALLOWED_EXTENSIONS = ['png', 'jpeg', 'jpg', 'gif']
 class Video(models.Model):
     nome = models.CharField(max_length=100)
     descricao = models.TextField(blank=True, null=True)
     data= models.DateField(auto_now_add=True)
     arquivo= models.FileField()
     thumbnail = models.ImageField(upload_to=RenameImage('imagens/'))
-
-    if not arquivo:
-        print("expression")
-
 
     def clean(self):
         if self.thumbnail:
@@ -55,5 +51,5 @@ class Playlist(models.Model):
 
 # Não era desnecessário...
 class PlaylistVideo(models.Model):
-    playlist = models.ForeignKey(Playlist, on_delete = models.DO_NOTHING)
-    video = models.ForeignKey(Video, on_delete = models.DO_NOTHING)
+    playlist = models.ForeignKey(Playlist, on_delete = models.CASCADE)
+    video = models.ForeignKey(Video, on_delete = models.CASCADE)

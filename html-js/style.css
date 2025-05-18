@@ -27,30 +27,35 @@
 .clr-csecondary{
     color: var(--custom-secondary);
 }
-.add-sign{
-    font-size: 5rem;
-}
 
 /*=======================  
     Blocos principais 
 ========================*/
 
-header, footer{
+nav{
+     outline: 5px solid rgb(255, 145, 2);
+}
+
+footer{
     width: 100vw;
     height: 10vh;
+    outline: 2px solid blue;
 }
-.main{
+
+.corpo{
     background-color: rgb(217, 217, 217);
     width: 100vw;
     min-height: 80vh;
-    padding: 0.50rem 0 0.50rem 0;;
+    padding: 0.50rem 0 0.50rem 0;
+    outline: 2px solid purple;
 }
+
 
 /*=======================  
     Remoção de estilo
 ========================*/
 
-a{
+.corpo a{
     text-decoration: none;
 }
 
@@ -58,14 +63,28 @@ a{
         Card-items
 ========================*/
 
-.ver, .editar, .apagar{
-    padding: 5px;
-    border-radius: 0.25rem;
+.mais{
+    cursor: pointer;
+}
+
+.add-sign{
+    font-size: 5rem;
+    outline: 2px solid black;
+}
+
+.card-img-overlay .container{
+    display: none;
+}
+.card-img-overlay:hover{
+    .container{
+        display: flex;
+    }
 }
 
 .custom-img{
-    height: 10rem;
+    height: 16rem;
     object-fit: cover;
+
 }
 
 /*=======================  

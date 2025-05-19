@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VForm</title>
+    <title>Formulário de Playlist</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../style.css">
@@ -18,11 +18,33 @@
  -> Arquivo, imagem e ${link} devem possuir texto de ajuda sobre os tipos aceitados.
 -->
 <body>
-    <header class="bg-cprimary"></header>
-    <div class="main">
+    <nav class="navbar navbar-expand-sm bg-cprimary" data-bs-theme="dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">MyTube</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a href="videoform.html" class="nav-link">Video</a>
+              </li>
+              <li class="nav-item">
+                <a href="playlistform.html" class="nav-link">Playlist</a>
+              </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Usuário</a>
+                </li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+    <div class="corpo">
         <h1 class="text-center">Alterar informações</h1>
         <div class="container d-flex justify-content-center align-items-center">
-            <form action="@" method="POST">
+            <form method="POST">
                 <div class="mb-2">
                     <label for="nome" class="form-label">Nome:</label>
                     <input type="text" class="form-control" id="nome">
@@ -40,13 +62,12 @@
                     <input type="file" class="form-control" id="thumbnail" accept="image/*">
                 </div>
                 <div class="text-center mt-3 mb-1">
-                    <label for="enviar" class="form-label"></label>
-                    <input class="btn p-2 bg-cprimary clr-csecondary" type="submit" id="enviar" value="Confirmar">
+                    <input class="enviar p-2 bg-cprimary clr-csecondary" type="submit" id="enviar" value="Confirmar">
                 </div>
             </form>
         </div>
     </div>
     <footer class="bg-cprimary"></footer>
-    <script src="form.js"></script>
+    <script src="../script/playlistform.js"></script>
 </body>
 </html>

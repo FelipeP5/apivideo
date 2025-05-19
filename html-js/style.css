@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root{
-    --custom-primary: red;
+    --custom-primary: rgb(255, 0, 0);
     --custom-secondary: white;
 }
 
@@ -8,7 +10,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Roboto, sans-serif;
 }
 
 /*=======================  
@@ -85,6 +87,17 @@ footer{
     height: 16rem;
     object-fit: cover;
 
+}
+
+/*=======================  
+      Formulários
+========================*/
+
+.enviar{
+    border-radius: 5px;
+}
+.enviar:hover{
+    background-color: rgb(155, 0, 0);
 }
 
 /*=======================  

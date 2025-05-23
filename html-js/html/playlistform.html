@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <!-- TODO:
- -> Javascript;
  -> Colorir botões dos file inputs usando SCSS;
  -> Colorir focus dos inputs usando SCSS;
  -> Modal de escolha vídeos;
@@ -20,7 +19,7 @@
 <body>
     <nav class="navbar navbar-expand-sm bg-cprimary" data-bs-theme="dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">MyTube</a>
+          <a class="navbar-brand" href="home.html">MyTube</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -43,24 +42,24 @@
         </div>
       </nav>
     <div class="corpo">
-        <h1 class="text-center">Alterar informações</h1>
+        <h1 class="text-center">Criar nova playlist</h1>
         <div class="container d-flex justify-content-center align-items-center">
             <form action="@" method="POST" enctype="multipart/form-data">
                 <div class="mb-2">
                     <label for="nome" class="form-label">Nome:</label>
-                    <input type="text" class="form-control" id="nome">
+                    <input type="text" class="form-control" id="nome" name="nome">
                 </div>
                 <div class="mb-2">
                     <label for="descricao" class="form-label">Descrição</label>
-                    <textarea class="form-control" id="descricao" cols="60" rows="5" placeholder="Escreva sua descrição aqui"></textarea>
+                    <textarea class="form-control" id="descricao" name="descricao" cols="60" rows="5" placeholder="Escreva sua descrição aqui"></textarea>
                 </div>
                 <div class="mb-2">
                     <label for="videos" class="form-label">Vídeos</label>
-                    <input type="checkbox" id="videos" class="form-control">
+                    <input type="checkbox" id="videos" name="videos" class="form-control">
                 </div>
                 <div class="mb-2">
                     <label for="thumbnail" class="form-label">Thumbnail</label>
-                    <input type="file" class="form-control" id="thumbnail" accept="image/*">
+                    <input type="file" class="form-control" id="thumbnail" name="thumbnail" accept="image/*">
                 </div>
                 <div class="text-center mt-3 mb-1">
                     <label for="enviar" class="form-label"></label>

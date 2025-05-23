@@ -19,7 +19,7 @@ function listeVideos(videos){
                                 <img src="${video.thumbnail}" alt="Nenhuma imagem" class="card-img-top img-fluid custom-img bg-csecondary">
                                 <div class="card-img-overlay">
                                         <div class="container p-0">
-                                            <a href="#" class="ms-auto btn clr-cprimary">Editar</a>
+                                            <a href="videoform.html?id=${video.id}" class="ms-auto btn clr-cprimary">Editar</a>
                                             <a href="#" class="btn clr-cprimary">Excluir</a>
                                         </div>
                                 </div>
@@ -39,7 +39,7 @@ function listePlaylists(playlists){
                             <img src="${playlist.thumbnail}" alt="image cap" class="card-img-top img-fluid custom-img bg-csecondary">
                             <div class="card-img-overlay">
                                 <div class="container p-0">
-                                    <a href="#" class="ms-auto btn clr-cprimary">Editar</a>
+                                    <a href="playlistform.html?id=${playlist.id}" class="ms-auto btn clr-cprimary">Editar</a>
                                     <a href="#" class="btn clr-cprimary">Excluir</a>
                                 </div>
                             </div>
@@ -49,10 +49,6 @@ function listePlaylists(playlists){
                     `;
         lista.innerHTML += cartao;
     })
-};
-
-function direcionarForm(elemento){
-    // Lógica para direcionar ao form com id desejado
 };
 
 function excluir(id){

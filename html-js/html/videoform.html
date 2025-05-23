@@ -25,23 +25,23 @@
             <form action="@" method="POST" enctype="multipart/form-data">
                 <div class="mb-2">
                     <label for="nome" class="form-label">Nome:</label>
-                    <input type="text" class="form-control" id="nome">
+                    <input type="text" class="form-control" id="nome" name="nome">
                 </div>
                 <div class="mb-2">
                     <label for="descricao" class="form-label">Descrição</label>
-                    <textarea class="form-control" id="descricao" cols="60" rows="5" placeholder="Escreva sua descrição aqui"></textarea>
+                    <textarea class="form-control" id="descricao" name="descricao" cols="60" rows="5" placeholder="Escreva sua descrição aqui"></textarea>
                 </div>
                 <div class="mb-2">
                     <label for="playlist" class="form-label">Playlists</label>
-                    <input type="checkbox" id="playlist" class="form-control">
+                    <input type="checkbox" id="playlists" class="form-control" name="playlists">
                 </div>
                 <div class="mb-2">
                     <label for="thumbnail" class="form-label">Thumbnail</label>
-                    <input type="file" class="form-control" id="thumbnail" accept="image/*">
+                    <input type="file" class="form-control" id="thumbnail" name="thumbnail"accept="image/*">
                 </div>
                 <div class="mb-2">
                     <label for="arquivo" class="form-label">Arquivo de vídeo</label>
-                    <input type="file" class="form-control form-file-button-bg-bg-cprimary" id="arquivo" accept="video/*">
+                    <input type="file" class="form-control form-file-button-bg-bg-cprimary" id="arquivo" name="arquivo" accept="video/*">
                 </div>
                 <!--ou-->
                 <!-- <div class="mb-2">

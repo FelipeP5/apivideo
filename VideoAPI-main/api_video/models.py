@@ -1,3 +1,5 @@
+# RenameVideo
+
 from django.db import models
 import os
 import uuid
@@ -20,7 +22,7 @@ class Video(models.Model):
     descricao = models.TextField(blank=True, null=True)
     data= models.DateField(auto_now_add=True)
     arquivo= models.FileField()
-    thumbnail = models.ImageField(upload_to=RenameImage('imagens/'))
+    thumbnail = models.ImageField(upload_to=RenameImage('imagens/'), blank=True)
 
     def clean(self):
         if self.thumbnail:
@@ -36,7 +38,7 @@ class Playlist(models.Model):
     nome = models.CharField(max_length=100)
     descricao = models.TextField(blank=True, null=True)
     data = models.DateField(auto_now_add=True)
-    thumbnail = models.ImageField(upload_to=RenameImage('imagens/'))
+    thumbnail = models.ImageField(upload_to=RenameImage('imagens/'), blank=True)
     # videos = models.ManyToManyField(Video)
 
     def clean(self):

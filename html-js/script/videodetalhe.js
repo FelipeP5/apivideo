@@ -6,7 +6,6 @@
 // Source não carrega o arquivo até o vídeo;
 
 const player = document.querySelector("video");
-const fonte = document.querySelector("source");
 const nome = document.getElementById("nome");
 const descricao = document.getElementById("descricao");
 const data = document.getElementById("data");
@@ -21,6 +20,15 @@ fetch(videoURL + id + "/")
         data.innerText = video.data ? video.data : "##-##-####";
         descricao.innerText = video.descricao ? video.descricao : "O vídeo não contém uma descrição.";
         player.poster = video.thumbnail ? video.thumbnail : "";
-        fonte.src = video.arquivo ? video.arquivo : "";
+        preencherFonte(video.arquivo);
     })
     .catch(erro => console.error(erro, "Erro ao preencher espaços"));
+
+function preencherFonte(arquivo){
+    console.log(arquivo);
+    const fonte = document.createElement("source");
+    fonte.setAttribute("src", arquivo);
+    player.appendChild(fonte);
+    console.log(fonte, "#############", player);
+    player.load();
+}

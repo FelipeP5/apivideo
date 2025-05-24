@@ -1,4 +1,7 @@
-//TODO: Atualizar data ao editar conteúdo;
+/*TODO: 
+- Atualizar data ao editar conteúdo;
+- Exibir arquivos já em uso num texto a parte;
+*/
 const form = document.querySelector("form");
 const playlistURL = "http://127.0.0.1:8000/playlist/";
 const id = new URLSearchParams(location.search).get("id");
@@ -13,19 +16,18 @@ if (id) {
     .then(res => res.json())
     .then(playlist => {
         nome.value = playlist.nome;
-        descricao.innerText = playlist.descricao ? playlist.descricao : "Não tem";
+        descricao.innerText = playlist.descricao ? playlist.descricao : "";
         // videos = ?
-        thumbnail.value = playlist.thumbnail ? playlist.thumbnail : "Não tem";
     })
     .catch(erro => console.error(erro, "Erro ao preencher campos"))
 }
 
 form.addEventListener("submit", e => {
-    console.log(e);
     e.preventDefault();
+    console.log(e);
     const dados = new FormData(form);
     if (id){
-        fetch(playlistURL + id, {
+        fetch(playlistURL + id  + "/", {
             method: "PUT",
             body: dados,
         })

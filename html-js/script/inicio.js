@@ -12,10 +12,11 @@ fetch(playlistURL)
     .then(playlists => listePlaylists(playlists))
     .catch(erro => console.warn(erro, "Erro ao carregar playlists"));
 
+
 function listeVideos(videos){
     videos.forEach(video => {
-        const cartao = `<div id="video${video.id}" class="col mais">
-                            <div class="card bg-cprimary clr-csecondary">
+        const cartao = `<div id="video${video.id}" class="col">
+                            <div onclick="videodetalhe(${video.id})" class="mais card bg-cprimary clr-csecondary">
                                 <img src="${video.thumbnail}" alt="Nenhuma imagem" class="card-img-top img-fluid custom-img bg-csecondary">
                                 <div class="card-img-overlay">
                                         <div class="container p-0">
@@ -34,8 +35,8 @@ function listeVideos(videos){
 function listePlaylists(playlists){
     playlists.forEach(playlist => {
         const cartao = `
-                <div id="playlist${playlist.id}" class="col mais">
-                     <div class="card bg-cprimary clr-csecondary">
+                <div id="playlist${playlist.id}" class="col">
+                     <div onclick="playlistdetalhe(${playlist.id})" class="mais card bg-cprimary clr-csecondary">
                             <img src="${playlist.thumbnail}" alt="image cap" class="card-img-top img-fluid custom-img bg-csecondary">
                             <div class="card-img-overlay">
                                 <div class="container p-0">
@@ -54,3 +55,9 @@ function listePlaylists(playlists){
 function excluir(id){
     // Modal e chamada de API para exclusão
 };
+function videodetalhe(id){
+    location.href = `videodetalhe.html?id=${id}`;
+};
+function playlistdetalhe(id){
+    location.href = `playlistdetalhe.html?id=${id}`;
+}

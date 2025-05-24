@@ -9,17 +9,39 @@
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 </head>
 <!-- TODO:
-    -> No lugar de div.player, pense num iframe com ratio de bootstrap ou <video>;
+    -> Javascript;
     -> Botões fixados no fundo da tela;
     -> Editar deve levar ao forms;
-    -> Abrir com deve disponibilizar opções de reprodução de vídeo para o arquiivo, além de seu nome;
-    -> Incluso em deve mostrar todas as playlists em que o vídeo pode ser encontrado e seu posicionamento;
+    -> Inclui deve mostrar todos os vídeos inclusos em ordem;
     -> Decisão sobre a implementação da reprodução em sequência.
 -->
 <body>
-    <header class="bg-cprimary"></header>
+     <nav class="navbar navbar-expand-sm bg-cprimary" data-bs-theme="dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="inicio.html">MyTube</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a href="videoform.html" class="nav-link">Video</a>
+              </li>
+              <li class="nav-item">
+                <a href="playlistform.html" class="nav-link">Playlist</a>
+                
+              </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Usuário</a>
+                </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
 
-    <div class="main">
+    <div class="corpo">
         <div class="d-flex">
             <p class="rounded-circle py-1 px-2 m-0 ms-auto bg-csecondary"><strong>1</strong></p>
             <p class="rounded py-1 px-2 m-0 ms-auto me-1 bg-cprimary clr-csecondary">20/02/2024</p>
@@ -44,14 +66,13 @@ Cras tincidunt ornare urna vel blandit. Donec diam diam, dignissim vitae leo non
 Integer id nisi commodo, pellentesque leo non, gravida quam. In consectetur dignissim est dapibus tristique. Donec eget efficitur urna. Suspendisse eu nisi velit. Donec libero erat, pretium viverra lectus sit amet, blandit consequat elit. In in luctus leo. Cras ac consequat magna. Proin sollicitudin sapien ligula, in mollis nulla egestas et. Maecenas egestas, orci eu bibendum pretium, urna lorem dapibus nunc, quis elementum velit eros eget lorem. Vivamus ac viverra libero, lobortis luctus neque. In eleifend libero in nulla fermentum, posuere congue justo pellentesque. Maecenas tellus massa, cursus nec posuere et, fermentum quis mauris. Vivamus imperdiet lectus augue, a luctus tellus commodo ut. Mauris ultricies magna tortor, et blandit neque blandit volutpat. Curabitur lobortis pretium fermentum. Vivamus hendrerit porttitor tortor. </p>
         </div>
             <div class="row justify-content-evenly">
-            <div class="col-2 p-1 bg-csecondary"><button class="btn w-100 clr-cprimary">Incluso em</button></div>
+            <div class="col-2 p-1 bg-csecondary"><button class="btn w-100 clr-cprimary">Inclui</button></div>
             <div class="col-2 p-1 bg-csecondary"><button class="btn w-100 clr-cprimary">Editar</button></div>
-            <div class="col-2 p-1 bg-csecondary"><button class="btn w-100 clr-cprimary">Abrir com</button></div>
         </div>
     </div>
 
     <footer class="bg-cprimary"></footer>
 
-    <!-- <script src="detail.js"></script> -->
+    <script src="../script/playlistdetalhe.js"></script>
 </body>
 </html>

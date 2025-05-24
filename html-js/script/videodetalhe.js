@@ -3,6 +3,7 @@
 // "Editar" leva ao form com id;
 // "Arquivo" mostra o arquivo de vídeo salvo para reprodução com ferramentas externas.
 // Cabeçalho e botões fixos na tela;
+// Source não carrega o arquivo até o vídeo;
 
 const player = document.querySelector("video");
 const fonte = document.querySelector("source");

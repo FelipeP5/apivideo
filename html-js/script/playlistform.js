@@ -1,5 +1,4 @@
 /*TODO: 
-- Atualizar data ao editar conteúdo;
 - Exibir arquivos já em uso num texto a parte;
 */
 const form = document.querySelector("form");
@@ -35,7 +34,7 @@ form.addEventListener("submit", e => {
             console.log(res);
             alert("Informações modificadas com sucesso");
         })
-        .catch(erro => console.error(erro, "Erro ao editar conteúudo"))
+        .catch(erro => console.error(erro, "Erro ao editar conteúdo"))
     }
     else{
         fetch(playlistURL, {

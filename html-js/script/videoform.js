@@ -9,6 +9,7 @@ const nome = document.getElementById("nome");
 const descricao = document.getElementById("descricao");
 const playlists = document.getElementById("playlists");
 const thumbnail = document.getElementById("thumbnail");
+const playlistsBtn = document.getElementById("playlists-btn")
 const excluirBtn = document.getElementById("excluir-btn");
 
 if (id) {
@@ -24,6 +25,10 @@ if (id) {
 
     excluirBtn.style.display = "flex";
 }
+
+playlistsBtn.addEventListener("click", () => {
+    document.getElementById("modal-playlists").showModal()
+})
 
 excluirBtn.addEventListener("click", () => {
     document.getElementById("modal-exclusao").showModal();
@@ -59,6 +64,10 @@ form.addEventListener("submit", e => {
     .catch(erro => console.error(erro, "Erro ao criar vídeo"));
     }
 });
+
+function listarPlaylists(){
+    //e ballz
+}
 
 function excluir(){
     fetch(videoURL + id + "/", {

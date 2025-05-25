@@ -85,6 +85,10 @@ footer{
       Formulário
 ========================*/
 
+.playlists{
+    width: 100%;
+}
+
 .excluir{
     display: none;
 }

@@ -9,13 +9,12 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <!-- TODO:
- -> Javascript;
  -> Colorir botões dos file inputs usando SCSS;
  -> Colorir focus dos inputs usando SCSS;
  -> Modal de escolha playlist;
  -> Coisas estão transbordando, por quê?;
- -> Hover e Focus do submit precisam ser definidos;
  -> Arquivo, imagem e ${link} devem possuir texto de ajuda sobre os tipos aceitados.
+ -> Reposicionar modal de exclusão
 -->
 <body>
     <nav class="navbar navbar-expand-sm bg-cprimary" data-bs-theme="dark">
@@ -42,6 +41,15 @@
           </div>
         </div>
       </nav>
+      <!--Exclusão-->
+      <dialog id="modal-exclusao" class="bg-cprimary">
+          <h4 class="text-center clr-csecondary">Tem certeza que deseja excluir esse vídeo?</h4>
+          <div class="d-inline-block">
+              <button id="cancelar-btn" class="btn btn-light">Cancelar</button>
+              <button id="confirmar-exclusao-btn" class="btn btn-danger">Excluir</button>
+          </div>
+      </dialog>
+      <!--/Exclusão-->
     <div class="corpo">
         <h1 class="text-center">Criar um novo vídeo</h1>
         <div class="container d-flex justify-content-center align-items-center">
@@ -77,7 +85,9 @@
             </form>
         </div>
     </div>
-    <footer class="bg-cprimary"></footer>
+    <footer class="d-flex justify-content-center bg-cprimary">
+        <button id="excluir-btn" class="excluir btn btn-danger">Excluir</button>
+    </footer>
     <script src="../script/videoform.js"></script>
 </body>
 </html>

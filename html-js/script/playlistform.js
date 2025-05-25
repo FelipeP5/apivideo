@@ -8,6 +8,7 @@ const nome = document.getElementById("nome");
 const descricao = document.getElementById("descricao");
 const videos = document.getElementById("videos");
 const thumbnail = document.getElementById("thumbnail");
+const excluirBtn = document.getElementById("excluir-btn");
 
 if (id) {
     document.querySelector("h1").innerText = "Alterar informações de playlist"
@@ -18,8 +19,16 @@ if (id) {
         descricao.innerText = playlist.descricao ? playlist.descricao : "";
         // videos = ?
     })
-    .catch(erro => console.error(erro, "Erro ao preencher campos"))
+    .catch(erro => console.error(erro, "Erro ao preencher campos"));
+
+    excluirBtn.style.display = "flex";
 }
+
+excluirBtn.addEventListener("click", () => {
+    document.getElementById("modal-exclusao").showModal();
+    document.getElementById("confirmar-exclusao-btn").addEventListener("click", excluir);
+    document.getElementById("cancelar-btn").addEventListener("click", () => modalExclusao.close());
+})
 
 form.addEventListener("submit", e => {
     e.preventDefault();
@@ -49,3 +58,14 @@ form.addEventListener("submit", e => {
     .catch(erro => console.error(erro, "Erro ao criar playlist"));
     }
 });
+
+function excluir(){
+    fetch(playlistURL + id + "/", {
+        method: "DELETE",
+    })
+    .then(res => {
+        console.log(res);
+        location.replace("inicio.html");
+    })
+    .catch(erro => console.error(erro, "Exclusão fracassou"));
+}

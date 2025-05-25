@@ -41,6 +41,15 @@
           </div>
         </div>
       </nav>
+      <!--Exclusão-->
+        <dialog id="modal-exclusao" class="bg-cprimary">
+            <h4 class="text-center clr-csecondary">Tem certeza que deseja excluir essa playlist?</h4>
+            <div class="d-inline-block">
+                <button id="cancelar-btn" class="btn btn-light">Cancelar</button>
+                <button id="confirmar-exclusao-btn" class="btn btn-danger">Excluir</button>
+            </div>
+        </dialog>
+        <!--/Exclusão-->
     <div class="corpo">
         <h1 class="text-center">Criar nova playlist</h1>
         <div class="container d-flex justify-content-center align-items-center">
@@ -68,7 +77,10 @@
             </form>
         </div>
     </div>
-    <footer class="bg-cprimary"></footer>
+    <footer class="d-flex justify-content-center bg-cprimary">
+        <button id="excluir-btn" class="excluir btn btn-danger">Excluir</button>
+    </footer>
+    
     <script src="../script/playlistform.js"></script>
 </body>
 </html>

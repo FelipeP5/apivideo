@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,29 +9,50 @@
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 </head>
 <!-- TODO:
-    -> No lugar de div.player, pense num iframe com ratio de bootstrap ou <video>;
+    -> poster n cobre o espaço, pois depende da imagem
     -> Botões fixados no fundo da tela;
-    -> Editar deve levar ao forms;
-    -> Abrir com deve disponibilizar opções de reprodução de vídeo para o arquiivo, além de seu nome;
+    -> Abrir com deve disponibilizar opções de reprodução de vídeo para o arquivo, além de seu nome;
     -> Incluso em deve mostrar todas as playlists em que o vídeo pode ser encontrado e seu posicionamento;
     -> Decisão sobre a implementação da reprodução em sequência.
 -->
 <body>
-    <header class="bg-cprimary"></header>
+     <nav class="navbar navbar-expand-sm bg-cprimary" data-bs-theme="dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="inicio.html">MyTube</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a href="videoform.html" class="nav-link">Video</a>
+              </li>
+              <li class="nav-item">
+                <a href="playlistform.html" class="nav-link">Playlist</a>
+                
+              </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Usuário</a>
+                </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
 
-    <div class="main">
-        <div class="d-flex">
-            <p class="rounded-circle py-1 px-2 m-0 ms-auto bg-csecondary"><strong>1</strong></p>
-            <p class="rounded py-1 px-2 m-0 ms-auto me-1 bg-cprimary clr-csecondary">20/02/2024</p>
+    <div class="corpo">
+        <div class="container-sm my-1 p-0 bg-csecondary">
+            <video controls playsinline poster="#" preload="metadata" class="player ratio ratio-16x9">
+                <p id="msgErroArquivo">Falha ao carregar arquivo:</p>
+            </video>
         </div>
-        <div class="player container-sm my-1 bg-csecondary">
-            <p class="clr-cprimary">eh.....</p>
+        <div class="container-sm rounded-top d-flex py-1 px-3 bg-cprimary clr-csecondary">
+            <h1 id="nome"><strong>Nome do Vídeo</strong></h1>
+            <p id="data" class="ms-auto rounded p-2 bg-csecondary clr-cprimary">23/02/2022</p>
         </div>
-        <div class="container-sm text-center bg-cprimary clr-csecondary">
-            <h1><strong>Nome do Vídeo</strong></h1>
-        </div>
-        <div class="container-sm text-center p-2 bg-cprimary clr-csecondary">
-            <p>
+        <div class="container-sm rounded-bottom text-center pb-1 px-3 bg-descricao clr-csecondary">
+            <p id="descricao">
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tincidunt consequat felis et suscipit. Vivamus erat nisl, pretium sit amet iaculis non, fringilla blandit mi. Maecenas vitae arcu in dolor condimentum sagittis ut a dolor. Vivamus varius leo non fermentum lacinia. Aenean in scelerisque ipsum. Proin ante dui, egestas ut lectus nec, imperdiet lobortis enim. Mauris in purus posuere, vulputate nulla hendrerit, tristique magna. Vestibulum cursus neque non lectus imperdiet, id rhoncus libero hendrerit. Nam id egestas justo, sed semper odio. Duis id est lectus. Fusce volutpat id ex tempus sagittis. Cras elit metus, maximus non eros sed, fermentum bibendum lacus. Cras augue est, dignissim a elit a, consectetur finibus erat. Aenean ut libero quam. Aenean nec felis orci. Praesent pulvinar diam non tristique cursus.
 
@@ -52,6 +73,6 @@ Integer id nisi commodo, pellentesque leo non, gravida quam. In consectetur dign
 
     <footer class="bg-cprimary"></footer>
 
-    <!-- <script src="detail.js"></script> -->
+    <script src="../script/videodetalhe.js"></script>
 </body>
 </html>

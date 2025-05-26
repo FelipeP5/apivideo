@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <!-- TODO:
-    ->javascript (filtragem, modal de edição/exclusão);
-    ->excluir
+    ->javascript (filtragem, Opção de edição/exclusão);
     ->cabeçalho que acompanha e uma forma de adicionar enquanto no fim;
     ->Problema de vw e vh;
     ->Responsividade: O cartão de adição perde referência para tamanho em uma coluna;
@@ -17,7 +16,7 @@
     ->Responsividade: Conforme a largura reduz, menor fica a distância entre a última linha e o rodapé;
     ->Responsividade: Os botões de hover devem ser acessíveis para touchscreens;
     ->as imagens possuem uma borda vermelha enfadonha;
-    ->Tipagem de cartoes;
+    ->Tipagem de cartões para discerní-los mais facilemente;
 -->
 <body>
     <nav class="navbar navbar-expand-sm bg-cprimary" data-bs-theme="dark">
@@ -33,6 +32,7 @@
               </li>
               <li class="nav-item">
                 <a href="playlistform.html" class="nav-link">Playlist</a>
+                
               </li>
             </ul>
             <ul class="navbar-nav ms-auto">
@@ -48,35 +48,14 @@
         <h3 class="text-center">Alterações recentes</h3>
         <div class="container">
             <div id="lista" class="row row-cols-lg-3 row-cols-sm-2 row-cols-1 g-3">
-                <div class="col mais">
-                    <div class="h-100 card align-items-center justify-content-evenly">
+                
+                <div class="col">
+                        <div class="mais h-100 card align-items-center justify-content-evenly">
                         <i class="clr-cprimary add-sign">+</i>
                     </div>
+               
                 </div>
-                <div class="col mais">
-                     <div class="card bg-cprimary clr-csecondary">
-                            <img src="whitesquare.avif" alt="image cap" class="card-img-top img-fluid custom-img bg-csecondary">
-                            <div class="card-img-overlay">
-                                <div class="container p-0">
-                                    <a href="playlistform.html" class="ms-auto btn clr-cprimary">Editar</a>
-                                    <a href="#" class="btn clr-cprimary">Excluir</a>
-                                </div>
-                            </div>
-                            <h6 class="card-header text-center">Playlist</h6>
-                        </div>   
-                </div>
-                <div class="col mais">
-                    <div class="card bg-cprimary clr-csecondary">
-                        <img src="whitesquare.avif" alt="image cap" class="card-img-top img-fluid custom-img bg-csecondary">
-                        <div class="card-img-overlay">
-                                <div class="container p-0">
-                                    <a href="#" class="ms-auto btn clr-cprimary">Editar</a>
-                                    <a href="#" class="btn clr-cprimary">Excluir</a>
-                                </div>
-                        </div>
-                        <h6 class="card-header text-center">Vídeo</h6>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </div>
@@ -84,7 +63,7 @@
     
     <footer class="bg-cprimary"></footer>
 
-        <script src="../script/home.js"></script>
+        <script src="../script/inicio.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 </body>
 </html>

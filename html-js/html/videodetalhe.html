@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalhe Vídeo</title>
+    <title>Detalhe Playlist</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <link rel="stylesheet" href="../style.css">
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 </head>
 <!-- TODO:
-    -> poster n cobre o espaço, pois depende da imagem
+    -> espaço do vídeo tá muito grande;
     -> Botões fixados no fundo da tela;
-    -> Abrir com deve disponibilizar opções de reprodução de vídeo para o arquivo, além de seu nome;
-    -> Incluso em deve mostrar todas as playlists em que o vídeo pode ser encontrado e seu posicionamento;
-    -> Decisão sobre a implementação da reprodução em sequência.
+    -> Inclui deve mostrar todos vídeos contidos e seus posicionamentos;
+    -> Decisão sobre a implementação da reprodução em sequência;
+    -> Mensagem de erro que mostra o link do arquivo;
+    -> Na falta de poster, exibir um texto "Sem imagem" em fundo branco no lugar
 -->
 <body>
      <nav class="navbar navbar-expand-sm bg-cprimary" data-bs-theme="dark">
@@ -42,33 +43,27 @@
       </nav>
 
     <div class="corpo">
-        <div class="container-sm my-1 p-0 bg-csecondary">
-            <video controls playsinline poster="#" preload="metadata" class="player ratio ratio-16x9">
+      <div class="row justify-content-evenly">
+        <div class="col-sm-10">
+          <div class="player container-sm mt-1 p-0 bg-csecondary">
+              <video controls playsinline poster="#" preload="metadata" class="d-flex w-100 h-100">
                 <p id="msgErroArquivo">Falha ao carregar arquivo:</p>
-            </video>
+              </video>
+          </div>
+          <div class="container-sm d-flex py-1 px-3 bg-cprimary clr-csecondary">
+              <h1 id="nome"><strong>Nome do Vídeo</strong></h1>
+              <p id="data" class="ms-auto rounded p-2 bg-csecondary clr-cprimary">23/02/2022</p>
+          </div>
+          <div class="container-sm rounded-bottom text-center pb-1 px-3 bg-descricao clr-csecondary">
+              <p id="descricao">#!</p>
+          </div>
+          <div class="row justify-content-evenly">
+              <div class="col-2 p-1 bg-csecondary"><button class="btn w-100 clr-cprimary">Incluso em</button></div>
+              <div class="col-2 p-1 bg-csecondary"><button class="btn w-100 clr-cprimary">Editar</button></div>
+              <div class="col-2 p-1 bg-csecondary"><button class="btn w-100 clr-cprimary">Abrir com</button></div>
+           </div>
         </div>
-        <div class="container-sm rounded-top d-flex py-1 px-3 bg-cprimary clr-csecondary">
-            <h1 id="nome"><strong>Nome do Vídeo</strong></h1>
-            <p id="data" class="ms-auto rounded p-2 bg-csecondary clr-cprimary">23/02/2022</p>
-        </div>
-        <div class="container-sm rounded-bottom text-center pb-1 px-3 bg-descricao clr-csecondary">
-            <p id="descricao">
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tincidunt consequat felis et suscipit. Vivamus erat nisl, pretium sit amet iaculis non, fringilla blandit mi. Maecenas vitae arcu in dolor condimentum sagittis ut a dolor. Vivamus varius leo non fermentum lacinia. Aenean in scelerisque ipsum. Proin ante dui, egestas ut lectus nec, imperdiet lobortis enim. Mauris in purus posuere, vulputate nulla hendrerit, tristique magna. Vestibulum cursus neque non lectus imperdiet, id rhoncus libero hendrerit. Nam id egestas justo, sed semper odio. Duis id est lectus. Fusce volutpat id ex tempus sagittis. Cras elit metus, maximus non eros sed, fermentum bibendum lacus. Cras augue est, dignissim a elit a, consectetur finibus erat. Aenean ut libero quam. Aenean nec felis orci. Praesent pulvinar diam non tristique cursus.
-
-Aliquam sollicitudin vitae mauris sed faucibus. Duis lacus risus, porttitor vel enim quis, elementum consequat lorem. Curabitur velit erat, varius eget fringilla ac, gravida eu odio. Ut id pretium ligula, at fermentum nunc. Nunc sed purus id turpis eleifend volutpat. Curabitur eu viverra justo. Donec pellentesque rhoncus ipsum eget auctor. Vivamus ex eros, convallis sit amet tortor vel, aliquet lacinia massa. Morbi facilisis hendrerit ligula, nec tempus eros tristique in. Vestibulum sapien dui, dignissim vitae sapien non, dapibus pretium felis. Curabitur iaculis, nisi id porttitor lacinia, lacus risus aliquet orci, quis sollicitudin ligula purus a elit. Mauris ac nisi mauris. Sed dui libero, porta et ipsum ac, placerat accumsan nunc. Donec feugiat est eu nisi commodo, non blandit urna eleifend. Ut non nibh at eros semper cursus. Nullam consectetur eros quis lectus fermentum, vitae malesuada neque consectetur.
-
-Suspendisse ultrices, quam a pulvinar maximus, leo nisi fermentum nulla, sit amet viverra dui ex laoreet metus. Cras vitae massa tincidunt, mollis urna nec, ultricies nulla. In pharetra at dolor in iaculis. Quisque metus enim, varius et finibus at, lacinia eu turpis. Duis vel viverra libero. Nunc pulvinar dictum velit, non vestibulum mauris tempor vitae. Suspendisse iaculis purus vitae purus iaculis, vitae viverra urna laoreet. Duis in mauris eget enim blandit elementum. Suspendisse interdum porttitor urna et tempus. Nullam ac purus in elit congue blandit. Suspendisse pellentesque lorem sit amet sapien porta, vehicula rutrum justo dignissim. Nulla facilisi. Donec pretium, arcu ac sodales ornare, orci sem vulputate arcu, ut placerat justo orci id quam. Nam finibus massa cursus, scelerisque est sed, efficitur felis. Ut ligula purus, vestibulum vel metus ut, fermentum faucibus nibh. Vestibulum maximus tristique fermentum.
-
-Cras tincidunt ornare urna vel blandit. Donec diam diam, dignissim vitae leo non, condimentum sagittis quam. Proin justo leo, luctus id auctor quis, condimentum eu mi. Duis quis quam semper, dapibus quam et, ultrices eros. Sed varius metus sed massa pharetra rutrum. Suspendisse non finibus urna. Morbi at dui volutpat, interdum lacus id, venenatis nulla. Fusce efficitur ipsum dolor, nec tristique orci consequat at. Ut cursus porta scelerisque. Sed imperdiet dui blandit ante vestibulum, a fermentum ex fringilla. Nullam auctor et nisi ut tempus. Aenean vitae ultrices mauris. Vestibulum vel pellentesque sapien, eget tempus elit. Ut venenatis nulla ante, id bibendum odio semper a. Maecenas ac purus vulputate, laoreet enim ac, viverra dui. Suspendisse non ligula porttitor, tempus dolor in, semper nisi.
-
-Integer id nisi commodo, pellentesque leo non, gravida quam. In consectetur dignissim est dapibus tristique. Donec eget efficitur urna. Suspendisse eu nisi velit. Donec libero erat, pretium viverra lectus sit amet, blandit consequat elit. In in luctus leo. Cras ac consequat magna. Proin sollicitudin sapien ligula, in mollis nulla egestas et. Maecenas egestas, orci eu bibendum pretium, urna lorem dapibus nunc, quis elementum velit eros eget lorem. Vivamus ac viverra libero, lobortis luctus neque. In eleifend libero in nulla fermentum, posuere congue justo pellentesque. Maecenas tellus massa, cursus nec posuere et, fermentum quis mauris. Vivamus imperdiet lectus augue, a luctus tellus commodo ut. Mauris ultricies magna tortor, et blandit neque blandit volutpat. Curabitur lobortis pretium fermentum. Vivamus hendrerit porttitor tortor. </p>
-        </div>
-            <div class="row justify-content-evenly">
-            <div class="col-2 p-1 bg-csecondary"><button class="btn w-100 clr-cprimary">Incluso em</button></div>
-            <div class="col-2 p-1 bg-csecondary"><button class="btn w-100 clr-cprimary">Editar</button></div>
-            <div class="col-2 p-1 bg-csecondary"><button class="btn w-100 clr-cprimary">Abrir com</button></div>
-        </div>
+      </div>
     </div>
 
     <footer class="bg-cprimary"></footer>

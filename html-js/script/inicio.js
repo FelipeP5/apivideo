@@ -1,3 +1,6 @@
+//Organizar cartões por data
+//Opção de filtrar entre video e playlist;
+const placeholderImg = "../svg/placeholder-img.jpg"
 const videoURL = "http://127.0.0.1:8000/video/";
 const playlistURL = "http://127.0.0.1:8000/playlist/";
 const relacoes = "http://127.0.0.1:8000/playlistvideo/";
@@ -17,7 +20,7 @@ function listeVideos(videos){
     videos.forEach(video => {
         const cartao = `<div id="video${video.id}" class="col">
                             <div onclick="videodetalhe(${video.id})" class="mais card bg-cprimary clr-csecondary">
-                                <img src="${video.thumbnail}" alt="Nenhuma imagem" class="card-img-top img-fluid custom-img bg-csecondary">
+                                <img src="${video.thumbnail ? video.thumbnail : placeholderImg}" alt="Nenhuma imagem" class="card-img-top img-fluid custom-img bg-csecondary">
                                 <div class="card-img-overlay">
                                         <div class="container p-0">
                                             <a href="videoform.html?id=${video.id}" class="ms-auto btn clr-cprimary">Editar</a>
@@ -37,7 +40,7 @@ function listePlaylists(playlists){
         const cartao = `
                 <div id="playlist${playlist.id}" class="col">
                      <div onclick="playlistdetalhe(${playlist.id})" class="mais card bg-cprimary clr-csecondary">
-                            <img src="${playlist.thumbnail}" alt="image cap" class="card-img-top img-fluid custom-img bg-csecondary">
+                            <img src="${playlist.thumbnail ? playlist.thumbnail : placeholderImg}" alt="image cap" class="card-img-top img-fluid custom-img bg-csecondary">
                             <div class="card-img-overlay">
                                 <div class="container p-0">
                                     <a href="playlistform.html?id=${playlist.id}" class="ms-auto btn clr-cprimary">Editar</a>

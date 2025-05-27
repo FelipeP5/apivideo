@@ -1,6 +1,6 @@
 /*TODO: 
 - Exibir arquivos já em uso num texto a parte;
-- Modal de seleção de vídeos;
+- menu de seleção de vídeos;
 */
 const form = document.querySelector("form");
 const videoURL = "http://127.0.0.1:8000/video/";
@@ -27,7 +27,7 @@ if (id) {
 }
 
 playlistsBtn.addEventListener("click", () => {
-    document.getElementById("modal-playlists").showModal()
+    document.getElementById("menu-playlists").show()
 })
 
 excluirBtn.addEventListener("click", () => {

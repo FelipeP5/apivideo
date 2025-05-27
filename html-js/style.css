@@ -30,12 +30,18 @@
     color: var(--custom-secondary);
 }
 
+.custom-img{
+    height: 16rem;
+    object-fit: cover;
+
+}
+
 /*=======================  
     Blocos principais 
 ========================*/
 
-footer{
-    width: 100%;
+nav, footer{
+    width: 100vw;
     height: 10vh;
 }
 
@@ -77,12 +83,6 @@ footer{
     }
 }
 
-.custom-img{
-    height: 16rem;
-    object-fit: cover;
-
-}
-
 /*=======================  
       Formulário
 ========================*/
@@ -109,8 +109,8 @@ footer{
         Detalhe
 ========================*/
 
-.player{
-    height: 100%;
+.player, .capa{
+    width: 100%;
     aspect-ratio: 16 / 9;
 }
 

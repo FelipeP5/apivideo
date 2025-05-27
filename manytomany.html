@@ -14,16 +14,19 @@
     <p></p>
 
     <script>
-        fetch("http://127.0.0.1:8000/playlistvideo/")
-        .then(res => {
-            console.log(res);
-            return res.json();
-        })
-        .then(relacao => {
-            console.log(relacao);
-            console.log(relacao[0].playlist);
-            console.log(relacao[0].video);
-        })
+        const videoUrl = "http://127.0.0.1:8000/video/";
+        const playlistUrl = "http://127.0.0.1:8000/playlist/";
+        const relacoes = "http://127.0.0.1:8000/playlistvideo/";
+        
+        function listarPlaylists(){
+            fetch(playlistUrl)
+            .then(res => res.json())
+            .then(playlist => {
+                f
+            })
+            .catch(erro => console.error(erro, "Incapaz"));
+        }
+
     </script>
 </body>
 </html>

@@ -1,5 +1,7 @@
+
 from rest_framework import serializers
 from api_video import models
+
 
 class VideoSerializer(serializers.ModelSerializer):
     class Meta:

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <div id="area"></div>
+
+        <input type="submit" value="Enviar">
+    </form>
+    
+
+    <script>
+        const playURL = "http://127.0.0.1:8000/playlist";
+        const relationships = "http://127.0.0.1:8000/playlistvideo";
+        const form =  document.querySelector("form");
+
+        fetch(playURL)
+        .then(res => res.json())
+        .then(items => {
+            items.forEach(item =>{
+                const option = document.createElement("div");
+                option.innerHTML = `<label for="${item.id}">${item.nome}</label>
+                                <input type="checkbox" name="playlist" value="${item.id}">`;
+                document.getElementById("area").appendChild(option);
+            });
+        })
+        .catch(erro => console.error(erro));
+        
+       form.addEventListener("submit", e => {
+            e.preventDefault();
+            console.log(form.elements);
+            const id = new URLSearchParams(location.search).get("id");
+            console.log(id);
+            const playlists = []
+        })
+    </script>
+</body>
+</html>

@@ -88,6 +88,12 @@ nav, footer{
 /*=======================  
       Formulário
 ========================*/
+.modal-exclusao, .menu-playlists, .menu-videos{
+    position: fixed;
+    inset: 25%;
+    padding: 5px;
+    
+}
 
 .playlists{
     width: 100%;

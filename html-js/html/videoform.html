@@ -9,10 +9,11 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <!-- TODO:
- -> Modal de escolha playlist (O botão conta como um submit... q???);
+ -> botoes feios
  -> Coisas estão transbordando, por quê?;
  -> Arquivo, imagem e ${link} devem possuir texto de ajuda sobre os tipos aceitados.
  -> Reposicionar modal de exclusão
+ -> Input file para info, input image para view;
 -->
 <body>
     <nav class="navbar navbar-expand-sm bg-cprimary" data-bs-theme="dark">
@@ -40,7 +41,7 @@
         </div>
       </nav>
       <!--Exclusão-->
-      <dialog id="modal-exclusao" class="bg-cprimary">
+      <dialog id="modal-exclusao" class="modal-exclusao rounded bg-cprimary">
           <h4 class="text-center clr-csecondary">Tem certeza que deseja excluir esse vídeo?</h4>
           <div class="d-inline-block">
               <button id="cancelar-btn" class="btn btn-light">Cancelar</button>
@@ -49,20 +50,20 @@
       </dialog>
       <!--/Exclusão-->
       <!--Escolha Playlists-->
-      <dialog id="menu-playlists" class="d-flex justify-content-center align-center bg-csecondary clr-cprimary">
+      <dialog id="menu-playlists" class="menu-playlists bg-csecondary clr-cprimary">
         <h4 class="text-center">Playlists disponíveis</h4>
-        <div id="lista-playlists">
-            <form enctype="application/x-www-form-urlencoded">
-                <div id="item"></div>
-            </form>
-            <button type="button">Fechar</button>
+        <div id="conteudo-playlists">
+            <form method="post" id="form-menu" enctype="application/x-www-form-urlencoded">
+                <button id="salvar-relacoes-btn" class="btn btn-success" type="submit">Salvar</button>
+            </form>            
+            <button id="fechar-btn" type="button">Fechar</button>
         </div>
       </dialog>
       <!--/Escolha Playlists-->
     <div class="corpo">
         <h1 class="text-center">Criar um novo vídeo</h1>
         <div class="container d-flex justify-content-center align-items-center">
-            <form action="@" method="POST" enctype="multipart/form-data">
+            <form id="form-video" enctype="multipart/form-data">
                 <div class="mb-2">
                     <label for="nome" class="form-label">Nome:</label>
                     <input type="text" placeholder="" class="form-control" id="nome" name="nome">

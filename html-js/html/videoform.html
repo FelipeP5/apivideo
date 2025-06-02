@@ -52,11 +52,12 @@
       <!--Escolha Playlists-->
       <dialog id="menu-playlists" class="menu-playlists bg-csecondary clr-cprimary">
         <h4 class="text-center">Playlists disponíveis</h4>
-        <div id="conteudo-playlists">
-            <form method="post" id="form-menu" enctype="application/x-www-form-urlencoded">
+        <div>
+            <form method="dialog" id="form-menu" enctype="application/x-www-form-urlencoded">
+                <div id="menu-playlists"></div>
                 <button id="salvar-relacoes-btn" class="btn btn-success" type="submit">Salvar</button>
-            </form>            
-            <button id="fechar-btn" type="button">Fechar</button>
+            </form>
+            <button id="fechar-btn" class="btn btn-light" type="button">Fechar</button>
         </div>
       </dialog>
       <!--/Escolha Playlists-->

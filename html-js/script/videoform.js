@@ -1,6 +1,7 @@
 /*TODO: 
 - Exibir arquivos já em uso num texto a parte;
 - menu de seleção de playlists;
+- edição de relações;
 - Selecionamento de playlists em edição;
 */
 const formVideo = document.getElementById("form-video");
@@ -49,37 +50,37 @@ excluirBtn.addEventListener("click", () => {
     document.getElementById("cancelar-btn").addEventListener("click", () => modalExclusao.close());
 })
 
-// formVideo.addEventListener("submit", e => {
-//     e.preventDefault();
-//     console.log(e);
-//     const dados = new FormData(formVideo);
-//     if (id){
-//         fetch(videoURL + id  + "/", {
-//             method: "PUT",
-//             body: dados,
-//         })
-//         .then(res => {
-//             console.log(res);
-//             alert("Informações modificadas com sucesso");
-//         })
-//         .catch(erro => console.error(erro, "Erro ao editar conteúdo"));
-//     }
-//     else{
-//         fetch(videoURL, {
-//         method: "POST",
-//         body: dados,
-//     })
-//     .then((res) => {
-//         console.log(res);
-//         alert("Vídeo criado");
-//     }
-//     )
-//     .catch(erro => console.error(erro, "Erro ao criar vídeo"));
-//     }
-// });
+formVideo.addEventListener("submit", e => {
+    e.preventDefault();
+    console.log(e);
+    const dados = new FormData(formVideo);
+    if (id){
+        fetch(videoURL + id  + "/", {
+            method: "PUT",
+            body: dados,
+        })
+        .then(res => {
+            console.log(res);
+            alert("Informações modificadas com sucesso");
+        })
+        .catch(erro => console.error(erro, "Erro ao editar conteúdo"));
+    }
+    else{
+        fetch(videoURL, {
+        method: "POST",
+        body: dados,
+    })
+    .then((res) => {
+        console.log(res);
+        alert("Vídeo criado");
+    }
+    )
+    .catch(erro => console.error(erro, "Erro ao criar vídeo"));
+    }
+});
+
 function enviarRelacoes(){
     formMenu.addEventListener("submit", e => {
-        formMenu.preventDefault();
         e.preventDefault();
         console.log(e);
                 Object.entries(e.target).forEach(listItem => {
@@ -89,10 +90,10 @@ function enviarRelacoes(){
                     dados.append("video", id);
                     if (listItem[1].checked){
                         console.log("coisa do if", listItem[1].value);
-                        // fetch(relacoes, {
-                        //     method : "POST",
-                        //     body : dados,
-                        // }).catch(erro => console.error(erro));
+                        fetch(relacoes, {
+                            method : "POST",
+                            body : dados,
+                        }).catch(erro => console.error(erro));
                     };
                 });
             });
@@ -104,9 +105,9 @@ function listarPlaylistsEmMenu(){
         .then(playlists => {
             playlists.forEach(playlist =>{
                 const option = document.createElement("div");
-                option.innerHTML = `<label for="${playlist.id}">${playlist.nome}</label>
-                                <input type="checkbox" name="playlist" value="${playlist.id}">`;
-                formMenu.appendChild(option);
+                option.innerHTML = `<label for="${playlist.id}" class="form-label">${playlist.nome}</label>
+                                <input id="${playlist.id}" class="" type="checkbox" name="playlist" value="${playlist.id}">`;
+                document.getElementById("menu-playlists").appendChild(option);
             });
         })
         .catch(erro => console.error(erro));

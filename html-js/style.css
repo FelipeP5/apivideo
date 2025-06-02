@@ -42,12 +42,14 @@
 
 nav, footer{
     width: 100vw;
+    width: 100dvw;
     height: 10vh;
 }
 
 .corpo{
     background-color: rgb(217, 217, 217);
     width: 100vw;
+    width: 100dvw;
     min-height: 80vh;
     padding: 0.50rem 0 0.50rem 0;
 }

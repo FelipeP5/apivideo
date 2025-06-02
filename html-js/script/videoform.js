@@ -4,6 +4,8 @@
 */
 const form = document.querySelector("form");
 const videoURL = "http://127.0.0.1:8000/video/";
+const playlistURL = "http://127.0.0.1:8000/playlist/";
+const relacoes = "http://127.0.0.1:8000/playlistvideo/";
 const id = new URLSearchParams(location.search).get("id");
 const nome = document.getElementById("nome");
 const descricao = document.getElementById("descricao");
@@ -13,7 +15,7 @@ const playlistsBtn = document.getElementById("playlists-btn")
 const excluirBtn = document.getElementById("excluir-btn");
 
 if (id) {
-    document.querySelector("h1").innerText = "Alterar informações de video"
+    document.querySelector("h1").innerText = "Alterar informações de video";
     fetch(videoURL + id)
     .then(res => res.json())
     .then(video => {
@@ -21,13 +23,15 @@ if (id) {
         descricao.innerText = video.descricao ? video.descricao : "";
         // videos = ?
     })
-    .catch(erro => console.error(erro, "Erro ao preencher campos"))
+    .catch(erro => console.error(erro, "Erro ao preencher campos"));
 
     excluirBtn.style.display = "flex";
 }
 
-playlistsBtn.addEventListener("click", () => {
-    document.getElementById("menu-playlists").show()
+playlistsBtn.addEventListener("click", (e) => {
+    console.log(e);
+    document.getElementById("menu-playlists").show();
+
 })
 
 excluirBtn.addEventListener("click", () => {
@@ -49,7 +53,7 @@ form.addEventListener("submit", e => {
             console.log(res);
             alert("Informações modificadas com sucesso");
         })
-        .catch(erro => console.error(erro, "Erro ao editar conteúdo"))
+        .catch(erro => console.error(erro, "Erro ao editar conteúdo"));
     }
     else{
         fetch(videoURL, {

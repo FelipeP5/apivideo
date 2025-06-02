@@ -9,8 +9,6 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <!-- TODO:
- -> Colorir botões dos file inputs usando SCSS;
- -> Colorir focus dos inputs usando SCSS;
  -> Modal de escolha playlist (O botão conta como um submit... q???);
  -> Coisas estão transbordando, por quê?;
  -> Arquivo, imagem e ${link} devem possuir texto de ajuda sobre os tipos aceitados.
@@ -19,7 +17,7 @@
 <body>
     <nav class="navbar navbar-expand-sm bg-cprimary" data-bs-theme="dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="inicio.html">MyTube</a>
+          <a class="navbar-brand" href="./">MyTube</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -51,13 +49,13 @@
       </dialog>
       <!--/Exclusão-->
       <!--Escolha Playlists-->
-      <dialog id="menu-playlists" class="bg-csecondary clr-cprimary">
+      <dialog id="menu-playlists" class="d-flex justify-content-center align-center bg-csecondary clr-cprimary">
         <h4 class="text-center">Playlists disponíveis</h4>
         <div id="lista-playlists">
-            <div id="item">
-                <label for="itemchk">Item exemplar</label>
-                <input type="checkbox" id="itemchk" name="playlist">
-            </div>
+            <form enctype="application/x-www-form-urlencoded">
+                <div id="item"></div>
+            </form>
+            <button type="button">Fechar</button>
         </div>
       </dialog>
       <!--/Escolha Playlists-->
@@ -74,7 +72,7 @@
                     <textarea class="form-control" id="descricao" name="descricao" cols="60" rows="5" placeholder="Escreva sua descrição aqui"></textarea>
                 </div>
                 <div class="mb-2">
-                    <button id="playlists-btn" class="form-control btn bg-csecondary clr-cprimary">Escolha playlists</button>
+                    <button type="button" id="playlists-btn" class="form-control btn bg-csecondary clr-cprimary">Escolha playlists</button>
                 </div>
                 <div class="mb-2">
                     <label for="thumbnail" class="form-label">Thumbnail</label>

@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form>
+    <form enctype="application/x-www-form-urlencoded">
         <div id="area"></div>
 
         <input type="submit" value="Enviar">
@@ -14,8 +14,8 @@
     
 
     <script>
-        const playURL = "http://127.0.0.1:8000/playlist";
-        const relationships = "http://127.0.0.1:8000/playlistvideo";
+        const playURL = "http://127.0.0.1:8000/playlist/";
+        const relationships = "http://127.0.0.1:8000/playlistvideo/";
         const form =  document.querySelector("form");
 
         fetch(playURL)
@@ -32,10 +32,23 @@
         
        form.addEventListener("submit", e => {
             e.preventDefault();
-            console.log(form.elements);
             const id = new URLSearchParams(location.search).get("id");
             console.log(id);
-            const playlists = []
+            console.log(Object.entries(e.target));
+
+            Object.entries(e.target).forEach(listItem => {
+                console.log("listItem" + listItem + "numero dele:" + listItem[1].value);
+                const dados = new FormData();
+                dados.append("playlist", listItem[1].value)
+                dados.append("video", id);
+                if (listItem[1].checked){
+                    console.log(listItem[1].value);
+                    fetch(relationships, {
+                        method : "post",
+                        body : dados,
+                    }).catch(erro => console.error(erro));
+                }
+            })
         })
     </script>
 </body>

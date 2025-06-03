@@ -48,10 +48,22 @@
             </div>
         </dialog>
         <!--/Exclusão-->
+        <!--Escolha Vídeos-->
+      <dialog id="modal-videos" class="modal-videos rounded bg-csecondary clr-cprimary">
+        <h4 class="text-center">Vídeos disponíveis</h4>
+        <div>
+            <form id="form-modal" enctype="application/x-www-form-urlencoded">
+                <div id="campos-videos"></div>
+                <input id="salvar-relacoes-btn" class="btn btn-success" type="submit" value="Salvar">
+            </form>
+            <button id="fechar-btn" class="btn btn-light" type="button">Fechar</button>
+        </div>
+      </dialog>
+      <!--/Escolha Vídeos-->
     <div class="corpo">
         <h1 class="text-center">Criar nova playlist</h1>
         <div class="container d-flex justify-content-center align-items-center">
-            <form action="#" method="POST" enctype="multipart/form-data">
+            <form id="form-playlist" action="#" method="POST" enctype="multipart/form-data">
                 <div class="mb-2">
                     <label for="nome" class="form-label">Nome:</label>
                     <input type="text" placeholder="Escreva seu nome aqui..." class="form-control" id="nome" name="nome">
@@ -61,8 +73,7 @@
                     <textarea class="form-control" id="descricao" name="descricao" cols="60" rows="5" placeholder="Escreva sua descrição aqui..."></textarea>
                 </div>
                 <div class="mb-2">
-                    <label for="videos" class="form-label">Vídeos</label>
-                    <input type="checkbox" id="videos" name="videos" class="form-control">
+                    <button type="button" id="videos-btn" class="form-control btn bg-csecondary clr-cprimary" style="display: none;">Escolha Vídeos</button>
                 </div>
                 <div class="mb-2">
                     <label for="thumbnail" class="form-label">Thumbnail</label>

@@ -1,11 +1,9 @@
 /*TODO: 
 - Exibir arquivos já em uso num texto a parte;
-- menu de seleção de playlists;
-- edição de relações;
-- Selecionamento de playlists em edição;
+- edição de relações (preenchimento de existentes e atualização);
 */
 const formVideo = document.getElementById("form-video");
-const formMenu = document.getElementById("form-menu");
+const formModal = document.getElementById("form-modal");
 const videoURL = "http://127.0.0.1:8000/video/";
 const playlistURL = "http://127.0.0.1:8000/playlist/";
 const relacoes = "http://127.0.0.1:8000/playlistvideo/";
@@ -15,7 +13,7 @@ const descricao = document.getElementById("descricao");
 const thumbnail = document.getElementById("thumbnail");
 const playlistsBtn = document.getElementById("playlists-btn")
 const excluirBtn = document.getElementById("excluir-btn");
-const menuPlaylists = document.getElementById("menu-playlists");
+const modalPlaylists = document.getElementById("modal-playlists");
 let formContent = false;
 
 if (id) {
@@ -32,23 +30,6 @@ if (id) {
     excluirBtn.style.display = "flex";
     playlistsBtn.style.display = "block";
 }
-
-playlistsBtn.addEventListener("click", () => {
-    menuPlaylists.showModal();
-    if (!formContent){
-        listarPlaylistsEmMenu();
-        formContent = true;
-    };
-    formMenu.addEventListener("submit", enviarRelacoes);
-    document.getElementById("fechar-btn").addEventListener("click", () => menuPlaylists.close());
-})
-
-excluirBtn.addEventListener("click", () => {
-    const modalExclusao = document.getElementById("modal-exclusao");
-    modalExclusao.showModal();
-    document.getElementById("confirmar-exclusao-btn").addEventListener("click", excluir);
-    document.getElementById("cancelar-btn").addEventListener("click", () => modalExclusao.close());
-})
 
 formVideo.addEventListener("submit", e => {
     e.preventDefault();
@@ -67,50 +48,67 @@ formVideo.addEventListener("submit", e => {
     }
     else{
         fetch(videoURL, {
-        method: "POST",
-        body: dados,
-    })
-    .then((res) => {
-        console.log(res);
-        alert("Vídeo criado");
-    }
+            method: "POST",
+            body: dados,
+        })
+        .then((res) => {
+            console.log(res);
+            alert("Vídeo criado");
+        }
     )
     .catch(erro => console.error(erro, "Erro ao criar vídeo"));
-    }
+}
+});
+// Modal de relações
+playlistsBtn.addEventListener("click", () => {
+    modalPlaylists.showModal();
+    if (!formContent){
+        listarPlaylistsEmModal();
+        formContent = true;
+    };
+    formModal.addEventListener("submit", salvarRelacoes);
+    document.getElementById("fechar-btn").addEventListener("click", () => modalPlaylists.close());
 });
 
-function enviarRelacoes(e){
-        e.preventDefault();
-        console.log(e);
-                Object.entries(e.target).forEach(listItem => {
-                    console.log("|listItem|" + listItem + "|numero dele: " + listItem[1].value);
-                    const dados = new FormData();
-                    dados.append("playlist", listItem[1].value)
-                    dados.append("video", id);
-                    if (listItem[1].checked){
-                        console.log("Truthy!", listItem[1].value);
-                        fetch(relacoes, {
-                            method : "POST",
-                            body : dados,
-                        }).catch(erro => console.error(erro));
-                    } else{console.log(listItem[1].checked, "Falsy!")};
-                });
-                menuPlaylists.close();
-            };
-
-function listarPlaylistsEmMenu(){
+function listarPlaylistsEmModal(){
     fetch(playlistURL)
-        .then(res => res.json())
-        .then(playlists => {
-            playlists.forEach(playlist =>{
-                const option = document.createElement("div");
-                option.innerHTML = `<label for="${playlist.id}" class="form-label">${playlist.nome}</label>
-                                <input id="${playlist.id}" class="" type="checkbox" name="playlist" value="${playlist.id}">`;
-                document.getElementById("campos-playlists").appendChild(option);
-            });
-        })
-        .catch(erro => console.error(erro));
-    };
+    .then(res => res.json())
+    .then(playlists => {
+        playlists.forEach(playlist =>{
+            const option = document.createElement("div");
+            option.innerHTML = `<label for="${playlist.id}" class="form-label">${playlist.nome}</label>
+            <input id="${playlist.id}" class="" type="checkbox" name="playlist" value="${playlist.id}">`;
+            document.getElementById("campos-playlists").appendChild(option);
+        });
+    })
+    .catch(erro => console.error(erro));
+};
+
+function salvarRelacoes(e){
+    e.preventDefault();
+
+    Object.entries(e.target).forEach(listItem => {
+        const dados = new FormData();
+        dados.append("playlist", listItem[1].value)
+        dados.append("video", id);
+        if (listItem[1].checked){
+            console.log("Truthy!", listItem[1].value);
+            fetch(relacoes, {
+                method : "POST",
+                body : dados,
+            }).catch(erro => console.error(erro));
+        } else{console.log(listItem[1].checked, "Falsy!")};
+    });
+    modalPlaylists.close();
+};
+
+//Excluir
+excluirBtn.addEventListener("click", () => {
+    const modalExclusao = document.getElementById("modal-exclusao");
+    modalExclusao.showModal();
+    document.getElementById("confirmar-exclusao-btn").addEventListener("click", excluir);
+    document.getElementById("cancelar-btn").addEventListener("click", () => modalExclusao.close());
+});
 
 function excluir(){
     fetch(videoURL + id + "/", {

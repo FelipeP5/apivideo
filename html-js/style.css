@@ -90,7 +90,7 @@ nav, footer{
       Formulário
 ========================*/
 
-.modal-exclusao, .menu-playlists, .menu-videos{
+.modal-exclusao, .modal-playlists, .modal-videos{
     position: fixed;
     inset: 25%;
     padding: 5px;

@@ -1,10 +1,13 @@
+//Exclusão
 //Organizar cartões por data
 //Opção de filtrar entre video e playlist;
-const placeholderImg = "../svg/placeholder-img.jpg"
+
+const placeholderImg = "../svg/placeholder-img.jpg";
 const videoURL = "http://127.0.0.1:8000/video/";
 const playlistURL = "http://127.0.0.1:8000/playlist/";
 const relacoes = "http://127.0.0.1:8000/playlistvideo/";
-const lista = document.getElementById("lista"); 
+const lista = document.getElementById("lista");
+const escolhaCriacao = document.getElementById("escolha-criacao");
 
 fetch(videoURL)
     .then(res => res.json())
@@ -14,7 +17,6 @@ fetch(playlistURL)
     .then(res => res.json())
     .then(playlists => listePlaylists(playlists))
     .catch(erro => console.warn(erro, "Erro ao carregar playlists"));
-
 
 function listeVideos(videos){
     videos.forEach(video => {
@@ -54,6 +56,12 @@ function listePlaylists(playlists){
         lista.innerHTML += cartao;
     })
 };
+
+function escolhaCriacaoMenu(){
+    console.log("Evento click escutado")
+    escolhaCriacao.showModal();
+
+}
 
 function excluir(id){
     // Modal e chamada de API para exclusão

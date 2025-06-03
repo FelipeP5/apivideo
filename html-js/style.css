@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root{
-    --custom-primary: rgb(255, 0, 0);
+    --custom-primary: rgb(211, 30, 30);
     --custom-secondary: white;
 }
 
@@ -63,17 +63,16 @@ nav, footer{
     text-decoration: none;
 }
 
+.escolha-criacao a{
+    text-decoration: none;
+}
+
 /*=======================  
         Card-items
 ========================*/
 
-.mais{
+.criar{
     cursor: pointer;
-}
-
-.add-sign{
-    font-size: 5rem;
-    outline: 2px solid black;
 }
 
 .card-img-overlay .container{
@@ -88,6 +87,7 @@ nav, footer{
 /*=======================  
       Formulário
 ========================*/
+
 .modal-exclusao, .menu-playlists, .menu-videos{
     position: fixed;
     inset: 25%;

@@ -34,7 +34,7 @@ if (id) {
 }
 
 playlistsBtn.addEventListener("click", () => {
-    menuPlaylists.show();
+    menuPlaylists.showModal();
     if (!formContent){
         listarPlaylistsEmMenu();
         formContent = true;
@@ -97,6 +97,7 @@ function enviarRelacoes(){
                     };
                 });
             });
+    menuPlaylists.close();
 };
 
 function listarPlaylistsEmMenu(){

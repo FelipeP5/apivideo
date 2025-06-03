@@ -21,7 +21,7 @@ fetch(playlistURL)
 function listeVideos(videos){
     videos.forEach(video => {
         const cartao = `<div id="video${video.id}" class="col">
-                            <div onclick="videodetalhe(${video.id})" class="mais card bg-cprimary clr-csecondary">
+                            <div onclick="videodetalhe(${video.id})" class="pointer card bg-cprimary clr-csecondary">
                                 <img src="${video.thumbnail ? video.thumbnail : placeholderImg}" alt="Nenhuma imagem" class="card-img-top img-fluid custom-img bg-csecondary">
                                 <div class="card-img-overlay">
                                         <div class="container p-0">
@@ -41,7 +41,7 @@ function listePlaylists(playlists){
     playlists.forEach(playlist => {
         const cartao = `
                 <div id="playlist${playlist.id}" class="col">
-                     <div onclick="playlistdetalhe(${playlist.id})" class="mais card bg-cprimary clr-csecondary">
+                     <div onclick="playlistdetalhe(${playlist.id})" class="pointer card bg-cprimary clr-csecondary">
                             <img src="${playlist.thumbnail ? playlist.thumbnail : placeholderImg}" alt="image cap" class="card-img-top img-fluid custom-img bg-csecondary">
                             <div class="card-img-overlay">
                                 <div class="container p-0">

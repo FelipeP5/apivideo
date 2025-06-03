@@ -3,6 +3,7 @@
 :root{
     --custom-primary: rgb(211, 30, 30);
     --custom-secondary: white;
+    background-color: var(--custom-primary);
 }
 
 *{
@@ -71,7 +72,7 @@ nav, footer{
         Card-items
 ========================*/
 
-.criar{
+.pointer{
     cursor: pointer;
 }
 
@@ -123,5 +124,5 @@ nav, footer{
 }
 
 .bg-descricao{
-    background-color: rgb(245, 0, 0)
+    background-color: rgb(190, 0, 0);
 }

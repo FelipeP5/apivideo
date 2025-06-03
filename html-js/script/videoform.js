@@ -12,7 +12,6 @@ const relacoes = "http://127.0.0.1:8000/playlistvideo/";
 const id = new URLSearchParams(location.search).get("id");
 const nome = document.getElementById("nome");
 const descricao = document.getElementById("descricao");
-const playlists = document.getElementById("playlists");
 const thumbnail = document.getElementById("thumbnail");
 const playlistsBtn = document.getElementById("playlists-btn")
 const excluirBtn = document.getElementById("excluir-btn");
@@ -31,6 +30,7 @@ if (id) {
     .catch(erro => console.error(erro, "Erro ao preencher campos"));
 
     excluirBtn.style.display = "flex";
+    playlistsBtn.style.display = "block";
 }
 
 playlistsBtn.addEventListener("click", () => {
@@ -124,3 +124,4 @@ function excluir(){
     })
     .catch(erro => console.error(erro, "Exclusão fracassou"));
 }
+

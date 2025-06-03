@@ -31,6 +31,10 @@
     color: var(--custom-secondary);
 }
 
+.pointer{
+    cursor: pointer;
+}
+
 .custom-img{
     height: 16rem;
     object-fit: cover;
@@ -72,9 +76,6 @@ nav, footer{
         Card-items
 ========================*/
 
-.pointer{
-    cursor: pointer;
-}
 
 .card-img-overlay .container{
     display: none;

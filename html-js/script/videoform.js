@@ -88,12 +88,12 @@ function enviarRelacoes(e){
                     dados.append("playlist", listItem[1].value)
                     dados.append("video", id);
                     if (listItem[1].checked){
-                        console.log("coisa do if", listItem[1].value);
+                        console.log("Truthy!", listItem[1].value);
                         fetch(relacoes, {
                             method : "POST",
                             body : dados,
                         }).catch(erro => console.error(erro));
-                    } else{console.log("Falsy!")};
+                    } else{console.log(listItem[1].checked, "Falsy!")};
                 });
                 menuPlaylists.close();
             };

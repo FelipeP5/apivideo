@@ -79,12 +79,11 @@ formVideo.addEventListener("submit", e => {
     }
 });
 
-function enviarRelacoes(){
-    formMenu.addEventListener("submit", e => {
+function enviarRelacoes(e){
         e.preventDefault();
         console.log(e);
                 Object.entries(e.target).forEach(listItem => {
-                    console.log("listItem" + listItem + "numero dele:" + listItem[1].value);
+                    console.log("|listItem|" + listItem + "|numero dele: " + listItem[1].value);
                     const dados = new FormData();
                     dados.append("playlist", listItem[1].value)
                     dados.append("video", id);
@@ -94,11 +93,10 @@ function enviarRelacoes(){
                             method : "POST",
                             body : dados,
                         }).catch(erro => console.error(erro));
-                    };
+                    } else{console.log("Falsy!")};
                 });
-            });
-    menuPlaylists.close();
-};
+                menuPlaylists.close();
+            };
 
 function listarPlaylistsEmMenu(){
     fetch(playlistURL)
@@ -108,7 +106,7 @@ function listarPlaylistsEmMenu(){
                 const option = document.createElement("div");
                 option.innerHTML = `<label for="${playlist.id}" class="form-label">${playlist.nome}</label>
                                 <input id="${playlist.id}" class="" type="checkbox" name="playlist" value="${playlist.id}">`;
-                document.getElementById("menu-playlists").appendChild(option);
+                document.getElementById("campos-playlists").appendChild(option);
             });
         })
         .catch(erro => console.error(erro));

@@ -26,7 +26,7 @@ function listeVideos(videos){
                                 <div class="card-img-overlay">
                                         <div class="container p-0">
                                             <a href="videoform.html?id=${video.id}" class="ms-auto btn clr-cprimary">Editar</a>
-                                            <a href="#" class="btn clr-cprimary">Excluir</a>
+                                            <button type="button" onclick="excluirVideo(${video.id})" class="btn clr-cprimary">Excluir</button>
                                         </div>
                                 </div>
                                 <h6 class="card-header text-center">${video.nome}</h6>
@@ -46,7 +46,7 @@ function listePlaylists(playlists){
                             <div class="card-img-overlay">
                                 <div class="container p-0">
                                     <a href="playlistform.html?id=${playlist.id}" class="ms-auto btn clr-cprimary">Editar</a>
-                                    <a href="#" class="btn clr-cprimary">Excluir</a>
+                                    <a href="#" onclick="excluirPlaylist(${playlist.id})" class="btn clr-cprimary">Excluir</a>
                                 </div>
                             </div>
                             <h6 class="card-header text-center">${playlist.nome}</h6>
@@ -60,12 +60,24 @@ function listePlaylists(playlists){
 function escolhaCriacaoMenu(){
     console.log("Evento click escutado")
     escolhaCriacao.showModal();
-
 }
 
-function excluir(id){
-    // Modal e chamada de API para exclusão
+function excluirVideo(id){
+    fetch(videoURL + id + "/", {
+        method: "DELETE",
+    })
+    .then(res => console.log(res))
+    .catch(erro => console.error(erro, "Exclusão fracassou"));
 };
+
+function excluirPlaylist(id){
+    fetch(playlistURL + id + "/", {
+        method: "DELETE",
+    })
+    .then(res => console.log(res))
+    .catch(erro => console.error(erro, "Exclusão fracassou"));
+};
+
 function videodetalhe(id){
     location.href = `videodetalhe.html?id=${id}`;
 };

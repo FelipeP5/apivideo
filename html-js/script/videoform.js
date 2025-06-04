@@ -119,5 +119,4 @@ function excluir(){
         location.replace("./");
     })
     .catch(erro => console.error(erro, "Exclusão fracassou"));
-}
-
+};

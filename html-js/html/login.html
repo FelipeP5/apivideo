@@ -13,11 +13,11 @@
     -> Validação de usuário como feito em aula
 -->
 <body>
-    <header>
-      <h1 class="text-light text-center"><strong>MyTube</strong></h1>
+    <header class="container-fluid d-flex justify-content-center align-items-center">
+      <h1 class="text-light"><strong>MyTube</strong></h1>
     </header>
     
-    <div class="main">
+    <div class="main container-fluid">
       <div class="inteiro container bg-light p-0">
         <div class="app-description container-fluid p-1 align-items-center">
           <h3>Sobre o aplicativo...</h3>
@@ -26,22 +26,22 @@
         </div>
         <h1>Login</h1>
 
-        <form class="text-center" action="$">
+        <div class="text-center">
           <p>
-            <input type="text" id="usuario" placeholder="Usuário...">
+            <input type="text" id="usuario" placeholder="Usuário..." class="form-control">
           </p>
           <p>
-            <input type="text" id="senha" placeholder="Senha...">
+            <input type="password" id="senha" placeholder="Senha..." class="form-control">
           </p>
           <p>
-          <input class="btn" type="submit" value="Entrar">
+          <a href="./" class="btn" class="form-control">Entrar</a>
           </p>
-        </form>
+        </div>
       </div>
     </div>
 
-    <footer></footer>
-    <script>
+    <footer class="container-fluid"></footer>
+    <script src="../script/login.js">
     </script>
 </body>
 </html>

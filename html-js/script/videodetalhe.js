@@ -30,4 +30,8 @@ function preencherFonte(arquivo){
     player.appendChild(fonte);
     console.log(fonte, "#############", player);
     player.load();
-}
+};
+
+function editarVideo(){
+    location.href = `./videoform.html?id=${id}`;
+};

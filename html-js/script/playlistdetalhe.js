@@ -20,3 +20,7 @@ fetch(playlistURL + id + "/")
         descricao.innerText = playlist.descricao ? playlist.descricao : "O vídeo não contém uma descrição.";
     })
     .catch(erro => console.error(erro, "Erro ao preencher espaços"));
+
+function editarPlaylist(){
+    location.href = `./playlistform.html?id=${id}`
+}

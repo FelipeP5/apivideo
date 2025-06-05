@@ -16,7 +16,7 @@ const videosBtn = document.getElementById("videos-btn")
 const modalVideos = document.getElementById("modal-videos");
 let formContent = false;
 
-if (id) {
+if (Number(id)) {
     document.querySelector("h1").innerText = "Alterar informações de playlist"
     fetch(playlistURL + id)
     .then(res => res.json())
@@ -115,7 +115,7 @@ function excluir(){
     })
     .then(res => {
         console.log(res);
-        location.replace("inicio.html");
+        location.replace("./");
     })
     .catch(erro => console.error(erro, "Exclusão fracassou"));
 };

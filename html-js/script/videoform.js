@@ -16,7 +16,7 @@ const excluirBtn = document.getElementById("excluir-btn");
 const modalPlaylists = document.getElementById("modal-playlists");
 let formContent = false;
 
-if (id) {
+if (Number(id)) {
     document.querySelector("h1").innerText = "Alterar informações de video";
     fetch(videoURL + id)
     .then(res => res.json())

@@ -1,8 +1,6 @@
 // Descrição colapsável
 // "Incluso" exibe playlists que o incluem;
-// "Editar" leva ao form com id;
 // "Arquivo" mostra o arquivo de vídeo salvo para reprodução com ferramentas externas.
-// Cabeçalho e botões fixos na tela;
 
 const player = document.querySelector("video");
 const nome = document.getElementById("nome");

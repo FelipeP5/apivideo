@@ -22,5 +22,5 @@ fetch(playlistURL + id + "/")
     .catch(erro => console.error(erro, "Erro ao preencher espaços"));
 
 function editarPlaylist(){
-    location.href = `./playlistform.html?id=${id}`
+    location.href = `./playlistform.html?id=${id}`;
 }

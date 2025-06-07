@@ -51,17 +51,18 @@
               <p id="data" class="ms-auto rounded p-2 bg-csecondary clr-cprimary">23/02/2022</p>
           </div>
           <div class="bg-descricao rounded-bottom container-sm text-center p-2 bg-cprimary clr-csecondary">
-              <p id="descricao"></p>
-          </div>
-          <div class="row justify-content-evenly">
-              <div class="col-2 p-1 bg-csecondary"><button class="btn w-100 clr-cprimary">Inclui</button></div>
-              <div class="col-2 p-1 bg-csecondary"><button class="btn w-100 clr-cprimary">Editar</button></div>
+            <p id="descricao"></p>
+            <div class="row justify-content-evenly">   
+              <div class="col-2 p-1 bg-csecondary rounded"><button onclick="editarPlaylist()" class="btn w-100 clr-cprimary">Editar</button></div>
+            </div>
           </div>
             </div>
       </div>
     </div>
 
-    <footer class="bg-cprimary"></footer>
+    <footer class="h-50 sticky-bottom bg-cprimary">
+      <div class="col p-1"><button class="btn w-100 clr-csecondary">Inclui</button></div>
+    </footer>
 
     <script src="../script/playlistdetalhe.js"></script>
 </body>

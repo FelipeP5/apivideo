@@ -18,7 +18,7 @@ fetch(playlistURL + id + "/")
         capa.src = playlist.thumbnail ? playlist.thumbnail : "../svg/placeholder-img.jpg";
         nome.innerText = playlist.nome ? playlist.nome : "Sem título";
         data.innerText = playlist.data ? playlist.data : "##-##-####";
-        descricao.innerText = playlist.descricao ? playlist.descricao : "O vídeo não contém uma descrição.";
+        descricao.innerText = playlist.descricao ? playlist.descricao : "A playlist não contém uma descrição.";
     })
     .catch(erro => console.error(erro, "Erro ao preencher espaços"));
 

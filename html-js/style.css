@@ -144,3 +144,7 @@ nav, footer{
     overflow: scroll;
     background-color: rgb(190, 0, 0);
 }
+
+.playlist-sequencia{
+    height: 3rem;
+}

@@ -43,7 +43,8 @@
     <div class="corpo">
       <div class="row justify-content-evenly">
           <div class="col-sm-10">
-            <div class="capa mt-1 p-0 bg-csecondary">
+            <button id="playlist-sequencia-btn" type="button" class="playlist-sequencia d-none w-100 bg-cprimary clr-csecondary"><strong>Nome da playlist</strong></button>
+            <div id="area-da-capa" class="capa mt-1 p-0 bg-csecondary">
               <img id="capa" class="custom-img h-100 w-100 img-fluid" src="" alt="">
           </div>
           <div class="container-sm d-flex py-1 px-3 bg-cprimary clr-csecondary">
@@ -62,10 +63,17 @@
       </div>
     </div>
 
-    <footer id="footer-id" class="rodape-inativo container-fluid sticky-bottom bg-cprimary">
-      <div class="col p-1"><button type="button" id="inclui-btn" class="btn w-100 clr-csecondary">^Inclui^</button></div>
+    <footer id="footer-id" class="rodape-inativo container-fluid sticky-bottom bg-cprimary"> <!--row m-0 ! para modoSeq-->
+      <div class="d-none col p-1">
+        <button type="button" id="antecessor-btn" class="btn w-100 clr-csecondary">Antecessor</button>
+      </div>
+      <div class="col p-1">
+        <button type="button" id="inclui-btn" class="btn w-100 clr-csecondary">^Inclui^</button>
+      </div>
+      <div class="d-none col p-1">
+        <button type="button" id="sucessor-btn" class="btn w-100 clr-csecondary">Sucessor</button>
+      </div>
       <div id="fila-videos" class="d-none row p-2 gx-1">
-
       </div>
     </footer>
 

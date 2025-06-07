@@ -7,7 +7,11 @@
 </head>
 <body>
     <div id="result">
-
+    </div>
+    <div>
+        <p id="nomeV"></p>
+        <p id="dataV"></p>
+        <p id="imagemV"></p>
     </div>
     <script>
         const result = document.getElementById("result");
@@ -15,9 +19,9 @@
         const playURL = "http://127.0.0.1:8000/playlist/";
         const videoURL = "http://127.0.0.1:8000/video/";
         const relationships = "http://127.0.0.1:8000/playlistvideo/";
-        let videoAtual;
 
         console.log("id", id);
+        exibir();
 
         async function selecionar() {
             try {
@@ -54,16 +58,19 @@
             videosFiltrados.forEach(function(video){
                 const item = document.createElement("div");
                 item.innerHTML = `<p>Nome: ${video.nome}; data: ${video.data}; capa: ${video.thumbnail};</p>`;
-                item.addEventListener("click", ()=>alert("balls"));
-                result.innerHTML += item;
+                item.addEventListener("click", () => controlar(video));
+                result.appendChild(item);
 
         });
         };
 
-        function controlar(video){
-            console.log("Funfou", video);
+        function controlar(videoClicado){
+            console.log("Funfou", videoClicado);
+           // reproducaoSequencial();
+            document.getElementById("nomeV").innerText = videoClicado.nome;
+            document.getElementById("dataV").innerText = videoClicado.data;
+            document.getElementById("imagemV").innerText = videoClicado.thumbnail;
         }
-        exibir();
 
     </script>
 </body>

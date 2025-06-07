@@ -9,48 +9,62 @@
     <div id="result">
 
     </div>
-
     <script>
         const result = document.getElementById("result");
         const id = new URLSearchParams(location.search).get("id");
         const playURL = "http://127.0.0.1:8000/playlist/";
+        const videoURL = "http://127.0.0.1:8000/video/";
         const relationships = "http://127.0.0.1:8000/playlistvideo/";
-        let playlistsList = [];
+        let videoAtual;
 
-        console.log(id);
+        console.log("id", id);
 
-        fetch(relationships)
-        .then(res => res.json())
-        .then(relationships => {
-            console.log(relationships);
-            relationships.forEach(relationship => {
-                console.log(relationship.video, "é igual a:", Number(id));
-                if (relationship.video === Number(id)){
-                    console.log("Contém vídeo")
-                    playlistsList.push(relationship.playlist);
-                }
-                else{
-                    console.log("falhou no if de relations")
-                }
+        async function selecionar() {
+            try {
+            const relacoes = await fetch(relationships).then(res => res.json());
+            console.log("relacoes ", relacoes);
+            let filtro = [];
+            let videosFiltrados = [];
+
+            relacoes.forEach(function(relacao){
+                if (relacao.playlist === Number(id)){
+                    filtro.push(relacao.video);
+                };
             });
-        })
-        .then(resolve => {
-            if (playlistsList){
-            playlistsList.forEach(playlistId =>{
-                console.log(playlistId)
-                fetch(playURL + playlistId + "/")
-                .then(res => res.json())
-                .then(playlist => {
-                    const unit = document.createElement("div");
-                    unit.innerHTML = `<h1>${playlist.nome}</h1>`
-                    result.appendChild(unit);
-                })
-            })
-        }
-        })
-        .catch(error => console.error(error));
 
-        console.log(playlistsList);
+            const videos = await fetch(videoURL).then(res => res.json());
+            videos.forEach(video => {
+                const filtroUnico = filtro.filter((valor, indice, vetor) => vetor.indexOf(valor) === indice);
+                
+                if (filtroUnico.includes(video.id)){
+                    videosFiltrados.push(video);
+                };
+            });
+            
+            return await videosFiltrados;
+            } catch (error) {
+                console.error(error, "You suck!");
+            }
+        };
+
+        async function exibir() {
+            const videosFiltrados = await selecionar();
+            console.log("sem promessas", videosFiltrados);
+
+            videosFiltrados.forEach(function(video){
+                const item = document.createElement("div");
+                item.innerHTML = `<p>Nome: ${video.nome}; data: ${video.data}; capa: ${video.thumbnail};</p>`;
+                item.addEventListener("click", ()=>alert("balls"));
+                result.innerHTML += item;
+
+        });
+        };
+
+        function controlar(video){
+            console.log("Funfou", video);
+        }
+        exibir();
+
     </script>
 </body>
 </html>

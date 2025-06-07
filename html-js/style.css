@@ -125,3 +125,21 @@ nav, footer{
 .bg-descricao{
     background-color: rgb(190, 0, 0);
 }
+
+.rodape.inativo{
+    height: 10vh;
+}
+
+.rodape-ativo{
+    height: 50vh;
+}
+
+._outline{
+    outline: 3px solid purple;
+}
+
+.fila-videos{
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: scroll;
+}

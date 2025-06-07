@@ -53,15 +53,49 @@
           <div class="bg-descricao rounded-bottom container-sm text-center p-2 bg-cprimary clr-csecondary">
             <p id="descricao"></p>
             <div class="row justify-content-evenly">   
-              <div class="col-2 p-1 bg-csecondary rounded"><button onclick="editarPlaylist()" class="btn w-100 clr-cprimary">Editar</button></div>
+              <div class="col-2 p-1 bg-csecondary rounded">
+                <button type="button" onclick="editarPlaylist()" class="btn w-100 clr-cprimary">Editar</button>
+              </div>
             </div>
           </div>
             </div>
       </div>
     </div>
 
-    <footer class="h-50 sticky-bottom bg-cprimary">
-      <div class="col p-1"><button class="btn w-100 clr-csecondary">Inclui</button></div>
+    <footer id="footer-id" class="rodape-inativo container-fluid sticky-bottom bg-cprimary">
+      <div class="col p-1"><button type="button" id="inclui-btn" class="btn w-100 clr-csecondary">^Inclui^</button></div>
+      <div id="fila-videos" class="d-none row p-2 gx-1">
+        <div class="card-wrapper col-3">
+          <div class="card _outline">
+            <h3 class="card-header">Teste</h3>
+          </div>
+        </div>
+        
+        <div class="card-wrapper col-3">
+          <div class="col card _outline">
+            <h3 class="card-header">Teste2</h3>
+          </div>
+        </div>
+
+        <div class="card-wrapper col-3">
+          <div class="col card _outline">
+            <h3 class="card-header">Teste2</h3>
+          </div>
+        </div>
+
+        <div class="card-wrapper col-3">
+          <div class="col card _outline">
+            <h3 class="card-header">Teste2</h3>
+          </div>
+        </div>
+
+        <div class="card-wrapper col-3">
+          <div class="col card _outline">
+            <h3 class="card-header">Teste2</h3>
+          </div>
+        </div>
+
+      </div>
     </footer>
 
     <script src="../script/playlistdetalhe.js"></script>

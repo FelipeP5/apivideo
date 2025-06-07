@@ -142,4 +142,5 @@ nav, footer{
     display: flex;
     flex-wrap: nowrap;
     overflow: scroll;
+    background-color: rgb(190, 0, 0);
 }

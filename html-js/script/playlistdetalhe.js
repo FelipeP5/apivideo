@@ -1,6 +1,7 @@
 // Descrição colapsável
 // "Inclui" exibe videos que o inclusos;
 
+const placeholderImg = "../svg/placeholder-img.jpg";
 const capa = document.getElementById("capa");
 const nome = document.getElementById("nome");
 const descricao = document.getElementById("descricao");
@@ -23,6 +24,8 @@ fetch(playlistURL + id + "/")
         descricao.innerText = playlist.descricao ? playlist.descricao : "A playlist não contém uma descrição.";
     })
     .catch(erro => console.error(erro, "Erro ao preencher espaços"));
+
+    exibirSelecionados()
 
 incluiBtn.addEventListener("click", () => {
     filaVideos.classList.toggle("d-none");
@@ -64,13 +67,40 @@ async function exibirSelecionados() {
 
             videosFiltrados.forEach(video => {
                 const itemVideo = document.createElement("div");
-                itemVideo.innerHTML = `<p>Nome: ${video.nome}; data: ${video.data}; capa: ${video.thumbnail};</p>`;
-                item.addEventListener("click", () => controlarVideo(video));
+                itemVideo.classList.add("col-3");
+                itemVideo.innerHTML = `
+                            <div onclick="videodetalhe(${video.id})" class="pointer card bg-cprimary clr-csecondary">
+                                <img src="${video.thumbnail || placeholderImg}" alt="Nenhuma imagem" class="card-img-top img-fluid custom-img bg-csecondary">
+                                <div class="card-img-overlay">
+                                        <div class="container p-0">
+                                            <a href="videoform.html?id=${video.id}" class="ms-auto btn clr-cprimary">Editar</a>
+                                            <button type="button" onclick="excluirVideo(${video.id})" class="btn clr-cprimary">Excluir</button>
+                                        </div>
+                                </div>
+                                <h6 class="card-header text-center">${video.nome}</h6>
+                            </div>
+                        `;
+                itemVideo.addEventListener("click", () => controlarVideo(video));
                 filaVideos.appendChild(itemVideo);
-
         });
-        };
+};
+
+function controlarVideo(videoObj){
+    console.log("code");
+};
+
+function videodetalhe(id){
+    location.href = `videodetalhe.html?id=${id}`;
+};
 
 function editarPlaylist(){
     location.href = `./playlistform.html?id=${id}`;
+};
+
+function excluirVideo(id){
+    fetch(videoURL + id + "/", {
+        method: "DELETE",
+    })
+    .then(res => console.log(res))
+    .catch(erro => console.error(erro, "Exclusão fracassou"));
 };

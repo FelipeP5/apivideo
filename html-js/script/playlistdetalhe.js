@@ -1,5 +1,8 @@
 // Descrição colapsável
+// Função desativarReativar controles deve reativar controles;
 // Editar deve se referir ao vídeo quando um está ativo;
+// Botão playlistSequencia deve exibir o nome da playlist em uso;
+// Modo Sequência deve ativar autoplay; 
 // Os itens da fila-video precisam de botôes excluir e desatar, difícil implementação;
 // Tamanho do rodapé deve ser modificável;
 // modo sequência deve persistir em recarregamento de página;
@@ -27,7 +30,7 @@ const rodape = document.getElementById("footer-id");
 const editarBtn = document.getElementById("editar-btn");
 const playlistSequenciaBtn = document.getElementById("playlist-sequencia-btn");
 let player;
-let sequenciavideoIds = selecionarVideos();
+let sequenciavideoObjs = selecionarVideos();
 let indiceVideoAtual;
 
 fetch(playlistURL + id + "/")
@@ -41,8 +44,17 @@ fetch(playlistURL + id + "/")
     })
     .catch(erro => console.error(erro, "Erro ao preencher espaços"));
 
-    exibirSelecionados()
-//
+exibirSelecionados();
+
+antecessorBtn.addEventListener("click", () => {
+    indiceVideoAtual--;
+    controlarVideo(indiceVideoAtual);
+})
+sucessorBtn.addEventListener("click", () => {
+    indiceVideoAtual++;
+    controlarVideo(indiceVideoAtual);
+});
+
 incluiBtn.addEventListener("click", () => {
     filaVideos.classList.toggle("d-none");
     filaVideos.classList.toggle("fila-videos");
@@ -51,6 +63,7 @@ incluiBtn.addEventListener("click", () => {
 });
 
 playlistSequenciaBtn.addEventListener("click", () => location.href = `playlistdetalhe.html?id=${id}`);
+
 
 editarBtn.addEventListener("click", () => {
     if (!indiceVideoAtual){
@@ -62,7 +75,6 @@ editarBtn.addEventListener("click", () => {
         location.href = `videoform.html?id=${sequenciavideoIds[indiceVideoAtual].id}`;
     };
 })
-
 
  async function selecionarVideos() {
             try {
@@ -92,7 +104,7 @@ editarBtn.addEventListener("click", () => {
         };
 
 async function exibirSelecionados() {
-    const videosFiltrados = await sequenciavideoIds;
+    const videosFiltrados = await sequenciavideoObjs;
     console.log("sem promessas", videosFiltrados);
     
         try{
@@ -111,41 +123,42 @@ async function exibirSelecionados() {
                     <h6 class="card-header text-center">${video.nome}</h6>
                 </div>
                 `;
-            itemVideo.addEventListener("click", () => controlarVideo(videosFiltrados, videosFiltrados.indexOf(video)));
+            itemVideo.addEventListener("click", () => controlarVideo(videosFiltrados.indexOf(video)));
             filaVideos.appendChild(itemVideo);
         });           
         } catch (error) {console.log(error, "Erro ao criar itensVídeos.")};
 };
 
-function controlarVideo(videosFiltrados, videoId){
-    console.log("controlarVideo: ", videosFiltrados, videoId);
+async function controlarVideo(videoId){
+    console.log("controlarVideo: ", videoId);
+    const videoObjs = await sequenciavideoObjs;
     indiceVideoAtual = videoId;
+    desativarReativarControles();
     if (capa) {
         areaDaCapa.removeChild(capa);
         capa = false;
         areaDaCapa.innerHTML = `<video controls playsinline poster="#" preload="metadata" class="d-flex w-100 h-100">
-                        <p >O seu navegador não tem apoio para vídeos em sites D:</p>
-                        <a href="#" download id="video-el-nao-sustentado">Clique aqui para baixá-lo</a>
+                        
                       </video>
                         `;
     };
     playlistSequenciaBtn.innerText = 'playlist.nome' || "Sem Nome de Playlist";
-    nome.innerText = videosFiltrados[videoId].nome || "Sem Nome de Vídeo";
-    descricao.innerText = videosFiltrados[videoId].descricao || "O vídeo não contém uma descrição.";
-    preencherVideo(videosFiltrados, videoId);
+    nome.innerText = videoObjs[indiceVideoAtual].nome || "Sem Nome de Vídeo";
+    descricao.innerText = videoObjs[indiceVideoAtual].descricao || "O vídeo não contém uma descrição.";
+    preencherVideo(videoObjs, indiceVideoAtual);
     playlistSequenciaBtn.style.display = "block";
     antecessorDiv.style.display = "block";
     sucessorDiv.style.display = "block";
     rodape.classList.add("row", "m-0");
-    reproducaoSequencial(videosFiltrados, videoId);
+    reproducaoSequencial(indiceVideoAtual);
 };
 
-function preencherVideo(videosFiltrados, videoId){
+async function preencherVideo(videoObjs, videoId){
     console.log(videoId);
     player = document.querySelector("video");
 
-    player.poster = videosFiltrados[videoId].thumbnail;
-    player.setAttribute("src", videosFiltrados[videoId].arquivo);
+    player.poster = videoObjs[videoId].thumbnail;
+    player.setAttribute("src", videoObjs[videoId].arquivo);
     player.load();
 
     player.addEventListener("error", () => {
@@ -156,14 +169,22 @@ function preencherVideo(videosFiltrados, videoId){
     })
 };
 
-function reproducaoSequencial(videosFiltrados, videoId){
+async function reproducaoSequencial(videoId){
     player.addEventListener("ended", () => {
         videoId++
-        console.log("reprodução sequência", videosFiltrados, videoId)
-        controlarVideo(videosFiltrados, videoId);
+        console.log("reprodução sequência", videoId)
+        controlarVideo(videoId);
     })
 }
 
+async function desativarReativarControles() {
+    const vetorVideoObjs = await sequenciavideoObjs;
+    if (indiceVideoAtual === vetorVideoObjs.length - 1){
+    sucessorBtn.setAttribute("disabled", "");
+    } else if (indiceVideoAtual === 0){
+    antecessorBtn.setAttribute("disabled", "");
+    };
+}
 
 // function excluirVideo(videoId){
 //     fetch(videoURL + videoId + "/", {

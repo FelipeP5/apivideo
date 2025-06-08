@@ -1,8 +1,8 @@
 // Descrição colapsável
-// O player some ao exibir mensagens de erro, quebrando o sistema em vídeos subsequentes;
 // Editar deve se referir ao vídeo quando um está ativo;
 // Os itens da fila-video precisam de botôes excluir e desatar, difícil implementação;
-// Tamanho do rodapé é modificável;
+// Tamanho do rodapé deve ser modificável;
+// modo sequência deve persistir em recarregamento de página;
 
 const id = new URLSearchParams(location.search).get("id");
 const placeholderImg = "../svg/placeholder-img.jpg";
@@ -26,7 +26,8 @@ const sucessorDiv = document.querySelector(".sucessor-div");
 const rodape = document.getElementById("footer-id");
 const editarBtn = document.getElementById("editar-btn");
 const playlistSequenciaBtn = document.getElementById("playlist-sequencia-btn");
-let sequenciaVideoObjs = [];
+let player;
+let sequenciavideoIds = selecionarVideos();
 let indiceVideoAtual;
 
 fetch(playlistURL + id + "/")
@@ -41,7 +42,7 @@ fetch(playlistURL + id + "/")
     .catch(erro => console.error(erro, "Erro ao preencher espaços"));
 
     exibirSelecionados()
-
+//
 incluiBtn.addEventListener("click", () => {
     filaVideos.classList.toggle("d-none");
     filaVideos.classList.toggle("fila-videos");
@@ -58,8 +59,8 @@ editarBtn.addEventListener("click", () => {
     } 
     else{
         console.log("Indice atual F");
-        location.href = `videoform.html?id=${sequenciaVideoObjs[indiceVideoAtual].id}`;
-    }
+        location.href = `videoform.html?id=${sequenciavideoIds[indiceVideoAtual].id}`;
+    };
 })
 
 
@@ -91,7 +92,7 @@ editarBtn.addEventListener("click", () => {
         };
 
 async function exibirSelecionados() {
-    const videosFiltrados = await selecionarVideos();
+    const videosFiltrados = await sequenciavideoIds;
     console.log("sem promessas", videosFiltrados);
     
         try{
@@ -110,13 +111,15 @@ async function exibirSelecionados() {
                     <h6 class="card-header text-center">${video.nome}</h6>
                 </div>
                 `;
-            itemVideo.addEventListener("click", () => controlarVideo(video));
+            itemVideo.addEventListener("click", () => controlarVideo(videosFiltrados, videosFiltrados.indexOf(video)));
             filaVideos.appendChild(itemVideo);
         });           
         } catch (error) {console.log(error, "Erro ao criar itensVídeos.")};
 };
 
-function controlarVideo(videoObj){
+function controlarVideo(videosFiltrados, videoId){
+    console.log("controlarVideo: ", videosFiltrados, videoId);
+    indiceVideoAtual = videoId;
     if (capa) {
         areaDaCapa.removeChild(capa);
         capa = false;
@@ -127,21 +130,22 @@ function controlarVideo(videoObj){
                         `;
     };
     playlistSequenciaBtn.innerText = 'playlist.nome' || "Sem Nome de Playlist";
-    nome.innerText = videoObj.nome || "Sem Nome de Vídeo";
-    descricao.innerText = videoObj.descricao || "O vídeo não contém uma descrição.";
-    preencherVideo(videoObj);
+    nome.innerText = videosFiltrados[videoId].nome || "Sem Nome de Vídeo";
+    descricao.innerText = videosFiltrados[videoId].descricao || "O vídeo não contém uma descrição.";
+    preencherVideo(videosFiltrados, videoId);
     playlistSequenciaBtn.style.display = "block";
     antecessorDiv.style.display = "block";
     sucessorDiv.style.display = "block";
     rodape.classList.add("row", "m-0");
+    reproducaoSequencial(videosFiltrados, videoId);
 };
 
-function preencherVideo(videoObj){
-    console.log(videoObj);
-    const player = document.querySelector("video");
+function preencherVideo(videosFiltrados, videoId){
+    console.log(videoId);
+    player = document.querySelector("video");
 
-    player.poster = videoObj.thumbnail;
-    player.setAttribute("src", videoObj.arquivo);
+    player.poster = videosFiltrados[videoId].thumbnail;
+    player.setAttribute("src", videosFiltrados[videoId].arquivo);
     player.load();
 
     player.addEventListener("error", () => {
@@ -151,6 +155,14 @@ function preencherVideo(videoObj){
         descricao.innerText = "Má escolha";
     })
 };
+
+function reproducaoSequencial(videosFiltrados, videoId){
+    player.addEventListener("ended", () => {
+        videoId++
+        console.log("reprodução sequência", videosFiltrados, videoId)
+        controlarVideo(videosFiltrados, videoId);
+    })
+}
 
 
 // function excluirVideo(videoId){

@@ -1,5 +1,8 @@
 // Descrição colapsável
-// "Inclui" exibe videos que o inclusos;
+// O player some ao exibir mensagens de erro, quebrando o sistema em vídeos subsequentes;
+// Editar deve se referir ao vídeo quando um está ativo;
+// Os itens da fila-video precisam botoes funcionais;
+// Tamanho do rodapé é modificável;
 
 const placeholderImg = "../svg/placeholder-img.jpg";
 const areaDaCapa = document.getElementById("area-da-capa");
@@ -12,9 +15,14 @@ const videoURL = "http://127.0.0.1:8000/video/";
 const playlistURL = "http://127.0.0.1:8000/playlist/";
 const relacoes = "http://127.0.0.1:8000/playlistvideo/";
 const incluiBtn = document.getElementById("inclui-btn");
+const antecessorBtn = document.getElementById("antecessor-btn");
+const sucessorBtn = document.getElementById("sucessor-btn");
+const antecessorDiv = document.querySelector(".antecessor-div");
+const sucessorDiv = document.querySelector(".sucessor-div");
 const rodape = document.getElementById("footer-id");
 const id = new URLSearchParams(location.search).get("id");
 const playlistSequenciaBtn = document.getElementById("playlist-sequencia-btn");
+let sequenciaDeVideo = [];
 
 fetch(playlistURL + id + "/")
     .then(res => res.json())
@@ -105,6 +113,11 @@ function controlarVideo(videoObj){
     nome.innerText = videoObj.nome || "Sem Nome de Vídeo";
     descricao.innerText = videoObj.descricao || "O vídeo não contém uma descrição.";
     preencherVideo(videoObj);
+    playlistSequenciaBtn.style.display = "block";
+    antecessorDiv.style.display = "block";
+    sucessorDiv.style.display = "block";
+    
+    rodape.classList.add("row", "m-0");
 };
 
 function preencherVideo(videoObj){
@@ -113,7 +126,7 @@ function preencherVideo(videoObj){
     const erroNoPlayer = document.getElementById("video-el-nao-sustentado");
     const msgErro = document.getElementById("msg-erro");
     const download = document.getElementById("arquivo-nao-carregou");
-    
+
     player.poster = videoObj.thumbnail;
     player.setAttribute("src", videoObj.arquivo);
     player.load();
@@ -125,7 +138,6 @@ function preencherVideo(videoObj){
     })
 };
 
-// Botões de card \\
 function editarPlaylist(){
     location.href = `./playlistform.html?id=${id}`;
 };

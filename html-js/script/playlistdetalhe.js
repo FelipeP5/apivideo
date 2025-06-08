@@ -1,4 +1,3 @@
-// Descrição colapsável
 // Função desativarReativar controles deve reativar controles;
 // Editar deve se referir ao vídeo quando um está ativo;
 // Botão playlistSequencia deve exibir o nome da playlist em uso;
@@ -6,6 +5,8 @@
 // Os itens da fila-video precisam de botôes excluir e desatar, difícil implementação;
 // Tamanho do rodapé deve ser modificável;
 // modo sequência deve persistir em recarregamento de página;
+// Descrição colapsável;
+// Erro 404 no primeiro clique em uma dos vídeos sem imagem, GET: http://127.0.0.1:5500/html-js/html/null;
 
 const id = new URLSearchParams(location.search).get("id");
 const placeholderImg = "../svg/placeholder-img.jpg";
@@ -150,10 +151,10 @@ async function controlarVideo(videoId){
     antecessorDiv.style.display = "block";
     sucessorDiv.style.display = "block";
     rodape.classList.add("row", "m-0");
-    reproducaoSequencial(indiceVideoAtual);
+    indiceVideoAtual === videoObjs.length - 1 ? null : reproducaoSequencial(indiceVideoAtual);
 };
 
-async function preencherVideo(videoObjs, videoId){
+function preencherVideo(videoObjs, videoId){
     console.log(videoId);
     player = document.querySelector("video");
 
@@ -180,9 +181,9 @@ async function reproducaoSequencial(videoId){
 async function desativarReativarControles() {
     const vetorVideoObjs = await sequenciavideoObjs;
     if (indiceVideoAtual === vetorVideoObjs.length - 1){
-    sucessorBtn.setAttribute("disabled", "");
+        sucessorBtn.setAttribute("disabled", "");
     } else if (indiceVideoAtual === 0){
-    antecessorBtn.setAttribute("disabled", "");
+        antecessorBtn.setAttribute("disabled", "");
     };
 }
 

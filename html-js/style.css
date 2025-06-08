@@ -117,7 +117,7 @@ nav, footer{
         Detalhe
 ========================*/
 
-.area-de-player, .capa{
+.area-de-player, .area-da-capa{
     width: 100%;
     aspect-ratio: 16 / 9;
 }

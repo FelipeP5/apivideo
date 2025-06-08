@@ -1,28 +1,33 @@
 // Descrição colapsável
 // O player some ao exibir mensagens de erro, quebrando o sistema em vídeos subsequentes;
 // Editar deve se referir ao vídeo quando um está ativo;
-// Os itens da fila-video precisam botoes funcionais;
+// Os itens da fila-video precisam de botôes excluir e desatar, difícil implementação;
 // Tamanho do rodapé é modificável;
 
+const id = new URLSearchParams(location.search).get("id");
 const placeholderImg = "../svg/placeholder-img.jpg";
+///
 const areaDaCapa = document.getElementById("area-da-capa");
 let capa = document.getElementById("capa");
 const nome = document.getElementById("nome");
 const descricao = document.getElementById("descricao");
 const data = document.getElementById("data");
 const filaVideos = document.getElementById("fila-videos");
+///
 const videoURL = "http://127.0.0.1:8000/video/";
 const playlistURL = "http://127.0.0.1:8000/playlist/";
 const relacoes = "http://127.0.0.1:8000/playlistvideo/";
+///
 const incluiBtn = document.getElementById("inclui-btn");
 const antecessorBtn = document.getElementById("antecessor-btn");
 const sucessorBtn = document.getElementById("sucessor-btn");
 const antecessorDiv = document.querySelector(".antecessor-div");
 const sucessorDiv = document.querySelector(".sucessor-div");
 const rodape = document.getElementById("footer-id");
-const id = new URLSearchParams(location.search).get("id");
+const editarBtn = document.getElementById("editar-btn");
 const playlistSequenciaBtn = document.getElementById("playlist-sequencia-btn");
-let sequenciaDeVideo = [];
+let sequenciaVideoObjs = [];
+let indiceVideoAtual;
 
 fetch(playlistURL + id + "/")
     .then(res => res.json())
@@ -44,10 +49,24 @@ incluiBtn.addEventListener("click", () => {
     rodape.classList.toggle("rodape-ativo");
 });
 
+playlistSequenciaBtn.addEventListener("click", () => location.href = `playlistdetalhe.html?id=${id}`);
+
+editarBtn.addEventListener("click", () => {
+    if (!indiceVideoAtual){
+        console.log("indicie atual V");
+        location.href = `playlistform.html?id=${id}`;
+    } 
+    else{
+        console.log("Indice atual F");
+        location.href = `videoform.html?id=${sequenciaVideoObjs[indiceVideoAtual].id}`;
+    }
+})
+
+
  async function selecionarVideos() {
             try {
             const listaRelacoes = await fetch(relacoes).then(res => res.json());
-            console.log("relacoes ", relacoes);
+            console.log("relacoes ", listaRelacoes);
             let filtro = [];
             let videosFiltrados = [];
 
@@ -72,27 +91,29 @@ incluiBtn.addEventListener("click", () => {
         };
 
 async function exibirSelecionados() {
-            const videosFiltrados = await selecionarVideos();
-            console.log("sem promessas", videosFiltrados);
-
-            videosFiltrados.forEach(video => {
-                const itemVideo = document.createElement("div");
-                itemVideo.classList.add("col-3");
-                itemVideo.innerHTML = `
-                            <div class="pointer card bg-cprimary clr-csecondary">
-                                <img src="${video.thumbnail || placeholderImg}" alt="Nenhuma imagem" class="card-img-top img-fluid custom-img bg-csecondary">
-                                <div class="card-img-overlay">
-                                        <div class="container p-0">
-                                            <a href="videoform.html?id=${video.id}" class="ms-auto btn clr-cprimary">Editar</a>
-                                            <button type="button" onclick="excluirVideo(${video.id})" class="btn clr-cprimary">Excluir</button>
-                                        </div>
-                                </div>
-                                <h6 class="card-header text-center">${video.nome}</h6>
-                            </div>
-                        `;
-                itemVideo.addEventListener("click", () => controlarVideo(video));
-                filaVideos.appendChild(itemVideo);
-        });
+    const videosFiltrados = await selecionarVideos();
+    console.log("sem promessas", videosFiltrados);
+    
+        try{
+        videosFiltrados.forEach(video => {
+            const itemVideo = document.createElement("div");
+            itemVideo.classList.add("col-3");
+            itemVideo.innerHTML = `
+                <div class="pointer card bg-cprimary clr-csecondary">
+                   <img src="${video.thumbnail || placeholderImg}" alt="Nenhuma imagem" class="card-img-top img-fluid custom-img bg-csecondary">
+                   <div class="card-img-overlay">
+                        <div class="container p-0">
+                            <a href="videoform.html?id=${video.id}" class="ms-auto btn clr-cprimary">Editar</a>
+                            <button type="button" onclick="excluirVideo(${video.id})" class="btn clr-cprimary">Excluir</button>
+                        </div>
+                    </div>
+                    <h6 class="card-header text-center">${video.nome}</h6>
+                </div>
+                `;
+            itemVideo.addEventListener("click", () => controlarVideo(video));
+            filaVideos.appendChild(itemVideo);
+        });           
+        } catch (error) {console.log(error, "Erro ao criar itensVídeos.")};
 };
 
 function controlarVideo(videoObj){
@@ -103,10 +124,6 @@ function controlarVideo(videoObj){
                         <p >O seu navegador não tem apoio para vídeos em sites D:</p>
                         <a href="#" download id="video-el-nao-sustentado">Clique aqui para baixá-lo</a>
                       </video>
-                        <p id="msg-erro" class="d-none">
-                            Não foi possível carregar o vídeo pois o arquivo não existe ou não é suportado. Você pode
-                            <a href="" id="arquivo-nao-carregou">clicar aqui para adicionar o arquivo no  vídeo</a>
-                        </p>
                         `;
     };
     playlistSequenciaBtn.innerText = 'playlist.nome' || "Sem Nome de Playlist";
@@ -116,36 +133,32 @@ function controlarVideo(videoObj){
     playlistSequenciaBtn.style.display = "block";
     antecessorDiv.style.display = "block";
     sucessorDiv.style.display = "block";
-    
     rodape.classList.add("row", "m-0");
 };
 
 function preencherVideo(videoObj){
     console.log(videoObj);
     const player = document.querySelector("video");
-    const erroNoPlayer = document.getElementById("video-el-nao-sustentado");
-    const msgErro = document.getElementById("msg-erro");
-    const download = document.getElementById("arquivo-nao-carregou");
 
     player.poster = videoObj.thumbnail;
     player.setAttribute("src", videoObj.arquivo);
     player.load();
-    player.addEventListener("error", arquivo => {
-        areaDaCapa.removeChild(player);
-        erroNoPlayer.href = arquivo;
-        msgErro.classList.remove("d-none");
-        download.href = `./videoform.html?id=${videoObj.id}`;
+
+    player.addEventListener("error", () => {
+        player.src = "../svg/youare.mp4";
+        player.poster = placeholderImg;
+        nome.innerText = "Erro ao carregar vídeo";
+        descricao.innerText = "Má escolha";
     })
 };
 
-function editarPlaylist(){
-    location.href = `./playlistform.html?id=${id}`;
-};
 
-function excluirVideo(id){
-    fetch(videoURL + id + "/", {
-        method: "DELETE",
-    })
-    .then(res => console.log(res))
-    .catch(erro => console.error(erro, "Exclusão fracassou"));
-};
+// function excluirVideo(videoId){
+//     fetch(videoURL + videoId + "/", {
+//         method: "DELETE",
+//     })
+//     .then(res => console.log(res))
+//     .catch(erro => console.error(erro));
+
+//     exibirSelecionados();
+// }

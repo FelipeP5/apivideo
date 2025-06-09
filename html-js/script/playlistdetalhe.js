@@ -139,9 +139,8 @@ async function controlarVideo(videoId){
         areaDaCapa.removeChild(capa);
         capa = false;
         areaDaCapa.innerHTML = `<video controls playsinline poster="#" preload="metadata" class="d-flex w-100 h-100">
-                        
-                      </video>
-                        `;
+                                </video>
+                            `;
     };
     playlistSequenciaBtn.innerText = 'playlist.nome' || "Sem Nome de Playlist";
     nome.innerText = videoObjs[indiceVideoAtual].nome || "Sem Nome de Vídeo";
@@ -184,7 +183,10 @@ async function desativarReativarControles() {
         sucessorBtn.setAttribute("disabled", "");
     } else if (indiceVideoAtual === 0){
         antecessorBtn.setAttribute("disabled", "");
-    };
+    }else{
+        sucessorBtn.removeAttribute("disabled");
+        antecessorBtn.removeAttribute("disabled");
+    }
 }
 
 // function excluirVideo(videoId){

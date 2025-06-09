@@ -13,21 +13,28 @@
     -> Validação de usuário como feito em aula
 -->
 <body>
-  <div class="modal-fade" id="cadastrarModal" tabindex="-1">
-    <div class="modal-dialog">
-      <div class="modal-content">
-         <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  <dialog id="cadastrarDialog" class="outline">
+    <div class="cadastrarContainer container-sm outline">
+        <div class="d-flex flex-row">
+          <h2 class="ms-auto outline">Cadastrar</h3>
+          <button type="button" id="closeBtn" class="btn-close" aria-label="fechar"></button>
+        </div>
+        <form id="formCadastrar">
+          <label class="form-label outline" for="usuarioCadastrarInput">Usuário</label>
+          <input autofocus class="form-control outline" type="text" id="usuarioCadastrarInput">
+          <label class="form-label outline" for="senhaCadastrarInput">Senha</label>
+          <input class="form-control outline" type="password" id="senhaCadastrarInput">
+          <input type="button" id="cadastrarBtn" class="entrar container rounded p-1 mt-3 outline" value="Cadastrar">
+        </form>
       </div>
-    </div>
-  </div>
+  </dialog>
   <!---->
   <div class="tudo align-content-center justify-content-center outline">
       <h1 class="text-center text-light outline"><span class="bold-mf outline">MyTube</span></h1>
       <div class="loginContainer container-sm outline">
         <div class="d-flex flex-row">
           <h2 class="ms-auto outline">Login</h3>
-          <p id="castrarShow" class="castrar ms-auto outline" data-bs-toggle="modal" data-bs-target="#cadastrarModal">Cadastrar</p>
+          <p id="castrarShow" class="castrar ms-auto outline">Cadastrar</p>
         </div>
         <form id="formLogin">
           <label class="form-label outline" for="usuarioLoginInput">Usuário</label>

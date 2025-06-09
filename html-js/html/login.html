@@ -13,35 +13,32 @@
     -> Validação de usuário como feito em aula
 -->
 <body>
-    <header class="container-fluid d-flex justify-content-center align-items-center">
-      <h1 class="text-light"><strong>MyTube</strong></h1>
-    </header>
-    
-    <div class="main container-fluid">
-      <div class="inteiro container bg-light p-0">
-        <div class="app-description container-fluid p-1 align-items-center">
-          <h3>Sobre o aplicativo...</h3>
-          <p>Aqui pode ser guardado vídeos encontrados no computador. Para organização, também é possível separá-los em playlists.
-            Entre em uma conta e inicie sua coleção!</p>
-        </div>
-        <h1>Login</h1>
-
-        <div class="text-center">
-          <p>
-            <input type="text" id="usuario" placeholder="Usuário..." class="form-control">
-          </p>
-          <p>
-            <input type="password" id="senha" placeholder="Senha..." class="form-control">
-          </p>
-          <p>
-          <a href="./" class="btn" class="form-control">Entrar</a>
-          </p>
-        </div>
+  <div class="modal-fade" id="cadastrarModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+         <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
     </div>
-
-    <footer class="container-fluid"></footer>
-    <script src="../script/login.js">
-    </script>
+  </div>
+  <!---->
+  <div class="tudo align-content-center justify-content-center outline">
+      <h1 class="text-center text-light outline"><span class="bold-mf outline">MyTube</span></h1>
+      <div class="loginContainer container-sm outline">
+        <div class="d-flex flex-row">
+          <h2 class="ms-auto outline">Login</h3>
+          <p id="castrarShow" class="castrar ms-auto outline" data-bs-toggle="modal" data-bs-target="#cadastrarModal">Cadastrar</p>
+        </div>
+        <form id="formLogin">
+          <label class="form-label outline" for="usuarioLoginInput">Usuário</label>
+          <input class="form-control outline" type="text" id="usuarioLoginInput">
+          <label class="form-label outline" for="senhaLoginInput">Senha</label>
+          <input class="form-control outline" type="password" id="senhaLoginInput">
+          <input type="button" id="entrarBtn" class="entrar container rounded p-1 mt-3 outline" value="Entrar">
+        </form>
+      </div>
+  </div>
+  
+  <script src="../script/login.js"></script>
 </body>
 </html>

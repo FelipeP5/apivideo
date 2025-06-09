@@ -79,7 +79,7 @@ function excluirPlaylist(id){
 };
 
 function videodetalhe(id){
-    location.href = `videodetalhe.html?id=${id}`;
+    window.location.href = `videodetalhe.html?id=${id}`;
 };
 function playlistdetalhe(id){
     location.href = `playlistdetalhe.html?id=${id}`;

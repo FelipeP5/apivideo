@@ -1,36 +1,62 @@
-*{border: none; box-sizing: border-box; margin: 0; padding: 0;}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
-.main{
-    height: 80vh;
-    width: 100vw;
+:root{
+    --custom-primary: rgb(211, 30, 30);
+    --custom-secondary: white;
+    background-color: var(--custom-primary);
+}
+
+*{
+    border: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Roboto, Helvetica, sans-serif;
+}
+
+.outline{outline: 2px solid lightgreen;}
+
+::backdrop{
+    background-color: var(--custom-primary);
+    opacity: 1;
+}
+
+.bold-mf{
+    font-weight: 900;
+}
+
+.tudo{
+    height: 100vh;
+    background-color: var(--custom-primary);
+}
+
+.loginContainer, .cadastrarContainer{
     display: flex;
+    padding: 0.75rem;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    background-color: rgb(217, 217, 217);
-    color: rgb(211, 30, 30)
-}
-.inteiro{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    background-color: var(--custom-secondary);
+    color: var(--custom-primary);
 }
 
-.app-description{
-    display: block;
-    text-align: center;
-    color: white;
-    background-color: rgb(211, 30, 30);
+.castrar{
+    font-size: 1.5ch;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.castrar:active{
+    color: rgb(180, 0, 0);
 }
 
-header, footer{
-    height: 10vh;
-    width: 100vw;
-    background-color: rgb(211, 30, 30)
+.entrar{
+    background-color: var(--custom-primary);
+    color: var(--custom-secondary);
 }
-input{
-    color: rgb(211, 30, 30);
+.entrar:hover{
+    background-color: rgb(180, 0, 0);
+    color: rgb(230, 230, 230);
 }
-.btn{
-    background-color: rgb(211, 30, 30);
+.entrar:active{
+    background-color: rgb(255, 0, 0);
+    color: var(--custom-secondary);
 }

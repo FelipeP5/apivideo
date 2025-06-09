@@ -34,7 +34,7 @@ if (Number(id)) {
 formPlaylist.addEventListener("submit", e => {
     e.preventDefault();
     console.log(e);
-    const dados = new FormData(form);
+    const dados = new FormData(formPlaylist);
     if (id){
         fetch(playlistURL + id  + "/", {
             method: "PUT",

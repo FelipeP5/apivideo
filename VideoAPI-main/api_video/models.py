@@ -1,3 +1,5 @@
+# tipos de arquivos aceitados
+
 from django.db import models
 import os
 import uuid
@@ -68,4 +70,3 @@ class Playlist(models.Model):
 class PlaylistVideo(models.Model):
     playlist = models.ForeignKey(Playlist, on_delete = models.CASCADE)
     video = models.ForeignKey(Video, on_delete = models.CASCADE)
-

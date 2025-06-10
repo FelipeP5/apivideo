@@ -150,7 +150,6 @@ class UserViewset(viewsets.ModelViewSet):
 
 class LoginViewset(viewsets.ViewSet):
     def create(self, request):
-        #Valida as credenciais do usuario
         serializer = serializers.LoginSerializer(data=request.data)
         if serializer.is_valid():
             username = serializer.validated_data["username"]

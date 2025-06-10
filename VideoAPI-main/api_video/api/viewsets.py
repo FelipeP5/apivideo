@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from api_video.api import serializers
 from api_video import models
 from drf_yasg.utils import swagger_auto_schema
@@ -6,11 +6,16 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from django.db.models import Sum
-
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
+from rest_framework.authtoken.models import Token
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.tokens import RefreshToken
 
 class VideoViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.VideoSerializer
     queryset = models.Video.objects.all()
+    permission_classes = [IsAuthenticated]
 
     @swagger_auto_schema(
         operation_description= "Listar vídeos",
@@ -50,6 +55,7 @@ class VideoViewSet(viewsets.ModelViewSet):
 class PlaylistViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.PlaylistSerializer
     queryset = models.Playlist.objects.all()
+    permission_classes = [IsAuthenticated]
 
     @swagger_auto_schema(
         operation_description= "Listar playlists",
@@ -95,6 +101,7 @@ class PlaylistViewSet(viewsets.ModelViewSet):
 class PlaylistVideoViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.PlaylistVideoSerializer
     queryset = models.PlaylistVideo.objects.all()
+    permission_classes = [IsAuthenticated]
 
     @swagger_auto_schema(
         operation_description= "Listar videos em playlists",
@@ -135,3 +142,31 @@ class PlaylistVideoViewSet(viewsets.ModelViewSet):
     def destroy(self, request, *args, **kwargs):
         #DELETE
         return super().destroy(request, *args, **kwargs)
+    
+class UserViewset(viewsets.ModelViewSet):
+    serializer_class = serializers.UserSerializer
+    queryset = User.objects.all()
+    permission_classes = [IsAuthenticated]
+
+class LoginViewset(viewsets.ViewSet):
+    def create(self, request):
+        #Valida as credenciais do usuario
+        serializer = serializers.LoginSerializer(data=request.data)
+        if serializer.is_valid():
+            username = serializer.validated_data["username"]
+            password = serializer.validated_data["password"]
+            user = authenticate(username = username, password=password)
+            if user is not None:
+                refresh = RefreshToken.for_user(user)
+                access_token = refresh.access_token
+                return Response({
+                    'access': str(access_token),
+                    'refresh': str(refresh),
+                    'user': {
+                        'userId': user.id,
+                        'username': user.username,
+                    }
+                }, status= status.HTTP_200_OK)
+            return Response("Falha na autenticação", status=status.HTTP_400_BAD_REQUEST) 
+    
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

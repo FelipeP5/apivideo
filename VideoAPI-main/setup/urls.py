@@ -25,6 +25,8 @@ route= routers.DefaultRouter()
 route.register(r'video', viewsets.VideoViewSet, basename='video')
 route.register(r'playlist', viewsets.PlaylistViewSet, basename='playlist')
 route.register(r'playlistvideo', viewsets.PlaylistVideoViewSet, basename='playlistvideo')
+route.register(r"login", viewsets.LoginViewset, basename="login")
+route.register(r"usuario", viewsets.UserViewset, basename="usuario")
 
 urlpatterns = [
     path('admin/', admin.site.urls),

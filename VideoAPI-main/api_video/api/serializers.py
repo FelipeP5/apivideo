@@ -1,6 +1,6 @@
-
 from rest_framework import serializers
 from api_video import models
+from django.contrib.auth.models import User
 
 
 class VideoSerializer(serializers.ModelSerializer):
@@ -38,3 +38,12 @@ class PlaylistVideoSerializer(serializers.ModelSerializer):
             'playlist':{'help_text': 'id da playlist referida'},
             'video':{'help_text': 'id do vídeo contido.'},
         }
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'password', 'email', 'first_name', 'last_name']
+
+class LoginSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField(write_only=True)

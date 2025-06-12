@@ -2,13 +2,10 @@ from rest_framework import viewsets, status
 from api_video.api import serializers
 from api_video import models
 from drf_yasg.utils import swagger_auto_schema
-from rest_framework.decorators import action
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
-from django.db.models import Sum
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
-from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
 
@@ -154,7 +151,7 @@ class LoginViewset(viewsets.ViewSet):
         if serializer.is_valid():
             username = serializer.validated_data["username"]
             password = serializer.validated_data["password"]
-            user = authenticate(username = username, password=password)
+            user = authenticate(username = username, password = password)
             if user is not None:
                 refresh = RefreshToken.for_user(user)
                 access_token = refresh.access_token

@@ -4,12 +4,17 @@
 
 if(JSON.parse(sessionStorage.getItem("autenticado")) !== true){location.replace("login.html")}
 
+const tituloH3 = document.getElementById("titulo");
 const placeholderImg = "../svg/placeholder-img.jpg";
 const videoURL = "http://127.0.0.1:8000/video/";
 const playlistURL = "http://127.0.0.1:8000/playlist/";
 const relacoes = "http://127.0.0.1:8000/playlistvideo/";
 const lista = document.getElementById("lista");
 const escolhaCriacao = document.getElementById("escolha-criacao");
+
+if (lista.children !== null){
+    tituloH3.innerText = "Alterações Recentes";
+}
 
 fetch(videoURL)
     .then(res => res.json())

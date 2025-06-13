@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework_simplejwt.tokens import RefreshToken
 
 class VideoViewSet(viewsets.ModelViewSet):
@@ -141,9 +141,13 @@ class PlaylistVideoViewSet(viewsets.ModelViewSet):
         return super().destroy(request, *args, **kwargs)
     
 class UserViewset(viewsets.ModelViewSet):
+    permission_classes = [AllowAny]
     serializer_class = serializers.UserSerializer
     queryset = User.objects.all()
-    permission_classes = [IsAuthenticated]
+
+    # def create(self, request):
+        
+    #     return Response("idk", status=status.HTTP_201_CREATED)
 
 class LoginViewset(viewsets.ViewSet):
     def create(self, request):

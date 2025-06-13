@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 <!--TODO: 
-    -> Validação de usuário como feito em aula
+    -> BS Modal
 -->
 <body>
   <dialog id="cadastrarDialog" class="outline">
@@ -21,9 +21,9 @@
         </div>
         <form id="formCadastrar">
           <label class="form-label outline" for="usuarioCadastrarInput">Usuário</label>
-          <input autofocus class="form-control outline" type="text" id="usuarioCadastrarInput">
+          <input autofocus name="username" class="form-control outline" type="text" id="usuarioCadastrarInput">
           <label class="form-label outline" for="senhaCadastrarInput">Senha</label>
-          <input class="form-control outline" type="password" id="senhaCadastrarInput">
+          <input name="password" class="form-control outline" type="password" id="senhaCadastrarInput">
           <input type="submit" id="cadastrarBtn" class="entrar container rounded p-1 mt-3 outline" value="Cadastrar">
         </form>
       </div>
@@ -34,13 +34,13 @@
       <div class="loginContainer container-sm outline">
         <div class="d-flex flex-row">
           <h2 class="ms-auto outline">Login</h3>
-          <p id="castrarShow" class="castrar ms-auto outline">Cadastrar</p>
+          <!-- <p id="castrarShow" class="castrar ms-auto outline">Cadastrar</p> -->
         </div>
         <form id="formLogin">
           <label class="form-label outline" for="usuarioLoginInput">Usuário</label>
-          <input class="form-control outline" type="text" id="usuarioLoginInput">
+          <input name="username" class="form-control outline" type="text" id="usuarioLoginInput">
           <label class="form-label outline" for="senhaLoginInput">Senha</label>
-          <input class="form-control outline" type="password" id="senhaLoginInput">
+          <input name="password" class="form-control outline" type="password" id="senhaLoginInput">
           <button type="button" id="entrarBtn" class="entrar container rounded p-1 mt-3 outline">Entrar</button>
         </form>
       </div>

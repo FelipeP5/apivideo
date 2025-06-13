@@ -1,3 +1,7 @@
+//INFO: Username não aceita espaços, caracteres especiais e deve ser único entre todos usuários
+
+const loginURL = "http://127.0.0.1:8000/login/";
+const usuarioURL = "http://127.0.0.1:8000/usuario/";
 const cadastrarDialog = document.getElementById("cadastrarDialog");
 const closeBtn = document.getElementById("closeBtn");
 const formLogin = document.getElementById("formLogin");
@@ -10,27 +14,27 @@ const senhaCadastrar = document.getElementById("senhaCadastrarInput");
 const entrarBtn = document.getElementById("entrarBtn");
 const cadastrarBtn = document.getElementById("cadastrarBtn");
 
-cadastrarShow.addEventListener("click", () => cadastrarDialog.showModal());
-closeBtn.addEventListener("click", () => cadastrarDialog.close());
-formCadastrar.addEventListener("submit", (e) =>{
-    e.preventDefault();
-    cadastrarDialog.close();
-    const usuarioDadosEntrada = {
-        usuario : usuarioCadastrar.value,
-        senha : senhaCadastrar.value,
-    };
-    console.log(JSON.stringify(usuarioDadosEntrada));
-    localStorage.setItem("usuarioDados", JSON.stringify(usuarioDadosEntrada));
-})
+// cadastrarShow.addEventListener("click", () => cadastrarDialog.showModal());
+// closeBtn.addEventListener("click", () => cadastrarDialog.close());
+// formCadastrar.addEventListener("submit", (e) =>{
+//     e.preventDefault();
+//     const cadastrarDados = new FormData(formCadastrar);
+//     fetch(usuarioURL, {
+//         method: 'POST',
+//         body: cadastrarDados
+//     });
+//     cadastrarDialog.close();
+// });
 
 entrarBtn.addEventListener("click", () => {
-    const usuarioDadosSaida = JSON.parse(localStorage.getItem("usuarioDados"));
-    if (usuarioLogin.value === usuarioDadosSaida.usuario && senhaLogin.value === usuarioDadosSaida.senha){
-        sessionStorage.setItem("autenticado", true);
-        location.href = "./";
-    }
-    else {
-        console.log(`Usuário: ${usuarioLogin.value}, Senha: ${senhaLogin.value}.
-        São desiguais à ${usuarioDadosSaida.usuario} e ${usuarioDadosSaida.senha} de ${usuarioDadosSaida}`);
-    }
-});
+    const loginDados = new FormData(formLogin);
+    fetch(loginURL, {
+        method: "POST",
+        body: loginDados
+    })
+    .then(res => res.json())
+    .then(jwt => {
+        console.log(jwt);
+        console.log("access: ", jwt.access);
+    })
+})

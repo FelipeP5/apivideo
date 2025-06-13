@@ -2,7 +2,18 @@
 //Organizar cartões por data
 //Opção de filtrar entre video e playlist;
 
-if(JSON.parse(sessionStorage.getItem("autenticado")) !== true){location.replace("login.html")}
+if(JSON.parse(sessionStorage.getItem("autenticado")) !== true){location.replace("login.html")};
+document.getElementById("tema").addEventListener("click", () => {
+    if (localStorage.getItem("tema" === null || undefined || "claro")){
+        localStorage.setItem("tema", "escuro");
+    } else {
+        localStorage.setItem("tema", "claro");
+    }
+});
+
+if(localStorage.getItem("tema") === "escuro"){
+    
+}
 
 const tituloH3 = document.getElementById("titulo");
 const placeholderImg = "../svg/placeholder-img.jpg";

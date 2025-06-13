@@ -4,6 +4,7 @@
     --custom-primary: rgb(211, 30, 30);
     --custom-secondary: white;
     background-color: var(--custom-primary);
+    color-scheme: dark light;
 }
 
 *{
@@ -12,6 +13,17 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Roboto, Helvetica, sans-serif;
+}
+
+/*=======================  
+        Tema escuro
+========================*/
+
+.corpo-escuro{
+    background-color: #1E1A1A;
+    width: 100vw;
+    min-height: 80vh;
+    padding: 0.50rem 0 0.50rem 0;
 }
 
 /*=======================  
@@ -52,11 +64,9 @@ nav, footer{
 .corpo{
     background-color: rgb(217, 217, 217);
     width: 100vw;
-    width: 100dvw;
     min-height: 80vh;
     padding: 0.50rem 0 0.50rem 0;
 }
-
 
 /*=======================  
     Remoção de estilo

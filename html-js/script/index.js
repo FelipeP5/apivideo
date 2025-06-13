@@ -2,6 +2,8 @@
 //Organizar cartões por data
 //Opção de filtrar entre video e playlist;
 
+if(JSON.parse(sessionStorage.getItem("autenticado")) !== true){location.replace("login.html")}
+
 const placeholderImg = "../svg/placeholder-img.jpg";
 const videoURL = "http://127.0.0.1:8000/video/";
 const playlistURL = "http://127.0.0.1:8000/playlist/";

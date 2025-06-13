@@ -12,7 +12,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 class VideoViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.VideoSerializer
     queryset = models.Video.objects.all()
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     @swagger_auto_schema(
         operation_description= "Listar vídeos",
@@ -52,7 +52,7 @@ class VideoViewSet(viewsets.ModelViewSet):
 class PlaylistViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.PlaylistSerializer
     queryset = models.Playlist.objects.all()
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     @swagger_auto_schema(
         operation_description= "Listar playlists",
@@ -98,7 +98,7 @@ class PlaylistViewSet(viewsets.ModelViewSet):
 class PlaylistVideoViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.PlaylistVideoSerializer
     queryset = models.PlaylistVideo.objects.all()
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     @swagger_auto_schema(
         operation_description= "Listar videos em playlists",

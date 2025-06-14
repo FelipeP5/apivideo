@@ -28,6 +28,8 @@ const escolhaCriacao = document.getElementById("escolha-criacao");
 const param = new URLSearchParams(location.search).get("rm");
 let itensSalvos = [];
 
+todos()
+
 async function todos(){
     fetch(videoURL)
         .then(res => res.json())
@@ -39,12 +41,13 @@ async function todos(){
         .then(playlists => listePlaylists(playlists))
         .catch(erro => console.warn(erro, "Erro ao carregar playlists"));
     
-    filtroPesquisa(itensSalvos);
+    filtroPesquisa();
+
+    if (itensSalvos.length > 0){
+        tituloH3.innerText = "Alterações Recentes";
+    }
 }
 
-if (lista.children.length > 1){
-    tituloH3.innerText = "Alterações Recentes";
-    }
     
 //
 pesquisaInput.addEventListener("input", filtroPesquisa)
@@ -74,9 +77,8 @@ function listePlaylists(playlists){
     })
 };
 
-function filtroPesquisa(itensSalvos){
+function filtroPesquisa(){
     let itensSelecionados = itensSalvos.filter(item => item.tipo !== param);
-    console.log("await superado")
     const query = pesquisaInput.value;
     const queryWords = query.split(" ");
     const queryChars = query.split("");

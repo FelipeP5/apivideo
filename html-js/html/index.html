@@ -11,10 +11,8 @@
 </head>
 <!-- TODO:
     ->DEVE TER modo escuro;
-    ->DEVE TER filtragem por pesquisa;
     ->Quebrei o btn do nav responsivo;
     ->Sombra no card:hover para ver opções melhor com fade-in;
-    ->Problema de vw e vh;
     ->Responsividade: Os botões de hover devem ser acessíveis para touchscreens;
     ->Responsividade: O cartão de adição perde referência para tamanho em uma coluna;
     ->Responsividade: Quando em duas colunas, o rodapé acaba antes do documento, deixando um espaço em branco;
@@ -25,31 +23,32 @@
     ->Playlists sem thumbnails exibem um placeholder "Sem imagem"
 -->
 <body>
-    <nav class="navbar navbar-expand-sm bg-cprimary sticky-top" data-bs-theme="dark">
-        <div class="container-fluid">
+    <nav class="navbar navbar-expand-sm navbar-dark sticky-top bg-cprimary">
+        
           <a class="navbar-brand" href="./">MyTube</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
           </button>
+
           <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <button id="video-nav" type="button" class="nav-link">Video</a>
-              </li>
-              <li class="nav-item">
-                <button id="playlist-nav" type="button" class="nav-link">Playlist</a>
-              </li>
-            </ul>
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <button id="tema" type="button" class="nav-link">Inverter Tema</button>
-                </li>
-                <li class="nav-item">
+            <div class="navbar-nav">
+              
+                <a href="#" id="video-nav" class="nav-link nav-item">Video</a>
+              
+              
+                <a href="#" id="playlist-nav" class="nav-link nav-item">Playlist</a>
+
+            </div>
+            <div class="navbar-nav ms-auto">
+                
+                    <a href="#" id="tema" class="nav-link">Inverter Tema</a>
+                
+                
                     <a href="usuario.html " class="nav-link">Usuário</a>
-                </li>
-            </ul>
+
+              </div>
           </div>
-        </div>
+        
       </nav>
       <!-- opção de criação -->
        <dialog id="escolha-criacao" class="escolha-criacao bg-cprimary">
@@ -88,6 +87,5 @@
     </footer>
 
         <script src="../script/index.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 </body>
 </html>

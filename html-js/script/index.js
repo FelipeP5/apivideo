@@ -1,6 +1,3 @@
-//Exclusão
-//Organizar cartões por data
-//Opção de filtrar entre video e playlist;
 
 if(JSON.parse(sessionStorage.getItem("autenticado")) !== true){location.replace("login.html")};
 // document.getElementById("tema").addEventListener("click", () => {
@@ -28,7 +25,11 @@ const escolhaCriacao = document.getElementById("escolha-criacao");
 const param = new URLSearchParams(location.search).get("rm");
 let itensSalvos = [];
 
-todos()
+todos();
+
+pesquisaInput.addEventListener("input", filtroPesquisa);
+videoNav.addEventListener("click", () => location.search = "rm=playlist");
+playlistNav.addEventListener("click", () => location.search = "rm=video");
 
 async function todos(){
     fetch(videoURL)
@@ -47,14 +48,6 @@ async function todos(){
         tituloH3.innerText = "Alterações Recentes";
     }
 }
-
-    
-//
-pesquisaInput.addEventListener("input", filtroPesquisa)
-
-videoNav.addEventListener("click", () => location.search = "rm=playlist");
-playlistNav.addEventListener("click", () => location.search = "rm=video");
-
 
 function listeVideos(videos){
     videos.forEach(video => {
@@ -157,6 +150,8 @@ function exibirSelecionados(selecao){
 function escolhaCriacaoMenu(){
     escolhaCriacao.showModal();
 }
+
+//onclick funções
 
 function excluirVideo(id){
     fetch(videoURL + id + "/", {

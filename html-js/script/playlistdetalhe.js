@@ -1,6 +1,5 @@
 // Editar deve se referir ao vídeo quando um está ativo;
 // Botão playlistSequencia deve exibir o nome da playlist em uso;
-// Quando se há apenas um vídeo, apenas um botão de controle desativa;
 // Modo Sequência deve ativar autoplay; 
 // Os itens da fila-video precisam de botôes excluir e desatar, difícil implementação;
 // Tamanho do rodapé deve ser modificável;

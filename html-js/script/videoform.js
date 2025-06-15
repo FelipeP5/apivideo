@@ -2,14 +2,14 @@
 - Exibir arquivos já em uso num texto a parte;
 - edição de relações (preenchimento de existentes e atualização);
 */
+
+
 const formVideo = document.getElementById("form-video");
 const formModal = document.getElementById("form-modal");
 const videoURL = "http://127.0.0.1:8000/video/";
 const playlistURL = "http://127.0.0.1:8000/playlist/";
 const relacoes = "http://127.0.0.1:8000/playlistvideo/";
 const id = new URLSearchParams(location.search).get("id");
-const temaBtn = document.getElementById("tema")
-const escolhaTema = localStorage.getItem("temaEscolhido");
 const nome = document.getElementById("nome");
 const descricao = document.getElementById("descricao");
 const thumbnail = document.getElementById("thumbnail");

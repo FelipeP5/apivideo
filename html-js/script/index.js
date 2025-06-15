@@ -1,4 +1,4 @@
-
+"use strict";
 if(JSON.parse(sessionStorage.getItem("autenticado")) !== true){location.replace("login.html")};
 
 const tituloH3 = document.getElementById("titulo");

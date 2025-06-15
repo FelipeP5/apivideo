@@ -1,3 +1,4 @@
+// Os itens da fila-video precisam de botôes excluir e desatar, difícil implementação;
 // Descrição colapsável
 
 const rodape = document.getElementById("footer-id");

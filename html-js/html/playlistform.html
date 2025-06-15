@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulário de playlist</title>
+    <script src="../script/temas.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../style.css">
@@ -27,7 +28,18 @@
           <a href="./?rm=video" id="playlist-nav" class="nav-link nav-item">Playlists</a>
       </div>
       <div class="navbar-nav ms-auto">
-              <a href="#" id="tema" class="nav-link">Inverter Tema</a>
+              <!-- Dropdown tema -->
+              <div class="dropdown-center">
+                <button class="dropdown-toggle nav-link" type="button" data-bs-toggle="dropdown">
+                    <span id="temaSelecionadotxt">Tema</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><button type="button" id="tema-auto" class="dropdown-item" data-bs-theme-value="auto">Auto</button></li>
+                    <li><button type="button" id="tema-claro" class="dropdown-item" data-bs-theme-value="light">Claro</button></li>
+                    <li><button type="button" id="tema-escuro" class="dropdown-item" data-bs-theme-value="dark">Escuro</button></li>
+                </ul>
+              </div>
+            <!-- /Dropdown tema-->
               <a href="usuario.html " class="nav-link me-1">Usuário</a>
         </div>
     </div>
@@ -54,7 +66,7 @@
         </div>
       </dialog>
       <!--/Escolha Vídeos-->
-    <div class="corpo">
+    <div id="corpo" class="corpo">
         <h1 class="text-center">Criar nova playlist</h1>
         <div class="container d-flex justify-content-center align-items-center">
             <form id="form-playlist" action="#" method="POST" enctype="multipart/form-data">

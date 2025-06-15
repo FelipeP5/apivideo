@@ -11,37 +11,28 @@
 </head>
 <!-- TODO:
  -> botoes feios
- -> Coisas estão transbordando, por quê?;
  -> Arquivo, imagem e ${link} devem possuir texto de ajuda sobre os tipos aceitados.
  -> Reposicionar modal de exclusão
  -> Arquivo e imagem precisam ter inputs embelezados;
  -> Input file para info, input image para view;
 -->
 <body>
-    <nav class="navbar navbar-expand-sm bg-cprimary" data-bs-theme="dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="./">MyTube</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a href="videoform.html" class="nav-link">Video</a>
-              </li>
-              <li class="nav-item">
-                <a href="playlistform.html" class="nav-link">Playlist</a>
-                
-              </li>
-            </ul>
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a href="usuario.html" class="nav-link">Usuário</a>
-                </li>
-            </ul>
+    <nav class="navbar navbar-expand-sm navbar-dark sticky-top bg-cprimary">
+        <a class="navbar-brand ms-2" href="./">MyTube</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <div class="navbar-nav">
+              <a href="./?rm=playlist" id="video-nav" class="nav-link nav-item">Videos</a>
+              <a href="./?rm=video" id="playlist-nav" class="nav-link nav-item">Playlists</a>
           </div>
+          <div class="navbar-nav ms-auto">
+                  <a href="" id="tema" class="nav-link">Inverter Tema</a>
+                  <a href="usuario.html " class="nav-link me-1">Usuário</a>
+            </div>
         </div>
-      </nav>
+  </nav>
       <!--Exclusão-->
       <dialog id="modal-exclusao" class="modal-exclusao rounded bg-cprimary">
           <h4 class="text-center clr-csecondary">Tem certeza que deseja excluir esse vídeo?</h4>

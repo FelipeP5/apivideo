@@ -1,4 +1,3 @@
-// Função desativarReativar controles deve reativar controles;
 // Editar deve se referir ao vídeo quando um está ativo;
 // Botão playlistSequencia deve exibir o nome da playlist em uso;
 // Modo Sequência deve ativar autoplay; 

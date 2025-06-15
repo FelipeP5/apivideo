@@ -11,8 +11,6 @@
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
 </head>
 <!-- TODO:
- -> Coisas estão transbordando, por quê?;
- -> Hover e Focus do submit precisam ser definidos;
  -> Arquivo, imagem e ${link} devem possuir texto de ajuda sobre os tipos aceitados;
  -> Arquivo e imagem precisam ter inputs embelezados;
 -->
@@ -79,11 +77,12 @@
                     <textarea class="form-control" id="descricao" name="descricao" cols="60" rows="5" placeholder="Escreva sua descrição aqui..."></textarea>
                 </div>
                 <div class="mb-2">
-                    <button type="button" id="videos-btn" class="form-control btn bg-csecondary clr-cprimary" style="display: none;">Escolha Vídeos</button>
+                    <button type="button" id="videos-btn" class="form-control d-none bg-csecondary clr-cprimary" style="display: none;">Escolha Vídeos</button>
                 </div>
                 <div class="mb-2">
                     <label for="thumbnail" class="form-label">Thumbnail</label>
-                    <input type="file" class="form-control" id="thumbnail" name="thumbnail" accept="image/*">
+                    <input type="file" class="form-control" id="thumbnail" name="thumbnail" accept="image/, .png, .jpeg, .jpg, .gif, .jfif, .webp, .avif, .svg">
+                    <p class="d-none clr-cprimary" id="img-playlist-uso"></p>
                 </div>
                 <div class="text-center mt-3 mb-1">
                     <label for="enviar" class="form-label"></label>
@@ -93,7 +92,7 @@
         </div>
     </div>
     <footer class="d-flex justify-content-center bg-cprimary">
-        <button id="excluir-btn" class="excluir btn btn-danger">Excluir</button>
+        <button id="excluir-btn" class="d-none btn btn-danger">Excluir</button>
     </footer>
     
     <script src="../script/playlistform.js"></script>

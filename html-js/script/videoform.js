@@ -1,5 +1,4 @@
 /*TODO: 
-- Exibir arquivos já em uso num texto a parte;
 - edição de relações (preenchimento de existentes e atualização);
 */
 
@@ -20,17 +19,19 @@ let formContent = false;
 
 if (Number(id)) {
     document.querySelector("h1").innerText = "Alterar informações de video";
+    const imgVideoUsoTxt = document.getElementById("img-video-uso");
+    const videoUsoTxt = document.getElementById("video-uso");
+
     fetch(videoURL + id)
     .then(res => res.json())
     .then(video => {
         nome.value = video.nome;
         descricao.innerText = video.descricao ? video.descricao : "";
-        // videos = ?
+        imgVideoUsoTxt.innerText = `Usando: ${video.thumbnail || "Nada"}`;
+        videoUsoTxt.innerText = `Usando: ${video.arquivo}`;
     })
     .catch(erro => console.error(erro, "Erro ao preencher campos"));
-
-    excluirBtn.classList.remove("d-none");
-    playlistsBtn.style.display = "block";
+    document.querySelectorAll(".d-none").forEach((elemento)=>elemento.classList.remove("d-none"));
 }
 
 formVideo.addEventListener("submit", e => {

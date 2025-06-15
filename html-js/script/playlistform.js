@@ -1,5 +1,4 @@
 /*TODO: 
-- Exibir arquivos já em uso num texto a parte;
 - edição de relações (preenchimento de existentes e atualização);
 */
 const formPlaylist = document.getElementById("form-playlist");
@@ -17,17 +16,18 @@ const modalVideos = document.getElementById("modal-videos");
 let formContent = false;
 
 if (Number(id)) {
-    document.querySelector("h1").innerText = "Alterar informações de playlist"
+    document.querySelector("h1").innerText = "Alterar informações de playlist";
+    const imgPlaylistUsoTxt = document.getElementById("img-playlist-uso");
     fetch(playlistURL + id)
     .then(res => res.json())
     .then(playlist => {
         nome.value = playlist.nome;
         descricao.innerText = playlist.descricao ? playlist.descricao : "";
+        imgPlaylistUsoTxt.innerText = `Usando: ${playlist.thumbnail || "Nada"}`;
     })
     .catch(erro => console.error(erro, "Erro ao preencher campos"));
 
-    excluirBtn.style.display = "flex";
-    videosBtn.style.display = "block";
+    document.querySelectorAll(".d-none").forEach(elemento => elemento.classList.remove("d-none"));
 }
 
 formPlaylist.addEventListener("submit", e => {

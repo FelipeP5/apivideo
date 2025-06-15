@@ -79,15 +79,17 @@
                     <textarea class="form-control" id="descricao" name="descricao" cols="60" rows="5" placeholder="Escreva sua descrição aqui"></textarea>
                 </div>
                 <div class="mb-2">
-                    <button type="button" id="playlists-btn" class="form-control btn bg-csecondary clr-cprimary" style="display: none;">Escolha playlists</button>
+                    <button type="button" id="playlists-btn" class="d-none form-control bg-csecondary clr-cprimary">Escolha playlists</button>
                 </div>
                 <div class="mb-2">
                     <label for="thumbnail" class="form-label">Thumbnail</label>
-                    <input type="file" class="form-control" id="thumbnail" name="thumbnail" accept="image/*">
+                    <input type="file" class="imagem-input form-control" id="thumbnail" name="thumbnail" accept="image/, .png, .jpeg, .jpg, .gif, .jfif, .webp, .avif, .svg">
+                    <p class="d-none clr-cprimary" id="img-video-uso"></p>
                 </div>
                 <div class="mb-2">
                     <label for="arquivo" class="form-label">Arquivo de vídeo</label>
-                    <input type="file" class="form-control form-file-button-bg-bg-cprimary" id="arquivo" name="arquivo" accept="video/*">
+                    <input type="file" class="video-input form-control bg-cprimary" id="arquivo" name="arquivo" accept="video/, .mp4, .webm">
+                    <p class="d-none clr-cprimary" id="video-uso"></p>
                 </div>
                 <!--ou-->
                 <!-- <div class="mb-2">

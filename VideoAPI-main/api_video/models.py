@@ -26,8 +26,8 @@ class RenameVideo(object):
         new_name = f"{uuid.uuid4()}.{extension}" 
         return os.path.join(self.subdir, new_name)
 
-ALLOWED_IMAGE_EXTENSIONS = ['png', 'jpeg', 'jpg', 'gif']
-ALLOWED_VIDEO_EXTENSIONS = ['mp4']
+ALLOWED_IMAGE_EXTENSIONS = ['png', 'jpeg', 'jpg', 'gif', 'jfif', 'webp', 'avif', 'svg']
+ALLOWED_VIDEO_EXTENSIONS = ['mp4', 'webm']
 class Video(models.Model):
     nome = models.CharField(max_length=100)
     descricao = models.TextField(blank=True, null=True)

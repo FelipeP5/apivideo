@@ -49,16 +49,23 @@
           </div>
           <div class="container-sm rounded-bottom text-center pb-1 px-3 bg-descricao clr-csecondary">
               <p id="descricao">#!</p>
+              <div class="row justify-content-evenly">
+                  <div class="col-2 p-1 rounded bg-csecondary">
+                    <button id="editar-btn" class="btn w-100 rounded clr-cprimary">Editar</button>
+                  </div>
+               </div>
           </div>
-          <div class="row justify-content-evenly">
-              <div class="col-2 p-1 bg-csecondary"><button class="btn w-100 clr-cprimary">Incluso em</button></div>
-              <div class="col-2 p-1 bg-csecondary"><button onclick="editarVideo()" class="btn w-100 clr-cprimary">Editar</button></div>
-           </div>
         </div>
       </div>
     </div>
 
-    <footer class="bg-cprimary"></footer>
+    <footer id="footer-id" class="rodape-inativo container-fluid sticky-bottom bg-cprimary">
+      <div class="col p-1">
+        <button type="button" id="incluido-btn" class="btn w-100 clr-csecondary">^Inclui^</button>
+      </div>
+      <div id="fila-playlists" class="d-none row p-2 gx-1">
+      </div>
+    </footer>
 
     <script src="../script/videodetalhe.js"></script>
 </body>

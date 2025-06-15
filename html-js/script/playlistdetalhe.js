@@ -1,5 +1,6 @@
 // Editar deve se referir ao vídeo quando um está ativo;
 // Botão playlistSequencia deve exibir o nome da playlist em uso;
+// Quando se há apenas um vídeo, apenas um botão de controle desativa;
 // Modo Sequência deve ativar autoplay; 
 // Os itens da fila-video precisam de botôes excluir e desatar, difícil implementação;
 // Tamanho do rodapé deve ser modificável;
@@ -76,7 +77,7 @@ editarBtn.addEventListener("click", () => {
     };
 })
 
- async function selecionarVideos() {
+async function selecionarVideos() {
             try {
             const listaRelacoes = await fetch(relacoes).then(res => res.json());
             console.log("relacoes ", listaRelacoes);
@@ -99,7 +100,7 @@ editarBtn.addEventListener("click", () => {
             
             return await videosFiltrados;
             } catch (error) {
-                console.error(error, "You suck!");
+                console.error(error, "Erro ao selecionar vídeos");
             }
         };
 
@@ -180,9 +181,11 @@ async function desativarReativarControles() {
     const vetorVideoObjs = await sequenciavideoObjs;
     if (indiceVideoAtual === vetorVideoObjs.length - 1){
         sucessorBtn.setAttribute("disabled", "");
-    } else if (indiceVideoAtual === 0){
+    };
+    if (indiceVideoAtual === 0){
         antecessorBtn.setAttribute("disabled", "");
-    }else{
+    }
+    else{
         sucessorBtn.removeAttribute("disabled");
         antecessorBtn.removeAttribute("disabled");
     }

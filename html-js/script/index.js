@@ -10,7 +10,6 @@ const videoNav = document.getElementById("video-nav");
 const playlistNav = document.getElementById("playlist-nav");
 const lista = document.getElementById("lista");
 const pesquisaInput = document.getElementById("pesquisa-input");
-const escolhaCriacao = document.getElementById("escolha-criacao");
 const param = new URLSearchParams(location.search).get("rm");
 let itensSalvos = [];
 
@@ -93,7 +92,7 @@ function filtroPesquisa(){
 function exibirSelecionados(selecao){
     console.log("Seleção ", selecao);
     lista.innerHTML = `
-        <div onclick="escolhaCriacaoMenu()" class="col pointer">
+        <div class="col pointer" data-bs-toggle="modal" data-bs-target="#modal-criacao">
                     <div class="plus card align-items-center justify-content-evenly">
                         <img src="../svg/red-plus-11961.svg" alt="+" class="w-25 h-25">
                     </div>
@@ -134,10 +133,6 @@ function exibirSelecionados(selecao){
             lista.innerHTML += cartaoPlay;
         }
     })
-}
-
-function escolhaCriacaoMenu(){
-    escolhaCriacao.showModal();
 }
 
 //onclick funções

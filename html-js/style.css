@@ -16,17 +16,6 @@
 }
 
 /*=======================  
-        Tema escuro
-========================*/
-
-.corpo-escuro{
-    background-color: rgb(40, 40, 40);
-    width: 100vw;
-    min-height: 80vh;
-    padding: 0.50rem 0 0.50rem 0;
-}
-
-/*=======================  
    Classes de Utilidade
 ========================*/
 
@@ -76,10 +65,6 @@ footer{
     text-decoration: none;
 }
 
-.escolha-criacao a{
-    text-decoration: none;
-}
-
 /*=======================  
         Card-items
 ========================*/
@@ -100,13 +85,6 @@ footer{
 /*=======================  
       Formulário
 ========================*/
-
-.modal-exclusao, .modal-playlists, .modal-videos{
-    position: fixed;
-    inset: 25%;
-    padding: 5px;
-    
-}
 
 .playlists{
     width: 100%;
@@ -146,10 +124,6 @@ footer{
 
 .rodape-ativo{
     height: 50vh;
-}
-
-._outline{
-    outline: 3px solid purple;
 }
 
 .fila-videos{

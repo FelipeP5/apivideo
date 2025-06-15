@@ -84,6 +84,9 @@ footer{
         Card-items
 ========================*/
 
+.plus{
+    height: 18.35rem;
+}
 
 .card-img-overlay .container{
     display: none;

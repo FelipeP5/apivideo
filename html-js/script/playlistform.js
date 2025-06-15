@@ -23,7 +23,6 @@ if (Number(id)) {
     .then(playlist => {
         nome.value = playlist.nome;
         descricao.innerText = playlist.descricao ? playlist.descricao : "";
-        // videos = ?
     })
     .catch(erro => console.error(erro, "Erro ao preencher campos"));
 
@@ -35,7 +34,7 @@ formPlaylist.addEventListener("submit", e => {
     e.preventDefault();
     console.log(e);
     const dados = new FormData(formPlaylist);
-    if (id){
+    if (Number(id)){
         fetch(playlistURL + id  + "/", {
             method: "PUT",
             body: dados,

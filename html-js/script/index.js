@@ -94,7 +94,7 @@ function exibirSelecionados(selecao){
     console.log("Seleção ", selecao);
     lista.innerHTML = `
         <div onclick="escolhaCriacaoMenu()" class="col pointer">
-                    <div class="h-100 card align-items-center justify-content-evenly">
+                    <div class="plus card align-items-center justify-content-evenly">
                         <img src="../svg/red-plus-11961.svg" alt="+" class="w-25 h-25">
                     </div>
         </div>

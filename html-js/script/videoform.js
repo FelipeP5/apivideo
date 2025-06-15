@@ -29,7 +29,7 @@ if (Number(id)) {
     })
     .catch(erro => console.error(erro, "Erro ao preencher campos"));
 
-    excluirBtn.style.display = "flex";
+    excluirBtn.classList.remove("d-none");
     playlistsBtn.style.display = "block";
 }
 
@@ -37,7 +37,7 @@ formVideo.addEventListener("submit", e => {
     e.preventDefault();
     console.log(e);
     const dados = new FormData(formVideo);
-    if (id){
+    if (Number(id)){
         fetch(videoURL + id  + "/", {
             method: "PUT",
             body: dados,
@@ -103,14 +103,6 @@ function salvarRelacoes(e){
     });
     modalPlaylists.close();
 };
-
-//Excluir
-excluirBtn.addEventListener("click", () => {
-    const modalExclusao = document.getElementById("modal-exclusao");
-    modalExclusao.showModal();
-    document.getElementById("confirmar-exclusao-btn").addEventListener("click", excluir);
-    document.getElementById("cancelar-btn").addEventListener("click", () => modalExclusao.close());
-});
 
 function excluir(){
     fetch(videoURL + id + "/", {

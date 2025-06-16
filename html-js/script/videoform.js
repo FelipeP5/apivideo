@@ -19,7 +19,7 @@ const modalPlaylists = document.getElementById("modal-playlists");
 let formContent = false;
 
 if (Number(id)) {
-    document.querySelector("h1").innerText = "Alterar informações de video";
+    document.querySelector("#titulo-acao").innerText = "Alterar informações de video";
     const imgVideoUsoTxt = document.getElementById("img-video-uso");
     const videoUsoTxt = document.getElementById("video-uso");
 
@@ -35,7 +35,7 @@ if (Number(id)) {
     document.querySelectorAll(".d-none").forEach((elemento)=>elemento.classList.remove("d-none"));
 }
 
-formVideo.addEventListener("submit", e => {
+formVideo.addEventListener("click", e => {
     e.preventDefault();
     console.log(e);
     const dados = new FormData(formVideo);

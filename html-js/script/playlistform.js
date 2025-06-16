@@ -19,8 +19,9 @@ const modalVideos = document.getElementById("modal-videos");
 let formContent = false;
 
 if (Number(id)) {
-    document.querySelector("h1").innerText = "Alterar informações de playlist";
+    document.querySelector("#titulo-acao").innerText = "Alterar informações de playlist";
     const imgPlaylistUsoTxt = document.getElementById("img-playlist-uso");
+
     fetch(playlistURL + id)
     .then(res => res.json())
     .then(playlist => {

@@ -1,6 +1,9 @@
 /*TODO: 
 - edição de relações (preenchimento de existentes e atualização);
 */
+if(JSON.parse(sessionStorage.getItem("autenticado")) !== true){location.replace("login.html")};
+
+
 const formPlaylist = document.getElementById("form-playlist");
 const formModal = document.getElementById("form-modal");
 const videoURL = "http://127.0.0.1:8000/video/";

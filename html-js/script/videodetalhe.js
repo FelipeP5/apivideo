@@ -1,6 +1,8 @@
 // Os itens da fila-video precisam de botôes excluir e desatar, difícil implementação;
 // Descrição colapsável
 
+if(JSON.parse(sessionStorage.getItem("autenticado")) !== true){location.replace("login.html")};
+
 const rodape = document.getElementById("footer-id");
 const incluidoBtn = document.getElementById("incluido-btn");
 const editarVideoBtn = document.getElementById("editar-btn");

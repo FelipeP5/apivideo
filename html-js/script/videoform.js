@@ -1,6 +1,7 @@
 /*TODO: 
 - edição de relações (preenchimento de existentes e atualização);
 */
+if(JSON.parse(sessionStorage.getItem("autenticado")) !== true){location.replace("login.html")};
 
 
 const formVideo = document.getElementById("form-video");

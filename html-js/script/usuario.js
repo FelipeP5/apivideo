@@ -1,3 +1,5 @@
+if(JSON.parse(sessionStorage.getItem("autenticado")) !== true){location.replace("login.html")};
+
 const tituloEl = document.querySelector("title");
 const blocoUsuario = document.getElementById("bloco-usuario");
 const dadosUsuario = JSON.parse(localStorage.getItem("dadosUsuario"));

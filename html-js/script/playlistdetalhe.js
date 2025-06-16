@@ -7,6 +7,8 @@
 // Descrição colapsável;
 // Erro 404 no primeiro clique em uma dos vídeos sem imagem, GET: http://127.0.0.1:5500/html-js/html/null;
 
+if(JSON.parse(sessionStorage.getItem("autenticado")) !== true){location.replace("login.html")};
+
 const id = new URLSearchParams(location.search).get("id");
 const placeholderImg = "../svg/placeholder-img.jpg";
 ///

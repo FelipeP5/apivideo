@@ -1,4 +1,4 @@
-"use strict";
+
 if(JSON.parse(sessionStorage.getItem("autenticado")) !== true){location.replace("login.html")};
 
 const tituloH3 = document.getElementById("titulo");
@@ -100,34 +100,39 @@ function exibirSelecionados(selecao){
     `;
     selecao.forEach(item => {
         if (item.tipo === "video"){
-            const cartaoVideo = `<div id="video${item.obj.id}" class="col">
-                            <div onclick="videodetalhe(${item.obj.id})" class="pointer card bg-cprimary clr-csecondary">
-                                <img src="${item.obj.thumbnail || placeholderImg}" alt="Nenhuma imagem" class="card-img-top img-fluid custom-img bg-csecondary">
-                                <div class="card-img-overlay">
-                                        <div class="container p-0">
-                                            <a href="videoform.html?id=${item.obj.id}" class="ms-auto btn clr-cprimary">Editar</a>
-                                            <button type="button" onclick="excluirVideo(${item.obj.id})" class="btn clr-cprimary">Excluir</button>
-                                        </div>
-                                </div>
-                                <h6 class="card-header text-center">${item.nome}</h6>
+            const cartaoVideo = `
+                <div id="video${item.obj.id}" class="col">
+                    <div class="pointer card bg-cprimary clr-csecondary">
+                        <div class="card-img-overlay">
+                            <div class="container p-0">
+                                    <a href="videoform.html?id=${item.obj.id}" class="ms-auto btn clr-cprimary">Editar</a>
+                                    <button data-bs-toggle="modal" data-bs-target="#modal-excluir-video" type="button" id="excluir-card-btn" class="btn clr-cprimary">Excluir</button>
                             </div>
                         </div>
+                        <div onclick="videodetalhe(${item.obj.id})">
+                            <img src="${item.obj.thumbnail || placeholderImg}" alt="Nenhuma imagem" class="card-img-top img-fluid custom-img bg-csecondary">
+                            <h6 class="card-header text-center">${item.nome}</h6>
+                         </div>
+                    </div>
+                </div>            
                     `;
-        lista.innerHTML += cartaoVideo;
+                    lista.innerHTML += cartaoVideo;
         }
         else {
             const cartaoPlay = `
                 <div id="playlist${item.obj.id}" class="col">
-                    <div onclick="playlistdetalhe(${item.obj.id})" class="pointer card bg-cprimary clr-csecondary">
-                            <img src="${item.obj.thumbnail || placeholderImg}" alt="image cap" class="card-img-top img-fluid custom-img bg-csecondary">
-                            <div class="card-img-overlay">
-                                <div class="container p-0">
-                                    <a href="playlistform.html?id=${item.obj.id}" class="ms-auto btn clr-cprimary">Editar</a>
-                                    <a href="#" onclick="excluirPlaylist(${item.obj.id})" class="btn clr-cprimary">Excluir</a>
-                                </div>
+                    <div class="pointer card bg-cprimary clr-csecondary">
+                        <div class="card-img-overlay">
+                            <div class="container p-0">
+                                <a href="playlistform.html?id=${item.obj.id}" class="ms-auto btn clr-cprimary">Editar</a>
+                                <button data-bs-toggle="modal" data-bs-target="#modal-excluir-playlist" type="button" class="btn clr-cprimary">Excluir</button>
                             </div>
+                        </div>
+                        <div onclick="playlistdetalhe(${item.obj.id})">
+                            <img src="${item.obj.thumbnail || placeholderImg}" alt="image cap" class="card-img-top img-fluid custom-img bg-csecondary">
                             <h6 class="card-header text-center">${item.nome}</h6>
-                        </div>   
+                        </div>
+                    </div>   
                 </div>
             `;
             lista.innerHTML += cartaoPlay;
@@ -136,22 +141,6 @@ function exibirSelecionados(selecao){
 }
 
 //onclick funções
-
-function excluirVideo(id){
-    fetch(videoURL + id + "/", {
-        method: "DELETE",
-    })
-    .then(res => console.log(res))
-    .catch(erro => console.error(erro, "Exclusão fracassou"));
-};
-
-function excluirPlaylist(id){
-    fetch(playlistURL + id + "/", {
-        method: "DELETE",
-    })
-    .then(res => console.log(res))
-    .catch(erro => console.error(erro, "Exclusão fracassou"));
-};
 
 function videodetalhe(id){
     window.location.href = `videodetalhe.html?id=${id}`;

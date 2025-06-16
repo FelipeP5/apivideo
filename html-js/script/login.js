@@ -4,20 +4,16 @@
 
 const loginURL = "http://127.0.0.1:8000/login/";
 const usuarioURL = "http://127.0.0.1:8000/usuario/";
-const cadastrarDialog = document.getElementById("cadastrarDialog");
-const closeBtn = document.getElementById("closeBtn");
-const formLogin = document.getElementById("formLogin");
-const formCadastrar = document.getElementById("formCadastrar");
-const cadastrarShow = document.getElementById("castrarShow");
+
+const formLogin = document.getElementById("form-login");
+const formCadastrar = document.getElementById("form-cadastrar");
 const usuarioLogin = document.getElementById("usuarioLoginInput");
 const senhaLogin = document.getElementById("senhaLoginInput");
 const usuarioCadastrar = document.getElementById("usuarioCadastrarInput");
 const senhaCadastrar = document.getElementById("senhaCadastrarInput");
-const entrarBtn = document.getElementById("entrarBtn");
-const cadastrarBtn = document.getElementById("cadastrarBtn");
+const entrarBtn = document.getElementById("entrar-btn");
+const cadastrarBtn = document.getElementById("cadastrar-btn");
 
-cadastrarShow.addEventListener("click", () => cadastrarDialog.showModal());
-closeBtn.addEventListener("click", () => cadastrarDialog.close());
 formCadastrar.addEventListener("submit", (e) =>{
     e.preventDefault();
     // const cadastrarDados = new FormData(formCadastrar);
@@ -30,27 +26,13 @@ formCadastrar.addEventListener("submit", (e) =>{
         senha: senhaCadastrar.value,
     }
     localStorage.setItem("dadosUsuario", JSON.stringify(dadosUsuario));
-    cadastrarDialog.close();
 });
 
 entrarBtn.addEventListener("click", () => {
     // const loginDados = new FormData(formLogin);
     const dadosU = JSON.parse(localStorage.getItem("dadosUsuario"));
     if (dadosU.usuario === usuarioLogin.value && dadosU.senha === senhaLogin.value){
-    fetch(loginURL, {
-        method: "POST",
-        body: JSON.stringify({
-            username: "felipe",
-            password: "1234"
-        })
-    })
-    .then(res => res.json())
-    .then(jwt => console.log(jwt))
-    .finally(() => sessionStorage.setItem("autenticado", true))
-    .catch(erro => console.error(erro));
-    location.href = "./";
-    }
-    else{
-        alert("Usuário ou senha informados estão incorretos");
+        sessionStorage.setItem("autenticado", true);
+        location.href = "./";
     }
 })

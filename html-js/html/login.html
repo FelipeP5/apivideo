@@ -13,35 +13,42 @@
     -> BS Modal
 -->
 <body>
-  <dialog id="cadastrarDialog" class="outline">
-    <div class="cadastrarContainer container-sm outline">
-        <div class="d-flex flex-row">
-          <h2 class="ms-auto outline">Cadastrar</h3>
-          <button type="button" id="closeBtn" class="btn-close" aria-label="fechar"></button>
+  <div class="modal" id="modal-cadastrar" style="background-color: var(--custom-primary);">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="fs-3">Cadastrar novo Usuário</h1>
+          <button data-bs-dismiss="modal" type="button" class="btn-close"></button>
         </div>
-        <form id="formCadastrar">
-          <label class="form-label outline" for="usuarioCadastrarInput">Usuário</label>
-          <input autofocus name="username" class="form-control outline" type="text" id="usuarioCadastrarInput">
-          <label class="form-label outline" for="senhaCadastrarInput">Senha</label>
-          <input name="password" class="form-control outline" type="password" id="senhaCadastrarInput">
-          <input type="submit" id="cadastrarBtn" class="entrar container rounded p-1 mt-3 outline" value="Cadastrar">
-        </form>
+        <div class="modal-body">
+          <form id="form-cadastrar">
+            <label class="form-label" for="usuarioCadastrarInput">Usuário</label>
+            <input autofocus name="username" class="form-control" type="text" id="usuarioCadastrarInput">
+
+            <label class="form-label" for="senhaCadastrarInput">Senha</label>
+            <input name="password" class="form-control" type="password" id="senhaCadastrarInput">
+
+            <input data-bs-dismiss="modal" type="submit" id="cadastrar-btn" class="entrar container rounded p-1 mt-3" value="Cadastrar">
+          </form>
+        </div>
+        
       </div>
-  </dialog>
+    </div>
+  </div>
   <!---->
-  <div class="tudo align-content-center justify-content-center outline">
-      <h1 class="text-center text-light outline"><span class="bold-mf outline">MyTube</span></h1>
-      <div class="loginContainer container-sm outline">
+  <div class="fundo align-content-center justify-content-center">
+      <h1 class="text-center text-light"><span class="bold-mf">MyTube</span></h1>
+      <div class="login-container container-sm">
         <div class="d-flex flex-row">
-          <h2 class="ms-auto outline">Login</h3>
-          <p id="castrarShow" class="castrar ms-auto outline">Cadastrar</p>
+          <h2 class="ms-auto">Login</h3>
+          <p data-bs-toggle="modal" data-bs-target="#modal-cadastrar" id="castrarShow" class="castrar ms-auto">Cadastrar</p>
         </div>
-        <form id="formLogin">
-          <label class="form-label outline" for="usuarioLoginInput">Usuário</label>
-          <input name="username" class="form-control outline" type="text" id="usuarioLoginInput">
-          <label class="form-label outline" for="senhaLoginInput">Senha</label>
-          <input name="password" class="form-control outline" type="password" id="senhaLoginInput">
-          <button type="button" id="entrarBtn" class="entrar container rounded p-1 mt-3 outline">Entrar</button>
+        <form id="form-login">
+          <label class="form-label" for="usuarioLoginInput">Usuário</label>
+          <input name="username" class="form-control" type="text" id="usuarioLoginInput">
+          <label class="form-label" for="senhaLoginInput">Senha</label>
+          <input name="password" class="form-control" type="password" id="senhaLoginInput">
+          <button type="button" id="entrar-btn" class="entrar container rounded p-1 mt-3">Entrar</button>
         </form>
       </div>
   </div>

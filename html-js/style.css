@@ -1,9 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root{
-    --custom-primary: rgb(211, 30, 30);
-    --custom-secondary: white;
-    background-color: var(--custom-primary);
+    --custom-primary-100: rgb(211, 30, 30);
+    --custom-secondary-100: rgb(255, 255, 255);
+    --custom-primary-120: rgb(211, 30, 30);
+    --custom-primary-70: rgb(190, 0, 0);
+    --custom-secondary-70: rgb(240, 240, 240);
+    --custom-primary-50: rgb(139, 0, 0);
+    --custom-secondary-50: rgb(220, 220, 220);
+    background-color: var(--custom-primary-100);
     color-scheme: dark light;
 }
 
@@ -20,16 +25,44 @@
 ========================*/
 
 .bg-cprimary{
-    background-color: var(--custom-primary);
+    background-color: var(--custom-primary-100);
 }
 .clr-cprimary{
-    color: var(--custom-primary);
+    color: var(--custom-primary-100);
 }
 .bg-csecondary{
-    background-color: var(--custom-secondary);
+    background-color: var(--custom-secondary-100);
 }
 .clr-csecondary{
-    color: var(--custom-secondary);
+    color: var(--custom-secondary-100);
+}
+
+.btn-cprimary{
+    background-color: var(--custom-primary-100);
+    color: var(--custom-secondary-100);
+    padding: 0.5rem 1rem;
+}
+.btn-cprimary:hover{
+    background-color: var(--custom-primary-50);
+    color: var(--custom-secondary-70);
+}
+.btn-cprimary:active{
+    background-color: var(--custom-primary-120);
+    color: var(--custom-secondary-100);
+}
+
+.btn-csecondary{
+    background-color: var(--custom-secondary-100);
+    color: var(--custom-primary-100);
+    padding: 0.5rem 1rem;
+}
+.btn-csecondary:hover{
+    background-color: var(--custom-secondary-70);
+    color: var(--custom-primary-70);
+}
+.btn-csecondary:active{
+    background-color: var(--custom-secondary-100);
+    color: var(--custom-primary-70);
 }
 
 .pointer{
@@ -51,7 +84,6 @@ footer{
 }
 
 .corpo{
-
     width: 100vw;
     min-height: 80vh;
     padding: 0.50rem 0 0.50rem 0;
@@ -94,10 +126,10 @@ footer{
     border-radius: 5px;
 }
 .enviar:hover{
-    background-color: darkred;
+    background-color: var(--custom-primary-50);
 }
 .enviar:active{
-    background-color: var(--custom-primary);
+    background-color: var(--custom-primary-100);
 }
 
 /*=======================  
@@ -115,7 +147,7 @@ footer{
 }
 
 .bg-descricao{
-    background-color: rgb(190, 0, 0);
+    background-color: var(--custom-primary-70);
 }
 
 .rodape.inativo{
@@ -130,7 +162,7 @@ footer{
     display: flex;
     flex-wrap: nowrap;
     overflow: scroll;
-    background-color: rgb(190, 0, 0);
+    background-color: var(--custom-primary-70);
 }
 
 .playlist-sequencia{

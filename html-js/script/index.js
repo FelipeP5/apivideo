@@ -20,7 +20,7 @@ videoNav.addEventListener("click", () => location.search = "rm=playlist");
 playlistNav.addEventListener("click", () => location.search = "rm=video");
 
 async function todos(){
-    fetch(videoURL)
+    await fetch(videoURL)
         .then(res => res.json())
         .then(videos => listeVideos(videos))
         .catch(erro => console.warn(erro, "Erro ao carregar vídeos")),
@@ -92,27 +92,33 @@ function filtroPesquisa(){
 function exibirSelecionados(selecao){
     console.log("Seleção ", selecao);
     lista.innerHTML = `
-        <div class="col pointer" data-bs-toggle="modal" data-bs-target="#modal-criacao">
-                    <div class="plus card align-items-center justify-content-evenly">
-                        <img src="../svg/red-plus-11961.svg" alt="+" class="w-25 h-25">
-                    </div>
+        <div class="col">
+            <div data-bs-toggle="modal" data-bs-target="#modal-criacao" 
+            class="pointer plus card align-items-center justify-content-evenly">
+                <img src="../svg/red-plus-11961.svg" alt="+" class="w-25 h-25">
+             </div>
         </div>
     `;
     selecao.forEach(item => {
         if (item.tipo === "video"){
             const cartaoVideo = `
-                <div id="video${item.obj.id}" class="col">
-                    <div class="pointer card bg-cprimary clr-csecondary">
-                        <div class="card-img-overlay">
-                            <div class="container p-0">
-                                    <a href="videoform.html?id=${item.obj.id}" class="ms-auto btn clr-cprimary">Editar</a>
-                                    <button data-bs-toggle="modal" data-bs-target="#modal-excluir-video" type="button" id="excluir-card-btn" class="btn clr-cprimary">Excluir</button>
-                            </div>
-                        </div>
-                        <div onclick="videodetalhe(${item.obj.id})">
+                <div class="col">
+                    <div onclick="videoDetalhe(${item.obj.id})" class="pointer card bg-cprimary clr-csecondary">
                             <img src="${item.obj.thumbnail || placeholderImg}" alt="Nenhuma imagem" class="card-img-top img-fluid custom-img bg-csecondary">
                             <h6 class="card-header text-center">${item.nome}</h6>
-                         </div>
+                            <div class="card-img-overlay">
+                                <div id="card-dd" class="dropdown">
+                                    <button type="button" data-bs-toggle="dropdown" class="btn-cprimary rounded position-absolute end-0">+</button>
+                                    <ul class="dropdown-menu dropdown-menu-start bg-cprimary">
+                                        <li>
+                                            <a href="videoform.html?id=${item.obj.id}" class="dropdown-item btn-cprimary">Editar</a>
+                                        </li>
+                                        <li>
+                                            <button data-bs-toggle="modal" data-bs-target="#modal-excluir-video" type="button" id="excluir-card-btn" class="dropdown-item btn-cprimary">Excluir</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                     </div>
                 </div>            
                     `;
@@ -130,7 +136,7 @@ function exibirSelecionados(selecao){
                         </div>
                         <div onclick="playlistdetalhe(${item.obj.id})">
                             <img src="${item.obj.thumbnail || placeholderImg}" alt="image cap" class="card-img-top img-fluid custom-img bg-csecondary">
-                            <h6 class="card-header text-center">${item.nome}</h6>
+                            <h6 class="card-footer text-center">${item.nome}</h6>
                         </div>
                     </div>   
                 </div>
@@ -142,9 +148,9 @@ function exibirSelecionados(selecao){
 
 //onclick funções
 
-function videodetalhe(id){
+function videoDetalhe(id){
     window.location.href = `videodetalhe.html?id=${id}`;
 };
-function playlistdetalhe(id){
+function playlistDetalhe(id){
     location.href = `playlistdetalhe.html?id=${id}`;
 }

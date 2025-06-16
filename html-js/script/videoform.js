@@ -35,7 +35,7 @@ if (Number(id)) {
     document.querySelectorAll(".d-none").forEach((elemento)=>elemento.classList.remove("d-none"));
 }
 
-formVideo.addEventListener("click", e => {
+formVideo.addEventListener("submit", e => {
     e.preventDefault();
     console.log(e);
     const dados = new FormData(formVideo);

@@ -10,7 +10,10 @@ const videoNav = document.getElementById("video-nav");
 const playlistNav = document.getElementById("playlist-nav");
 const lista = document.getElementById("lista");
 const pesquisaInput = document.getElementById("pesquisa-input");
-const excluirBtnModal = document.getElementById("excluir-video-btn");
+const excluirVideoBtn = document.getElementById("excluir-video-btn");
+const excluirPlaylistBtn = document.getElementById("excluir-playlist-btn");
+const idVideoExclusao = document.getElementById("id-video-exclusao");
+const idPlaylistExclusao = document.getElementById("id-playlist-exclusao");
 const param = new URLSearchParams(location.search).get("rm");
 let itensSalvos = [];
 
@@ -19,6 +22,22 @@ todos();
 pesquisaInput.addEventListener("input", filtroPesquisa);
 videoNav.addEventListener("click", () => location.search = "rm=playlist");
 playlistNav.addEventListener("click", () => location.search = "rm=video");
+excluirVideoBtn.addEventListener("click", () => {
+    const videoId = idVideoExclusao.value;
+    fetch(videoURL + videoId + "/", {
+        method: "DELETE",
+    })
+    .catch(erro => console.error("Não deu para excluir video", erro));
+    
+});
+excluirPlaylistBtn.addEventListener("click", () => {
+    const playlistId = idPlaylistExclusao.value;
+    fetch(playlistURL + playlistId + "/", {
+        method: "DELETE",
+    })
+    .catch(erro => console.error("Não deu para excluir playlist", erro));
+    
+})
 
 async function todos(){
     await fetch(videoURL)
@@ -114,14 +133,14 @@ function exibirSelecionados(selecao){
                                             <a href="videoform.html?id=${item.obj.id}" class="dropdown-item btn-cprimary">Editar</a>
                                         </li>
                                         <li>
-                                            <button data-bs-toggle="modal" data-bs-target="#modal-excluir-video" type="button" id="excluir-card-btn" class="dropdown-item btn-cprimary">Excluir</button>
+                                            <button onclick="marcarExclusaoVideo(${item.obj.id})" id="excluir-card-btn" data-bs-toggle="modal" data-bs-target="#modal-excluir-video"
+                                            type="button" class="dropdown-item btn-cprimary">Excluir</button>
                                         </li>
                                     </ul>
                                 </div>
                     </div>
                 </div>            
                     `;
-                    excluirBtnModal.addEventListener("click", () => excluirVideo(item.obj.id)) . 
                     lista.innerHTML += cartaoVideo;
         }
         else {
@@ -137,7 +156,8 @@ function exibirSelecionados(selecao){
                                             <a href="playlistform.html?id=${item.obj.id}" class="dropdown-item btn-cprimary">Editar</a>
                                         </li>
                                         <li>
-                                            <button data-bs-toggle="modal" data-bs-target="#modal-excluir-playlist" type="button" class="dropdown-item btn-cprimary">Excluir</button>
+                                            <button onclick="marcarExclusaoPlaylist(${item.obj.id})" data-bs-toggle="modal" data-bs-target="#modal-excluir-playlist"
+                                            type="button" class="dropdown-item btn-cprimary">Excluir</button>
                                         </li>
                                     </ul>
                                 </div>
@@ -149,19 +169,6 @@ function exibirSelecionados(selecao){
     })
 }
 
-function excluirVideo(videoId){
-    fetch(`${videoURL}${videoId}/`, {
-        method: "DELETE",
-    }).then(res => console.log(res))
-    .catch(erro => console.error("Erro em exclusão de vídeo", erro))
-}
-function excluirPlaylist(playlistId){
-    fetch(`${videoURL}${playlistId}/`, {
-        method: "DELETE",
-    }).then(res => console.log(res))
-    .catch(erro => console.error("Erro em exclusão de vídeo", erro))
-}
-
 //onclick funções
 
 function videoDetalhe(id){
@@ -169,4 +176,11 @@ function videoDetalhe(id){
 };
 function playlistDetalhe(id){
     location.href = `playlistdetalhe.html?id=${id}`;
+}
+
+function marcarExclusaoVideo(videoId){
+    idVideoExclusao.value = videoId;
+}
+function marcarExclusaoPlaylist(playlistId){
+    idPlaylistExclusao.value = playlistId;
 }

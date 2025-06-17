@@ -65,6 +65,20 @@
     color: var(--custom-primary-70);
 }
 
+.btn-excluir{
+    background-color: var(--custom-primary-70);
+    color: var(--custom-secondary-100);
+    padding: 0.5rem 1rem;
+}
+.btn-excluir:hover{
+    background-color: var(--custom-primary-50);
+    color: var(--custom-secondary-70);
+}
+.btn-excluir:active{
+    background-color: var(--custom-primary-120);
+    color: var(--custom-secondary-100);
+}
+
 .pointer{
     cursor: pointer;
 }

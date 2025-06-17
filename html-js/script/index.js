@@ -126,9 +126,9 @@ function exibirSelecionados(selecao){
                     <div class="pointer card bg-cprimary clr-csecondary">
                             <img onclick="videoDetalhe(${item.obj.id})" src="${item.obj.thumbnail || placeholderImg}" alt="Nenhuma imagem" class="card-img-top img-fluid custom-img bg-csecondary">
                             <h6 onclick="videoDetalhe(${item.obj.id})" class="card-header text-center">${item.nome}</h6>
-                                <div id="card-dd" class="dropdown position-absolute end-0 m-2">
+                                <div id="card-dd" class="dropstart position-absolute end-0 m-2">
                                     <button type="button" data-bs-toggle="dropdown" class="btn-cprimary rounded">+</button>
-                                    <ul class="dropdown-menu dropdown-menu-start bg-cprimary">
+                                    <ul class="dropdown-menu bg-cprimary">
                                         <li>
                                             <a href="videoform.html?id=${item.obj.id}" class="dropdown-item btn-cprimary">Editar</a>
                                         </li>
@@ -149,9 +149,9 @@ function exibirSelecionados(selecao){
                     <div class="pointer card bg-cprimary clr-csecondary">
                             <img onclick="playlistDetalhe(${item.obj.id})" src="${item.obj.thumbnail || placeholderImg}" alt="Nenhuma imagem" class="card-img-top img-fluid custom-img bg-csecondary">
                             <h6 onclick="playlistDetalhe(${item.obj.id})" class="card-header text-center">${item.nome}</h6>
-                                <div id="card-dd" class="dropdown position-absolute end-0 m-2">
+                                <div id="card-dd" class="dropstart position-absolute end-0 m-2">
                                     <button type="button" data-bs-toggle="dropdown" class="btn-cprimary rounded">+</button>
-                                    <ul class="dropdown-menu dropdown-menu-start bg-cprimary">
+                                    <ul class="dropdown-menu bg-cprimary">
                                         <li>
                                             <a href="playlistform.html?id=${item.obj.id}" class="dropdown-item btn-cprimary">Editar</a>
                                         </li>

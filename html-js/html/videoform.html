@@ -18,6 +18,44 @@
  -> Arquivo e imagem precisam ter inputs embelezados;
  -> Input file para info, input image para view;
 -->
+
+<div id="modal-excluir-video" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-4 clr-cprimary">Tem Certeza?</h1>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p>Tem certeza que deseja excluir esse vídeo?</p>
+        </div>
+        <div class="modal-footer text-center">
+          <button data-bs-dismiss="modal" type="button" id="excluir-video-modal-btn" class="rounded btn-excluir">Excluir</button>
+          <button data-bs-dismiss="modal" type="button" class="rounded btn-csecondary">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-escolher-playlists" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-4 clr-cprimary">Estará em...</h1>
+            <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+            <form id="form-modal-escolha" enctype="application/x-www-form-urlencoded">
+                <div id="campos-playlists"></div>
+            </div>
+            <div class="modal-footer text-center">
+                <input data-bs-dismiss="modal" type="submit" value="Confirmar" id="confirmar-btn" class="rounded btn-cprimary">
+            </form>
+          <button data-bs-dismiss="modal" type="button" class="rounded btn-csecondary">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 <body>
     <nav class="navbar navbar-expand-sm navbar-dark sticky-top bg-cprimary">
         <a class="navbar-brand ms-2" href="./">MyTube</a>
@@ -46,27 +84,7 @@
            </div>
         </div>
   </nav>
-      <!--Exclusão-->
-      <dialog id="modal-exclusao" class="modal-exclusao rounded bg-cprimary">
-          <h4 class="text-center clr-csecondary">Tem certeza que deseja excluir esse vídeo?</h4>
-          <div class="d-inline-block">
-              <button id="cancelar-btn" class="btn btn-light">Cancelar</button>
-              <button id="confirmar-exclusao-btn" class="btn btn-danger">Excluir</button>
-          </div>
-      </dialog>
-      <!--/Exclusão-->
-      <!--Escolha Playlists-->
-      <dialog id="modal-playlists" class="modal-playlists rounded bg-csecondary clr-cprimary">
-        <h4 class="text-center">Playlists disponíveis</h4>
-        <div>
-            <form id="form-modal" enctype="application/x-www-form-urlencoded">
-                <div id="campos-playlists"></div>
-                <input id="salvar-relacoes-btn" class="btn btn-success" type="submit" value="Salvar">
-            </form>
-            <button id="fechar-btn" class="btn btn-light" type="button">Fechar</button>
-        </div>
-      </dialog>
-      <!--/Escolha Playlists-->
+      
     <div id="corpo" class="corpo">
         <h1 id="titulo-acao" class="text-center">Criar um novo vídeo</h1>
         <div class="container d-flex justify-content-center align-items-center">
@@ -80,7 +98,8 @@
                     <textarea class="form-control" id="descricao" name="descricao" cols="60" rows="5" placeholder="Escreva sua descrição aqui"></textarea>
                 </div>
                 <div class="mb-2">
-                    <button type="button" id="playlists-btn" class="d-none form-control bg-csecondary clr-cprimary">Escolha playlists</button>
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#modal-escolher-playlists"
+                    id="playlists-btn" class="d-none btn-csecondary rounded">Escolha playlists</button>
                 </div>
                 <div class="mb-2">
                     <label for="thumbnail" class="form-label">Thumbnail</label>
@@ -92,19 +111,16 @@
                     <input type="file" class="video-input form-control bg-cprimary" id="arquivo" name="arquivo" accept="video/, .mp4, .webm">
                     <p class="d-none clr-cprimary" id="video-uso"></p>
                 </div>
-                <!--ou-->
-                <!-- <div class="mb-2">
-                    <label for="hiperlink" class="form-label"></label>
-                    <input type="url" id="hiperlink" class="form-control" placeholder="https://exemplo.com">
-                </div> -->
                 <div class="text-center mt-3 mb-1">
-                    <input class="enviar p-2 bg-cprimary clr-csecondary" type="submit" id="enviar" value="Confirmar">
+                    <input class="enviar p-2 bg-cprimary clr-csecondary" type="button" id="enviar-btn" value="Criar">
                 </div>
             </form>
         </div>
     </div>
-    <footer class="d-flex justify-content-center bg-cprimary">
-        <button id="excluir-btn" class="d-none excluir btn btn-danger">Excluir</button>
+    <footer class="bg-cprimary d-flex justify-content-center flex-wrap">
+            <a href="" id="criar-video-a" class="d-none text-decoration-none rounded-start btn-csecondary px-5">Criar</a>
+            <button type="button" data-bs-toggle="modal" data-bs-target="#modal-excluir-video" class="d-none btn-excluir px-5">Excluir</button>
+            <a href="" id="detalhe-video-a" class="d-none rounded-end btn-csecondary px-5">Ver</a>
     </footer>
     <script src="../script/videoform.js"></script>
 </body>

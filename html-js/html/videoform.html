@@ -12,8 +12,7 @@
 </head>
 <!-- TODO:
  -> tooltips
- -> botoes feios
- -> Arquivo, imagem e ${link} devem possuir texto de ajuda sobre os tipos aceitados.
+ -> Arquivo, imagem devem possuir texto de ajuda sobre os tipos aceitados.
  -> Reposicionar modal de exclusão
  -> Arquivo e imagem precisam ter inputs embelezados;
  -> Input file para info, input image para view;
@@ -37,6 +36,7 @@
     </div>
   </div>
 
+  <!--Modal de escolha Video-->
   <div id="modal-escolher-playlists" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -56,6 +56,7 @@
       </div>
     </div>
   </div>
+  <!--/Modal de escolha Video/-->
 <body>
     <nav class="navbar navbar-expand-sm navbar-dark sticky-top bg-cprimary">
         <a class="navbar-brand ms-2" href="./">MyTube</a>
@@ -112,7 +113,7 @@
                     <p class="d-none clr-cprimary" id="video-uso"></p>
                 </div>
                 <div class="text-center mt-3 mb-1">
-                    <input class="enviar p-2 bg-cprimary clr-csecondary" type="button" id="enviar-btn" value="Criar">
+                    <input class="btn-cprimary rounded" type="button" id="enviar-btn" value="Criar">
                 </div>
             </form>
         </div>

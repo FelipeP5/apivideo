@@ -132,19 +132,7 @@ footer{
       Formulário
 ========================*/
 
-.playlists{
-    width: 100%;
-}
 
-.enviar{
-    border-radius: 5px;
-}
-.enviar:hover{
-    background-color: var(--custom-primary-50);
-}
-.enviar:active{
-    background-color: var(--custom-primary-100);
-}
 
 /*=======================  
         Usuário

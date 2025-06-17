@@ -42,9 +42,7 @@ if (Number(id)) {
     listarPlaylistsEmModal();
 }
 
-enviarBtn.addEventListener("click", e => {
-    e.preventDefault();
-    console.log(e);
+enviarBtn.addEventListener("click", () => {
     const dados = new FormData(formVideo);
     if (Number(id)){
         fetch(videoURL + id  + "/", {
@@ -73,19 +71,7 @@ enviarBtn.addEventListener("click", e => {
 
 formModalEscolha.addEventListener("submit", (e)=> {
     e.preventDefault();
-
-    Object.entries(e.target).forEach(listItem => {
-        const dados = new FormData();
-        dados.append("playlist", listItem[1].value)
-        dados.append("video", id);
-        if (listItem[1].checked){
-            console.log("Truthy!", listItem[1].value);
-            fetch(relacoes, {
-                method : "POST",
-                body : dados,
-            }).catch(erro => console.error(erro));
-        } else{console.log(listItem[1].checked, "Falsy!")};
-    });
+    controleDeRelacoes(e);
 });
 
 excluirModalBtn.addEventListener("click", () => {
@@ -108,3 +94,34 @@ function listarPlaylistsEmModal(){
     })
     .catch(erro => console.error(erro));
 };
+
+async function controleDeRelacoes(eSubmit){
+    const listaRels = await fetch(relacoes)
+    .catch(erro => console.error(erro, "Falha em pegar relações"));
+    try{
+        Object.entries(eSubmit.target).forEach(listItem => {
+            const dados = new FormData();
+            dados.append("playlist", listItem[1].value)
+            dados.append("video", id);
+    
+            if (listItem[1].checked){
+                console.log("Truthy!", listItem[1].value);
+                fetch(relacoes, {
+                    method : "POST",
+                    body : dados,
+                }).catch(erro => console.error(erro));
+            }
+            else {
+                console.log(listItem[1].checked, "se ja existir, apaga");
+                listaRels.forEach(rel => {
+                    if (rel.video === id && rel.playlist === listItem[1].value){
+                        fetch(relacoes + rel.id, {method: "DELETE"})
+                    };
+                })
+            };
+        });
+    }
+    catch (erro) {
+        console.error(erro, "Algo deu errado!")
+    }
+}

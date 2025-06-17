@@ -96,7 +96,7 @@ function listarPlaylistsEmModal(){
 };
 
 async function controleDeRelacoes(eSubmit){
-    const listaRels = await fetch(relacoes)
+    const listaRels = await fetch(relacoes).then(res => res.json())
     .catch(erro => console.error(erro, "Falha em pegar relações"));
     try{
         Object.entries(eSubmit.target).forEach(listItem => {
@@ -105,17 +105,16 @@ async function controleDeRelacoes(eSubmit){
             dados.append("video", id);
     
             if (listItem[1].checked){
-                console.log("Truthy!", listItem[1].value);
+                
                 fetch(relacoes, {
                     method : "POST",
                     body : dados,
                 }).catch(erro => console.error(erro));
             }
             else {
-                console.log(listItem[1].checked, "se ja existir, apaga");
                 listaRels.forEach(rel => {
-                    if (rel.video === id && rel.playlist === listItem[1].value){
-                        fetch(relacoes + rel.id, {method: "DELETE"})
+                    if (rel.video === Number(id) && rel.playlist === Number(listItem[1].value)){
+                        fetch(relacoes + rel.id + "/", {method: "DELETE"})
                     };
                 })
             };

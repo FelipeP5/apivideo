@@ -1,6 +1,4 @@
-/*TODO: 
-- edição de relações (preenchimento de existentes e atualização);
-*/
+
 if(JSON.parse(sessionStorage.getItem("autenticado")) !== true){location.replace("login.html")};
 
 
@@ -80,16 +78,24 @@ excluirModalBtn.addEventListener("click", () => {
     .catch(erro => console.error("Excluir o vídeo não foi possível", erro));
 })
 
-function listarPlaylistsEmModal(){
+async function listarPlaylistsEmModal(){
+    const listaRels = await fetch(relacoes).then(res => res.json())
+    .catch(erro => console.error(erro, "Falha em pegar relações"));
+    
     fetch(playlistURL)
     .then(res => res.json())
     .then(playlists => {
         playlists.forEach(playlist =>{
             const option = document.createElement("div");
             option.classList.add("form-check")
-            option.innerHTML = `<label for="${playlist.id}" class="form-check-label">${playlist.nome}</label>
-            <input id="${playlist.id}" class="form-check-input" type="checkbox" name="playlist" value="${playlist.id}">`;
+            option.innerHTML = `<label for="${playlist.nome}:${playlist.id}" class="form-check-label">${playlist.nome}</label>
+            <input id="${playlist.nome}:${playlist.id}" class="form-check-input" type="checkbox" name="playlist" value="${playlist.id}">`;
             camposPlaylists.appendChild(option);
+            listaRels.forEach(rel => {
+                if (rel.video === Number(id) && rel.playlist === playlist.id){
+                    document.getElementById(`${playlist.nome}:${playlist.id}`).setAttribute("checked", "");
+                }
+            });
         });
     })
     .catch(erro => console.error(erro));

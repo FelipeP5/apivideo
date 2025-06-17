@@ -13,10 +13,14 @@ const id = new URLSearchParams(location.search).get("id");
 const nome = document.getElementById("nome");
 const descricao = document.getElementById("descricao");
 const thumbnail = document.getElementById("thumbnail");
+const enviarBtn = document.getElementById("enviar-btn");
+const confirmarBtn = document.getElementById("confirmar-btn");
 const excluirBtn = document.getElementById("excluir-btn");
-const videosBtn = document.getElementById("videos-btn")
+const excluirModalBtn= document.getElementById("excluir-playlist-modal-btn");
+const criarA = document.getElementById("criar-playlist-a");
+const detalheA = document.getElementById("detalhe-playlist-a");
+const campoVideos = document.getElementById("campo-videos");
 const modalVideos = document.getElementById("modal-videos");
-let formContent = false;
 
 if (Number(id)) {
     document.querySelector("#titulo-acao").innerText = "Alterar informações de playlist";
@@ -28,15 +32,15 @@ if (Number(id)) {
         nome.value = playlist.nome;
         descricao.innerText = playlist.descricao ? playlist.descricao : "";
         imgPlaylistUsoTxt.innerText = `Usando: ${playlist.thumbnail || "Nada"}`;
+        enviarBtn.value = "Alterar";
+        criarA.href = "playlistform.html";
+        detalheA.href = `playlistdetalhe.html?id=${id}`;
     })
     .catch(erro => console.error(erro, "Erro ao preencher campos"));
-
     document.querySelectorAll(".d-none").forEach(elemento => elemento.classList.remove("d-none"));
 }
 
-formPlaylist.addEventListener("submit", e => {
-    e.preventDefault();
-    console.log(e);
+enviarBtn.addEventListener("click", () => {
     const dados = new FormData(formPlaylist);
     if (Number(id)){
         fetch(playlistURL + id  + "/", {
@@ -44,7 +48,6 @@ formPlaylist.addEventListener("submit", e => {
             body: dados,
         })
         .then(res => {
-            console.log(res);
             alert("Informações modificadas com sucesso");
         })
         .catch(erro => console.error(erro, "Erro ao editar conteúdo"))
@@ -55,70 +58,64 @@ formPlaylist.addEventListener("submit", e => {
         body: dados,
     })
     .then((res) => {
-        console.log(res);
-        alert("Playlist criada");
-    }
-    )
+        if (res.ok){
+        alert("Playlist criada")
+        }
+        else{alert("Erro")};
+    })
     .catch(erro => console.error(erro, "Erro ao criar playlist"));
     }
 });
 
-// Modal de relações
-videosBtn.addEventListener("click", () => {
-    modalVideos.showModal();
-    if (!formContent){
-        listarVideosEmModal();
-        formContent = true;
-    };
-    formModal.addEventListener("submit", salvarRelacoes);
-    document.getElementById("fechar-btn").addEventListener("click", () => modalVideos.close());
-});
-
-function listarVideosEmModal(){
+async function listarPlaylistsEmModal(){
+    const listaRels = await fetch(relacoes).then(res => res.json())
+    .catch(erro => console.error(erro, "Falha em pegar relações"));
+    
     fetch(videoURL)
     .then(res => res.json())
     .then(videos => {
-        videos.forEach(video =>{
-            const opcao = document.createElement("div");
-            opcao.innerHTML = `<label for="${video.id}" class="form-label">${video.nome}</label>
-            <input id="${video.id}" class="" type="checkbox" name="video" value="${video.id}">`;
-            document.getElementById("campos-videos").appendChild(opcao);
+       videos.forEach(video => {
+            const option = document.createElement("div");
+            option.classList.add("form-check")
+            option.innerHTML = `<label for="${video.nome}:${video.id}" class="form-check-label">${playlist.nome}</label>
+            <input id="${video.nome}:${video.id}" class="form-check-input" type="checkbox" name="playlist" value="${playlist.id}">`;
+            campoVideos.appendChild(option);
+            listaRels.forEach(rel => {
+                if (rel.playlist === Number(id) && rel.video === video.id){
+                    document.getElementById(`${video.nome}:${videot.id}`).setAttribute("checked", "");
+                }
+            });
         });
     })
     .catch(erro => console.error(erro));
 };
 
-function salvarRelacoes(e){
-    e.preventDefault();
-
-    Object.entries(e.target).forEach(listItem => {
-        const dados = new FormData();
-        dados.append("video", listItem[1].value)
-        dados.append("playlist", id);
-        if (listItem[1].checked){
-            console.log("Truthy!", listItem[1].value);
-            fetch(relacoes, {
-                method : "POST",
-                body : dados,
-            }).catch(erro => console.error(erro));
-        } else{console.log(listItem[1].checked, "Falsy!")};
-    });
-    modalVideos.close();
-};
-
-excluirBtn.addEventListener("click", () => {
-    document.getElementById("modal-exclusao").showModal();
-    document.getElementById("confirmar-exclusao-btn").addEventListener("click", excluir);
-    document.getElementById("cancelar-btn").addEventListener("click", () => modalExclusao.close());
-});
-
-function excluir(){
-    fetch(playlistURL + id + "/", {
-        method: "DELETE",
-    })
-    .then(res => {
-        console.log(res);
-        location.replace("./");
-    })
-    .catch(erro => console.error(erro, "Exclusão fracassou"));
-};
+async function controleDeRelacoes(eSubmit){
+    const listaRels = await fetch(relacoes).then(res => res.json())
+    .catch(erro => console.error(erro, "Falha em pegar relações"));
+    try{
+        Object.entries(eSubmit.target).forEach(listItem => {
+            const dados = new FormData();
+            dados.append("video", listItem[1].value)
+            dados.append("playlist", id);
+    
+            if (listItem[1].checked){
+                
+                fetch(relacoes, {
+                    method : "POST",
+                    body : dados,
+                }).catch(erro => console.error(erro));
+            }
+            else {
+                listaRels.forEach(rel => {
+                    if (rel.playlist === Number(id) && rel.video === Number(listItem[1].value)){
+                        fetch(relacoes + rel.id + "/", {method: "DELETE"})
+                    };
+                })
+            };
+        });
+    }
+    catch (erro) {
+        console.error(erro, "Algo deu errado!")
+    }
+}

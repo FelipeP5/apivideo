@@ -15,23 +15,42 @@
  -> Arquivo, imagem e ${link} devem possuir texto de ajuda sobre os tipos aceitados;
  -> Arquivo e imagem precisam ter inputs embelezados;
 -->
+
+<div id="modal-excluir-playlist" class="modal fade" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h1 class="modal-title fs-4 clr-cprimary">Tem Certeza?</h1>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p>Tem certeza que deseja excluir esse vídeo?</p>
+      </div>
+      <div class="modal-footer text-center">
+        <button data-bs-dismiss="modal" type="button"
+         id="excluir-playlist-modal-btn" class="rounded btn-excluir">Excluir</button>
+        <button data-bs-dismiss="modal" type="button"
+         class="rounded btn-csecondary">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
  <!--Modal de Relações-->
  <div id="modal-escolher-videos" class="modal fade" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="fs-3">Vídeos disponíveis</h1>
-        <button class="btn-close" data-bs-dismiss="modal"></button>
+          <h1 class="modal-title fs-4 clr-cprimary">Contém...</h1>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
-            <form id="form-modal" enctype="application/x-www-form-urlencoded">
-                <div id="campos-videos"></div>
-                <input id="salvar-relacoes-btn" class="btn btn-success" type="submit" value="Salvar">
-            </form>
-      </div>
-      <div class="modal-footer text-center">
-        <button type="button" id="confirmar-playlists-relacoes" class="rounded px-3 py-2 bg-cprimary clr-csecondary">Confirmar</button>
-        <button class="btn btn-light" data-bs-dismiss="modal" type="button">Fechar</button>
+          <form id="form-modal-escolha" enctype="application/x-www-form-urlencoded">
+              <div id="campo-videos"></div>
+          </div>
+          <div class="modal-footer text-center">
+              <input data-bs-dismiss="modal" type="submit" value="Confirmar" id="confirmar-btn" class="rounded btn-cprimary">
+          </form>
+        <button data-bs-dismiss="modal" type="button" class="rounded btn-csecondary">Cancelar</button>
       </div>
     </div>
   </div>
@@ -65,16 +84,7 @@
         </div>
     </div>
 </nav>
-      </nav>
-      <!--Exclusão-->
-        <dialog id="modal-exclusao" class="bg-cprimary">
-            <h4 class="text-center clr-csecondary">Tem certeza que deseja excluir essa playlist?</h4>
-            <div class="d-inline-block">
-                <button id="cancelar-btn" class="btn btn-light">Cancelar</button>
-                <button id="confirmar-exclusao-btn" class="btn btn-danger">Excluir</button>
-            </div>
-        </dialog>
-        <!--/Exclusão-->
+
     <div id="corpo" class="corpo">
         <h1 id="titulo-acao" class="text-center">Criar nova playlist</h1>
         <div class="container d-flex justify-content-center align-items-center">
@@ -89,7 +99,7 @@
                 </div>
                 <div class="mb-2">
                     <button type="button" data-bs-toggle="modal" data-bs-target="#modal-escolher-videos"
-                    class="form-control d-none bg-csecondary clr-cprimary">Escolha Vídeos</button>
+                    class="d-none btn-csecondary rounded">Escolha Vídeos</button>
                 </div>
                 <div class="mb-2">
                     <label for="thumbnail" class="form-label">Thumbnail</label>
@@ -97,14 +107,15 @@
                     <p class="d-none clr-cprimary" id="img-playlist-uso"></p>
                 </div>
                 <div class="text-center mt-3 mb-1">
-                    <label for="enviar" class="form-label"></label>
-                    <input class="enviar p-2 bg-cprimary clr-csecondary" type="submit" id="enviar" value="Confirmar">
+                    <input class="btn-cprimary rounded" type="submit" id="enviar-btn" value="Criar">
                 </div>
             </form>
         </div>
     </div>
-    <footer class="d-flex justify-content-center bg-cprimary">
-        <button id="excluir-btn" class="d-none btn btn-danger">Excluir</button>
+    <footer class="bg-cprimary d-flex justify-content-center flex-wrap">
+      <a href="" id="criar-playlist-a" class="d-none text-decoration-none rounded-start btn-csecondary px-5">Criar</a>
+      <button type="button" data-bs-toggle="modal" data-bs-target="#modal-excluir-playlist" class="d-none btn-excluir px-5">Excluir</button>
+      <a href="" id="detalhe-playlist-a" class="d-none text-decoration-none rounded-end btn-csecondary px-5">Ver</a>
     </footer>
     
     <script src="../script/playlistform.js"></script>

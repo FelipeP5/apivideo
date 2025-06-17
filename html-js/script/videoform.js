@@ -59,8 +59,10 @@ enviarBtn.addEventListener("click", () => {
             body: dados,
         })
         .then(res => {
-            console.log(res);
-            alert("Vídeo criado");
+            if (res.ok){
+                alert("Video criado")
+            }
+            else{alert("Erro")};
         }
     )
     .catch(erro => console.error(erro, "Erro ao criar vídeo"));

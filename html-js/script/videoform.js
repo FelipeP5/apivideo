@@ -89,7 +89,7 @@ async function listarPlaylistsEmModal(){
     .then(playlists => {
         playlists.forEach(playlist =>{
             const option = document.createElement("div");
-            option.classList.add("form-check")
+            option.classList.add("form-check");
             option.innerHTML = `<label for="${playlist.nome}:${playlist.id}" class="form-check-label">${playlist.nome}</label>
             <input id="${playlist.nome}:${playlist.id}" class="form-check-input" type="checkbox" name="playlist" value="${playlist.id}">`;
             camposPlaylists.appendChild(option);

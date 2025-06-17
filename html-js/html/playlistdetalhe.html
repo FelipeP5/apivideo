@@ -11,8 +11,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 </head>
 <!-- TODO:
-    -> Botões fixados no fundo da tela;
-    -> Inclui deve mostrar todos os vídeos inclusos em ordem;
     -> Palavras muito longas causam overflow em descrição;
     -> Quando o nome quebrar linha, a data deve reter estado;
     -> Na falta de capa, exibir um texto "Sem imagem" em fundo branco no lugar;
@@ -21,8 +19,28 @@
     -> Estilização de botôes e seus estados inativos;
     -> Estilização de rolagem do inclui;
 -->
+
+<div id="modal-excluir-video" class="modal fade" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-4 clr-cprimary">Tem Certeza?</h1>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <input id="id-video-exclusao" type="number" class="d-none">
+        <p>Tem certeza que deseja excluir esse vídeo?</p>
+      </div>
+      <div class="modal-footer text-center">
+        <button data-bs-dismiss="modal" type="button" id="excluir-video-btn" class="rounded btn-excluir">Excluir</button>
+        <button data-bs-dismiss="modal" type="button" class="rounded btn-csecondary">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <body>
-  <nav class="navbar navbar-expand-sm navbar-dark sticky-top bg-cprimary">
+  <nav class="navbar navbar-expand-sm navbar-dark bg-cprimary">
     <a class="navbar-brand ms-2" href="./">MyTube</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
@@ -52,7 +70,8 @@
     <div id="corpo" class="corpo">
       <div class="row justify-content-evenly">
           <div class="col-sm-10">
-            <button id="playlist-sequencia-btn" type="button" class="playlist-sequencia w-100 bg-cprimary clr-csecondary"><strong>Nome da playlist</strong></button>
+            <button id="playlist-sequencia-btn" type="button" 
+            class="playlist-sequencia rounded-top w-100 bg-cprimary clr-csecondary">Nome da playlist</button>
             <div id="area-da-capa" class="area-da-capa mt-1 p-0 bg-csecondary">
               <img id="capa" class="custom-img h-100 w-100 img-fluid" src="" alt="">
           </div>
@@ -60,11 +79,11 @@
               <h1 id="nome"><strong>Nome da Playlist</strong></h1>
               <p id="data" class="ms-auto rounded p-2 bg-csecondary clr-cprimary">23/02/2022</p>
           </div>
-          <div class="bg-descricao rounded-bottom container-sm text-center p-2 bg-cprimary clr-csecondary">
+          <div class="bg-descricao rounded-bottom container-sm text-center p-2 clr-csecondary">
             <p id="descricao"></p>
             <div class="row justify-content-evenly">   
-              <div class="col-2 p-1 bg-csecondary rounded">
-                <button id="editar-btn" type="button" class="btn w-100 clr-cprimary">Editar</button>
+              <div>
+                <button id="editar-btn" type="button" class="btn-csecondary rounded">Editar Playlist</button>
               </div>
             </div>
           </div>
@@ -74,13 +93,13 @@
 
     <footer id="footer-id" class="rodape-inativo container-fluid sticky-bottom bg-cprimary">
       <div class="antecessor-div col p-1">
-        <button type="button" id="antecessor-btn" class="btn w-100 clr-csecondary">--Antecessor</button>
+        <button type="button" id="antecessor-btn" class="w-100 btn-cprimary">Anterior</button>
       </div>
       <div class="col p-1">
-        <button type="button" id="inclui-btn" class="btn w-100 clr-csecondary">^Inclui^</button>
+        <button type="button" id="inclui-btn" class="w-100 btn-cprimary">Inclui</button>
       </div>
       <div class="sucessor-div col p-1">
-        <button type="button" id="sucessor-btn" class="btn w-100 clr-csecondary">Sucessor>></button>
+        <button type="button" id="sucessor-btn" class="w-100 btn-cprimary">Próximo</button>
       </div>
       <div id="fila-videos" class="d-none row p-2 gx-1">
       </div>

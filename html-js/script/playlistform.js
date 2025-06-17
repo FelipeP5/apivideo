@@ -5,7 +5,7 @@ if(JSON.parse(sessionStorage.getItem("autenticado")) !== true){location.replace(
 
 
 const formPlaylist = document.getElementById("form-playlist");
-const formModal = document.getElementById("form-modal");
+const formModalEscolha = document.getElementById("form-modal-escolha");
 const videoURL = "http://127.0.0.1:8000/video/";
 const playlistURL = "http://127.0.0.1:8000/playlist/";
 const relacoes = "http://127.0.0.1:8000/playlistvideo/";
@@ -38,6 +38,7 @@ if (Number(id)) {
     })
     .catch(erro => console.error(erro, "Erro ao preencher campos"));
     document.querySelectorAll(".d-none").forEach(elemento => elemento.classList.remove("d-none"));
+    listarVideosEmModal();
 }
 
 enviarBtn.addEventListener("click", () => {
@@ -67,7 +68,12 @@ enviarBtn.addEventListener("click", () => {
     }
 });
 
-async function listarPlaylistsEmModal(){
+formModalEscolha.addEventListener("submit", (e)=> {
+    e.preventDefault();
+    controleDeRelacoes(e);
+});
+
+async function listarVideosEmModal(){
     const listaRels = await fetch(relacoes).then(res => res.json())
     .catch(erro => console.error(erro, "Falha em pegar relações"));
     
@@ -77,12 +83,12 @@ async function listarPlaylistsEmModal(){
        videos.forEach(video => {
             const option = document.createElement("div");
             option.classList.add("form-check")
-            option.innerHTML = `<label for="${video.nome}:${video.id}" class="form-check-label">${playlist.nome}</label>
-            <input id="${video.nome}:${video.id}" class="form-check-input" type="checkbox" name="playlist" value="${playlist.id}">`;
+            option.innerHTML = `<label for="${video.nome}:${video.id}" class="form-check-label">${video.nome}</label>
+            <input id="${video.nome}:${video.id}" class="form-check-input" type="checkbox" name="video" value="${video.id}">`;
             campoVideos.appendChild(option);
             listaRels.forEach(rel => {
                 if (rel.playlist === Number(id) && rel.video === video.id){
-                    document.getElementById(`${video.nome}:${videot.id}`).setAttribute("checked", "");
+                    document.getElementById(`${video.nome}:${video.id}`).setAttribute("checked", "");
                 }
             });
         });
@@ -100,7 +106,6 @@ async function controleDeRelacoes(eSubmit){
             dados.append("playlist", id);
     
             if (listItem[1].checked){
-                
                 fetch(relacoes, {
                     method : "POST",
                     body : dados,

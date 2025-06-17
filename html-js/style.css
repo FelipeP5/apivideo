@@ -160,7 +160,7 @@ footer{
     height: 50vh;
 }
 
-.fila-videos{
+.fila-videos, .fila-playlists{
     display: flex;
     flex-wrap: nowrap;
     overflow: scroll;
